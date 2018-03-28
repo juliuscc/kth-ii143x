@@ -1,0 +1,13 @@
+# Output files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.pdf
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Misc
+.DS_Store
