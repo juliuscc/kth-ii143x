@@ -82,10 +82,30 @@ Hur skulle man kunna använda en delmängd av JSON Schema för att dynamiskt anp
 
 \begin{enumerate}
 	\item Föreslå ett eget JSON Schema
-	\item Skapa en JSON Schema genererare.
+	\item Skapa en JSON Schema genererare. ????
 	\item Skapa en JSON Schema parser för Delphi. / Undersök befintliga JSON Schema parsers för Delphi.
+	\item Skapa en direkt mappning mellan JSON Schema och en eller flera datatyp(er) i Delphi
 	\item Create a dynamic interface based on parsed JSON Schemas.
 \end{enumerate}
+
+\section{Avgränsningar}
+
+JSON Schema kan användas till:
+\begin{itemize}
+	\item validering av data
+	\item anotering av data
+	\item automatisk generering av kompatibel kod
+	\item beskrivning av REST APIer
+	\item automatisk generering av API-dokumentation
+\end{itemize}
+
+Dessutom finns det exempel på JSON Schema som automatiskt genereras utifrån kod XXXXX.
+
+Detta projekt intresserar sig enbart för att försöka använda JSON Schema för att anotera data som kan redigeras. Det vill säga beskriva vilken data som kan redigeras, samt hur den kan redigeras. Därför kommer inte all funktionalitet av en JSON Parser implementeras, då det är utanför intresseområdet av rapporten.
+
+Utöver funktionalitet kommer JSON parsern bara förstå en förenklad delmängd av JSON Schema, då vissa egenskaper av JSON Schema inte är eftertraktade. Ett exempel på ej eftertraktade egenskaper nyckelordet \texttt{multipleOf} är att kunna specificera att en \texttt{number} eller \texttt{integer} ska vara en multiple av en annan siffra.
+
+Modellen som rapporten föreslår för att annotera JSON data kommer inte nödvändigtvis vara en strikt delmängd av JSON Schema. Om ej implementerade egenskaper behövs, kan modellen utökas för att inkludera egenskaper som saknas i JSON Schema.
 
 \chapter{Resultat}
 
