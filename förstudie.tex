@@ -6,6 +6,13 @@
 
 \usepackage{nameref}
 \usepackage{minted}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+
+\begin{document}
 
 \title{Detta är den svenska titeln}
 \alttitle{This is the English translation of the title}
@@ -17,8 +24,6 @@
 \programme{Civilingenjör Informationsteknik}
 \school{Skolan för elektroteknik och datavetenskap}
 \date{\today}
-
-\begin{document}
 
 % Frontmatter includes the titlepage, abstracts and table-of-contents
 \frontmatter
@@ -70,13 +75,40 @@ Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per ver
 
 \subsection{JSON och webkommunikation baserat på JSON objekt}
 \label{sec:intr:bakgrund:json}
-JSON är ett populärt dataformat för att skicka data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt.\cite{Pezoa2016} Ett exempel på ett datautbyte mellan en klient och en server som erbjuder en webbtjänst skulle kunna se ut som följande:
+JSON är ett populärt dataformat för att skicka data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt. \cite{Pezoa2016} Ett exempel på ett datautbyte mellan en klient och en server som erbjuder en webbtjänst skulle kunna se ut som följande:
 
-\begin{minted}{json}
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
 {
-	"hello": true
+	"country": "Sweden",
+	"city": "Stockholm"
 }
-\end{minted}
+		\end{minted}
+		\vspace{-1em}
+		\caption{Exempel på förfrågan till webbserver}
+		\vspace{2em}
+	\end{subfigure}
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
+{
+	"timestamp": "06/01/2018 10:45:08",
+	"country": "Sweden",
+	"city": "Stockholm",
+	"weather": "Snowing",
+	"temperature": -3
+}
+		\end{minted}
+		\vspace{-1em}
+		\caption{Exempel på svar på förfrågan från webbserver}
+		\vspace{2em}
+	\end{subfigure}
+\end{figure}
+
+
 
 \subsection{JSON Schema}
 % Förklara JSON Schema
