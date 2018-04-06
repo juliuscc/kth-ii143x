@@ -1,11 +1,11 @@
 \documentclass[swedish]{kththesis}
 
-\usepackage{blindtext} % This is just to get some nonsense text in this template, can be safely removed
-
 \usepackage{csquotes} % Recommended by biblatex
 \usepackage{biblatex}
-\addbibresource{references.bib} % The file containing our references, in BibTeX format
+\addbibresource{Kandidatexamensarbete.bib} % The file containing our references, in BibTeX format
 
+\usepackage{nameref}
+\usepackage{minted}
 
 \title{Detta är den svenska titeln}
 \alttitle{This is the English translation of the title}
@@ -18,7 +18,6 @@
 \school{Skolan för elektroteknik och datavetenskap}
 \date{\today}
 
-
 \begin{document}
 
 % Frontmatter includes the titlepage, abstracts and table-of-contents
@@ -29,7 +28,6 @@
 \begin{abstract}
   Svensk sammanfattning.
 
-  \blindtext
 \end{abstract}
 
 
@@ -37,7 +35,6 @@
   \begin{abstract}
     English abstract.
 
-    \blindtext
   \end{abstract}
 \end{otherlanguage}
 
@@ -50,21 +47,36 @@
 
 
 \chapter{Introduktion}
+Examensarbetet handlade om att undersöka möjligheten att skapa en modell för att beskriva och anotera redigerbar data, och sedan automatiskt generera ett användargränsnitt. 
 
 % Vi använder paketet \emph{biblatex} för litteraturreferenser.  Därför anropar vi kommandot \texttt{parencite} för att få referenser inom parentes, så här \parencite{heisenberg2015}. Det är också möjligt att använda författarens namn som en del av en mening genom att använda \texttt{textcite}, om vi t.ex.\ talar om en studie av \textcite{einstein2016}.
 
+\section{Mimer SoftRadio}
+Arbetet utfördes hos LS Elektronik AB \textit{(LSE)}, som beskriver sig själva som ett \textit{"[...] tekniskt och tillverkande företag, som utvecklar elektroniska produkter [...]"} \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kommer datorn med klientprogrammet kallas operatörsdator, där användaren kallas operatör.
+
+Mimer SoftRadio var ett program med väldigt många möjliga inställningar. I många fall var dessa inställningar för komplexa för de vanliga operatörerna att redigera själva, så därför brukade vissa kunder låsa redigeringsmöjligheterna, och bara tillåta vissa administratörer att ställa in alla inställningar på rätt sätt. Det fanns också kundfall där flera operatörer använde samma dator, vid olika tidpunkter. Ett vanligt kundfall var då att en operatör jobbade dagtid med att leda och organisera dagsarbete, medan en annan operatör tog över nattskiftet för att övervaka många fler radioenheter.
+
+För att förenkla dessa två kundfall påbörjade LSE utvecklingen av funktionalitet som skulle erbjuda användare att spara uppsättningar av inställningar i olika \textit{profiler}. Det skulle gå att enkelt byta mellan flera förinställda konfigurationer av Mimer SoftRadio. För att konfigurera dessa profiler skapades ett administratörsprogram, som skulle kunna fjärkonfigurera profilerna hos operatörsdatorerna. Fjärstyrningen skulle underlätta administratörer att ställa in profiler på flera datorer samtidigt, som sannolikt skulle innehålla liknande inställningar.
+
 \section{Problembeskrivning}
+Systemet för att konfigurera profiler byggdes på att alla operatörsdatorer fungerade som en server, där de exponerade ett API över en TCP-port. Administratörsprogrammet skulle erbjuda ett användargränsnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient.
 
-% Beskriv LS
+Kommunikationsprotokollet var ett egetskapat som byggde på att skicka JSON-Objekt via TCP. För en beskrivning av JSON, se kapitel \ref{sec:intr:bakgrund:json}. För en mer utförlig beskrivning av kommunikationsprotokollet se XXX. Problemet som LSE hade inför utvecklandet av användarprofilerna var skapandet av ett användargränsnitt på administratörsprogrammet. Olika operatörsdatorer, hos olika kunder, kunde ha olika versioner av Mimer, med olika funktionalitet tillgänglig, och därmed olika uppsättningar konfigurerbara inställningar. 
 
-% Beskriv Mimer
-
-% Beskriv systemet
+Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängligga inställningar, till klienten så att klienten sen skulle kunna anpassa sitt användargränsnitt, och det skulle ske på ett tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert.
 
 \section{Bakgrund}
 
+
 \subsection{JSON och webkommunikation baserat på JSON objekt}
-% Förklara JSON
+\label{sec:intr:bakgrund:json}
+JSON är ett populärt dataformat för att skicka data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt.\cite{Pezoa2016} Ett exempel på ett datautbyte mellan en klient och en server som erbjuder en webbtjänst skulle kunna se ut som följande:
+
+\begin{minted}{json}
+{
+	"hello": true
+}
+\end{minted}
 
 \subsection{JSON Schema}
 % Förklara JSON Schema
