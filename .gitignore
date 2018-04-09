@@ -7,6 +7,7 @@
 *.run.xml
 *.synctex.gz
 *.toc
+_minted-*
 
 # Misc
 .DS_Store
