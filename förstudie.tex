@@ -9,7 +9,7 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{subcaption}
-
+\usemintedstyle{bw}
 
 
 \begin{document}
@@ -18,7 +18,7 @@
 \alttitle{This is the English translation of the title}
 \author{Julius Recep Colliander Celik}
 \email{jcelik@kth.se}
-\supervisor{John Doe}
+\supervisor{Patric Dahlqvist}
 \examiner{Anders Västberg}
 \principal{LS Elektronik AB}
 \programme{Civilingenjör Informationsteknik}
@@ -57,7 +57,7 @@ Examensarbetet handlade om att undersöka möjligheten att skapa en modell för 
 % Vi använder paketet \emph{biblatex} för litteraturreferenser.  Därför anropar vi kommandot \texttt{parencite} för att få referenser inom parentes, så här \parencite{heisenberg2015}. Det är också möjligt att använda författarens namn som en del av en mening genom att använda \texttt{textcite}, om vi t.ex.\ talar om en studie av \textcite{einstein2016}.
 
 \section{Mimer SoftRadio}
-Arbetet utfördes hos LS Elektronik AB \textit{(LSE)}, som beskriver sig själva som ett \textit{"[...] tekniskt och tillverkande företag, som utvecklar elektroniska produkter [...]"} \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kommer datorn med klientprogrammet kallas operatörsdator, där användaren kallas operatör.
+Arbetet utfördes hos LS Elektronik AB \textit{(LSE)}, som är ett tekniskt företag, som utvecklar och tillverkar elektroniska produkter \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kommer datorn med klientprogrammet kallas operatörsdator, där användaren kallas operatör.
 
 Mimer SoftRadio var ett program med väldigt många möjliga inställningar. I många fall var dessa inställningar för komplexa för de vanliga operatörerna att redigera själva, så därför brukade vissa kunder låsa redigeringsmöjligheterna, och bara tillåta vissa administratörer att ställa in alla inställningar på rätt sätt. Det fanns också kundfall där flera operatörer använde samma dator, vid olika tidpunkter. Ett vanligt kundfall var då att en operatör jobbade dagtid med att leda och organisera dagsarbete, medan en annan operatör tog över nattskiftet för att övervaka många fler radioenheter.
 
@@ -81,7 +81,7 @@ JSON är ett populärt texbaserat dataformat för att utbyta data mellan webbtj�
 	\centering
 	\begin{subfigure}[t]{\textwidth}
 		\centering
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
+		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"country": "Sweden",
 	"city": "Stockholm"
@@ -93,7 +93,7 @@ JSON är ett populärt texbaserat dataformat för att utbyta data mellan webbtj�
 	\end{subfigure}
 	\begin{subfigure}[t]{\textwidth}
 		\centering
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
+		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"timestamp": "06/01/2018 10:45:08",
 	"country": "Sweden",
