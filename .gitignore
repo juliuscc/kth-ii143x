@@ -8,6 +8,7 @@
 *.synctex.gz
 *.toc
 _minted-*
+*.pyg
 
 # Misc
 .DS_Store

@@ -1,0 +1,202 @@
+\documentclass[swedish]{kththesis}
+
+\usepackage{csquotes} % Recommended by biblatex
+\usepackage{biblatex}
+\addbibresource{Kandidatexamensarbete.bib} % The file containing our references, in BibTeX format
+
+\usepackage{nameref}
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+
+\begin{document}
+
+\title{Detta är den svenska titeln}
+\alttitle{This is the English translation of the title}
+\author{Julius Recep Colliander Celik}
+\email{jcelik@kth.se}
+\supervisor{John Doe}
+\examiner{Anders Västberg}
+\principal{LS Elektronik AB}
+\programme{Civilingenjör Informationsteknik}
+\school{Skolan för elektroteknik och datavetenskap}
+\date{\today}
+
+% Frontmatter includes the titlepage, abstracts and table-of-contents
+\frontmatter
+
+\titlepage
+
+\begin{abstract}
+  Svensk sammanfattning.
+
+\end{abstract}
+
+
+\begin{otherlanguage}{english}
+  \begin{abstract}
+    English abstract.
+
+  \end{abstract}
+\end{otherlanguage}
+
+
+\tableofcontents
+
+
+% Mainmatter is where the actual contents of the thesis goes
+\mainmatter
+
+
+\chapter{Introduktion}
+Examensarbetet handlade om att undersöka möjligheten att skapa en modell för att beskriva och annotera redigerbar data, och sedan automatiskt generera ett användargränsnitt. 
+
+% Vi använder paketet \emph{biblatex} för litteraturreferenser.  Därför anropar vi kommandot \texttt{parencite} för att få referenser inom parentes, så här \parencite{heisenberg2015}. Det är också möjligt att använda författarens namn som en del av en mening genom att använda \texttt{textcite}, om vi t.ex.\ talar om en studie av \textcite{einstein2016}.
+
+\section{Mimer SoftRadio}
+Arbetet utfördes hos LS Elektronik AB \textit{(LSE)}, som beskriver sig själva som ett \textit{"[...] tekniskt och tillverkande företag, som utvecklar elektroniska produkter [...]"} \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kommer datorn med klientprogrammet kallas operatörsdator, där användaren kallas operatör.
+
+Mimer SoftRadio var ett program med väldigt många möjliga inställningar. I många fall var dessa inställningar för komplexa för de vanliga operatörerna att redigera själva, så därför brukade vissa kunder låsa redigeringsmöjligheterna, och bara tillåta vissa administratörer att ställa in alla inställningar på rätt sätt. Det fanns också kundfall där flera operatörer använde samma dator, vid olika tidpunkter. Ett vanligt kundfall var då att en operatör jobbade dagtid med att leda och organisera dagsarbete, medan en annan operatör tog över nattskiftet för att övervaka många fler radioenheter.
+
+För att förenkla dessa två kundfall påbörjade LSE utvecklingen av funktionalitet som skulle erbjuda användare att spara uppsättningar av inställningar i olika \textit{profiler}. Det skulle gå att enkelt byta mellan flera förinställda konfigurationer av Mimer SoftRadio. För att konfigurera dessa profiler skapades ett administratörsprogram, som skulle kunna fjärkonfigurera profilerna hos operatörsdatorerna. Fjärstyrningen skulle underlätta administratörer att ställa in profiler på flera datorer samtidigt, som sannolikt skulle innehålla liknande inställningar.
+
+\section{Problembeskrivning}
+Systemet för att konfigurera profiler byggdes på att alla operatörsdatorer fungerade som en server, där de exponerade ett API över en TCP-port. Administratörsprogrammet skulle erbjuda ett användargränsnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient.
+
+Kommunikationsprotokollet var ett egetskapat som byggde på att skicka JSON-Objekt via TCP. För en beskrivning av JSON, se kapitel \ref{sec:intr:bakgrund:json}. För en mer utförlig beskrivning av kommunikationsprotokollet se XXX. Problemet som LSE hade inför utvecklandet av användarprofilerna var skapandet av ett användargränsnitt på administratörsprogrammet. Olika operatörsdatorer, hos olika kunder, kunde ha olika versioner av Mimer, med olika funktionalitet tillgänglig, och därmed olika uppsättningar konfigurerbara inställningar. 
+
+Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängligga inställningar, till klienten så att klienten sen skulle kunna anpassa sitt användargränsnitt, och det skulle ske på ett tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert.
+
+\section{Bakgrund}
+
+
+\subsection{JSON och webkommunikation baserat på JSON objekt}
+\label{sec:intr:bakgrund:json}
+JSON är ett populärt texbaserat dataformat för att utbyta data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt. \cite{Pezoa2016} Ett exempel på ett datautbyte mellan en klient och en server som erbjuder en webbtjänst skulle kunna se ut som följande:
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
+{
+	"country": "Sweden",
+	"city": "Stockholm"
+}
+		\end{minted}
+		\vspace{-1em}
+		\caption{Exempel på förfrågan till webbserver}
+		\vspace{2em}
+	\end{subfigure}
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small]{json}
+{
+	"timestamp": "06/01/2018 10:45:08",
+	"country": "Sweden",
+	"city": "Stockholm",
+	"weather": "Snowing",
+	"temperature": -3
+}
+		\end{minted}
+		\vspace{-1em}
+		\caption{Exempel på svar på förfrågan från webbserver}
+		\vspace{2em}
+	\end{subfigure}
+\end{figure}
+
+JSON erbjuder stöd för att utbyta data i form av:
+
+\begin{itemize}
+	\item Tal \textit{(Number)}
+	\item Textsträngar \textit{(String)}
+	\item Boolesk data \textit{(Boolean data)}, i form av antingen \texttt{true} eller \texttt{false}
+	\item Vektorer \textit{(Array)}, vilket är en ordnad lista av JSON-datatyper
+	\item Objekt \textit{(Object)}, vilket är en oordnad mängd av namn-värde-par.
+	\item Tomt värde \textit{(Null)} i form av \texttt{null}
+	\cite{ECMA2013}
+\end{itemize}
+
+Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går det att representera komplexa datastrukturer med hjälp av JSON. Flexibiliteten hos datarepresentationen kombinerat med läsbarheten av JSON har varit en bidragande faktor till dess breda användning hos webbtjänster.
+
+\subsection{JSON Schema}
+Trots att JSON är det populäraste dataformatet för datautbyte mellan webbtjänster saknas det ett väletablerat standariserat ramverk för metadata-definition \cite{Pezoa2016}. En väldigt lovande formell standard är JSON Schema, vilket är ett ramverk som fortfarande utvecklas av Internet Engineering Task Force \textit{(IETF)}. IETF beskriver själva JSON Schema som \textit{"JSON Schema asserts what a JSON document must look like, ways to extract information from it, and how to interact with it."} \cite{A.Wright}.
+
+JSON Schema är ett ramverk för att förklara hur JSON värden kan se ut. JSON Schema specifiserar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur gilltiga värden får se ut. Användningsområden för detta är bland annat:
+
+% HYPER SCHEMA??
+
+\begin{enumerate}
+	\item Validering av data.
+	\item Annotering av data.
+	\item Beskrivning av REST APIer.
+	\item Automatisk generering av kompatibel kod, för att hantera JSON värden beskrivna med JSON Schema.
+	\item Automatisk generering av API-dokumentation.
+	\item Automatisk generering av användargränsnitt.
+\end{enumerate}
+
+% Egentligen inte bakgrund
+
+% Beskriv JSON Schema lite enkelt
+
+Att använda JSON Schema för användningsområdena 1-3 är trivialt. Det går att utveckla program som kan hantera alla oändligt möjliga permutationer av JSON Schema. Det som däremot inte är trivialt är hur användningsområdena 4-6 skulle kunna generaliseras så pass mycket att ett program eller algoritm skulle kunna hantera vilket giltigt JSON Schema som helst. Ta exemplet att skapa ett användargränsnitt från följande JSON Schema:
+
+% Diskutera JSON Schema
+
+% Förklara Delphi kanske??? Väldigt kanske
+
+\section{Frågeställning}
+
+Hur skulle man kunna använda en delmängd av JSON Schema för att dynamiskt anpassa ett användargränsnitt mot olika versioner av apier som erbjuder olika funkionalitet, på ett långsiktigt sätt?
+
+
+\chapter{Metodval}
+
+\begin{enumerate}
+	\item Föreslå ett eget JSON Schema
+	\item Skapa en JSON Schema genererare. ????
+	\item Skapa en JSON Schema parser för Delphi. / Undersök befintliga JSON Schema parsers för Delphi.
+	\item Skapa en direkt mappning mellan JSON Schema och en eller flera datatyp(er) i Delphi
+	\item Create a dynamic interface based on parsed JSON Schemas.
+\end{enumerate}
+
+\section{Avgränsningar}
+
+JSON Schema kan användas till:
+\begin{itemize}
+	\item validering av data
+	\item annotering av data
+	\item automatisk generering av kompatibel kod
+	\item beskrivning av REST APIer
+	\item automatisk generering av API-dokumentation
+\end{itemize}
+
+Det kanske går att använda för att automatisera tester?? Det skulle kunna gå att testa att datan ett api ger stämmer överens mot ett jsonSchema, eller att ett api klarar av att hantera all tillåten data.
+
+Dessutom finns det exempel på JSON Schema som automatiskt genereras utifrån kod XXXXX.
+
+Detta projekt intresserar sig enbart för att försöka använda JSON Schema för att annotera data som kan redigeras. Det vill säga beskriva vilken data som kan redigeras, samt hur den kan redigeras. Därför kommer inte all funktionalitet av en JSON Parser implementeras, då det är utanför intresseområdet av rapporten.
+
+Utöver funktionalitet kommer JSON parsern bara förstå en förenklad delmängd av JSON Schema, då vissa egenskaper av JSON Schema inte är eftertraktade. Ett exempel på ej eftertraktade egenskaper nyckelordet \texttt{multipleOf} är att kunna specificera att en \texttt{number} eller \texttt{integer} ska vara en multiple av en annan siffra.
+
+Modellen som rapporten föreslår för att annotera JSON data kommer inte nödvändigtvis vara en strikt delmängd av JSON Schema. Om ej implementerade egenskaper behövs, kan modellen utökas för att inkludera egenskaper som saknas i JSON Schema.
+
+\chapter{Resultat}
+
+\section{Vad saknas i JSON Schema}
+Hur hanterar man olika valideringsfel?
+
+Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
+
+\chapter{Diskussion och Slutsats}
+
+\printbibliography[heading=bibintoc] % Print the bibliography (and make it appear in the table of contents)
+
+\appendix
+
+\chapter{Extra Material som Bilaga}
+
+\end{document}
