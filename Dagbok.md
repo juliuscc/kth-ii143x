@@ -12,4 +12,6 @@
 - Jag skrev lite. Mest egna kommentarer så att jag inte skulle glömma saker.
 
 ## 2018-04-11
-Det här kommer också vara en halvdag pga ovan nämnda anledningar.
+- Idag var en halvdag pga ovan nämnda anledningar.
+- Jag skrev färdigt kapitlet som förklarade JSON.
+- Jag fixade till saker i JSON Schema kapitlet också.
