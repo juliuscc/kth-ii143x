@@ -76,25 +76,36 @@ Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per ver
 
 \subsection{JSON och webkommunikation baserat på JSON objekt}
 \label{sec:intr:bakgrund:json}
-JSON är ett populärt texbaserat dataformat för att utbyta data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt. \cite{Pezoa2016} Ett exempel på ett datautbyte mellan en klient och en server som erbjuder en webbtjänst skulle kunna se ut som följande:
+JavaScript Object Notation \textit{(JSON)} är ett texbaserat dataformat för att utbyta data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt, vilket är en anledning till att det är ett av de mest populäraste dataformaten för datautbyte mellan webbtjänster. \cite{Pezoa2016} 
 
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}[t]{\textwidth}
-		\centering
-		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+JSON erbjuder stöd för några enkla datastrukturer: textsträngar \textit{(string)} (\mintinline{json}{"hej värld"}), tal \textit{(number)} (\mintinline{json}{4}), ett tomt värde \textit{(null)} (\mintinline{json}{null}), samt booleska värden \textit{(booleans)} (\mintinline{json}{false}). JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden:
+
+\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+["hej värld", 4, null, false]
+\end{minted}
+samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par:
+\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+{
+	"firstName": "Erik",
+	"lastName": "Andersson",
+	"age": 25
+}
+\end{minted}
+Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går det att representera komplexa datastrukturer med hjälp av JSON. Det finns inga begränsningar i hur komplexa datastrukturer kan representeras.
+
+\subsection{JSON i webbkomunikation}
+\label{sec:intr:bakgrund:json-web}
+På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos många språk och implementationer, har JSON blivit väldigt utbrett bland webbtjänster. En hypotetisk förfrågan till en webbtjänst skulle kunna se ut som följande:
+
+\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"country": "Sweden",
 	"city": "Stockholm"
 }
-		\end{minted}
-		\vspace{-1em}
-		\caption{Exempel på förfrågan till webbserver}
-		\vspace{2em}
-	\end{subfigure}
-	\begin{subfigure}[t]{\textwidth}
-		\centering
-		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+\end{minted}
+där en klient förfrågar om de nuvarande väderförhållandena i Stockholm i Sverige. Svaret från webbservern skulle kunna se ut som följande
+
+\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"timestamp": "06/01/2018 10:45:08",
 	"country": "Sweden",
@@ -102,26 +113,43 @@ JSON är ett populärt texbaserat dataformat för att utbyta data mellan webbtj�
 	"weather": "Snowing",
 	"temperature": -3
 }
-		\end{minted}
-		\vspace{-1em}
-		\caption{Exempel på svar på förfrågan från webbserver}
-		\vspace{2em}
-	\end{subfigure}
-\end{figure}
+\end{minted}
+Där webbservern svarar att temperaturen är minus tre grader celsius och att det snöar. Exemplet visar hur simpelt JSON som dataformat är att förstå, vilket skulle kunna förklara populariteten.
 
-JSON erbjuder stöd för att utbyta data i form av:
 
-\begin{itemize}
-	\item Tal \textit{(Number)}
-	\item Textsträngar \textit{(String)}
-	\item Boolesk data \textit{(Boolean data)}, i form av antingen \texttt{true} eller \texttt{false}
-	\item Vektorer \textit{(Array)}, vilket är en ordnad lista av JSON-datatyper
-	\item Objekt \textit{(Object)}, vilket är en oordnad mängd av namn-värde-par.
-	\item Tomt värde \textit{(Null)} i form av \texttt{null}
-	\cite{ECMA2013}
-\end{itemize}
+%\begin{figure}[h!]
+%	\centering
+%	\begin{subfigure}[t]{\textwidth}
+%		\centering
+%		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+%{
+%	"country": "Sweden",
+%	"city": "Stockholm"
+%}
+%		\end{minted}
+%		\vspace{-1em}
+%		\caption{Exempel på förfrågan till webbserver}
+%		\vspace{2em}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{\textwidth}
+%		\centering
+%		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+%{
+%	"timestamp": "06/01/2018 10:45:08",
+%	"country": "Sweden",
+%	"city": "Stockholm",
+%	"weather": "Snowing",
+%	"temperature": -3
+%}
+%		\end{minted}
+%		\vspace{-1em}
+%		\caption{Exempel på svar på förfrågan från webbserver}
+%		\vspace{2em}
+%	\end{subfigure}
+%\end{figure}
 
-Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går det att representera komplexa datastrukturer med hjälp av JSON. Flexibiliteten hos datarepresentationen kombinerat med läsbarheten av JSON har varit en bidragande faktor till dess breda användning hos webbtjänster.
+
+%Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går det att representera komplexa datastrukturer med hjälp av JSON. Flexibiliteten hos datarepresentationen kombinerat med läsbarheten av JSON har varit en bidragande faktor till dess breda användning hos webbtjänster.
 
 \subsection{JSON Schema}
 Trots att JSON är det populäraste dataformatet för datautbyte mellan webbtjänster saknas det ett väletablerat standariserat ramverk för metadata-definition \cite{Pezoa2016}. En väldigt lovande formell standard är JSON Schema, vilket är ett ramverk som fortfarande utvecklas av Internet Engineering Task Force \textit{(IETF)}. IETF beskriver själva JSON Schema som \textit{"JSON Schema asserts what a JSON document must look like, ways to extract information from it, and how to interact with it."} \cite{A.Wright}.
