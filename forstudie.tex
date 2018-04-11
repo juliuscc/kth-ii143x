@@ -71,6 +71,8 @@ Kommunikationsprotokollet var ett egetskapat som byggde på att skicka JSON-Obje
 
 Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängligga inställningar, till klienten så att klienten sen skulle kunna anpassa sitt användargränsnitt, och det skulle ske på ett tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert.
 
+% Komplexiteten hos deras inställningar
+
 \section{Bakgrund}
 
 
@@ -80,32 +82,53 @@ JavaScript Object Notation \textit{(JSON)} är ett texbaserat dataformat för at
 
 JSON erbjuder stöd för några enkla datastrukturer: textsträngar \textit{(string)} (\mintinline{json}{"hej värld"}), tal \textit{(number)} (\mintinline{json}{4}), ett tomt värde \textit{(null)} (\mintinline{json}{null}), samt booleska värden \textit{(booleans)} (\mintinline{json}{false}). JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden:
 
-\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+\begin{figure}[h]
+	\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 ["hej värld", 4, null, false]
-\end{minted}
+	\end{minted}
+	\vspace{-1em}
+	\caption{Exempel på JSON-array}
+\end{figure}
+
+\noindent
 samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par:
-\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+
+\begin{figure}[h]
+	\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"firstName": "Erik",
 	"lastName": "Andersson",
-	"age": 25
+	"age": 30
 }
-\end{minted}
+	\end{minted}
+	\vspace{-1em}
+	\caption{Exempel på JSON-object}
+	\label{fig:json-object-example}
+\end{figure}
+
+\noindent
 Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går det att representera komplexa datastrukturer med hjälp av JSON. Det finns inga begränsningar i hur komplexa datastrukturer kan representeras.
 
 \subsection{JSON i webbkomunikation}
 \label{sec:intr:bakgrund:json-web}
 På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos många språk och implementationer, har JSON blivit väldigt utbrett bland webbtjänster. En hypotetisk förfrågan till en webbtjänst skulle kunna se ut som följande:
 
-\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+\begin{figure}[h]
+	\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
-	"country": "Sweden",
-	"city": "Stockholm"
+"country": "Sweden",
+"city": "Stockholm"
 }
-\end{minted}
+	\end{minted}
+	\vspace{-1em}
+	\caption{Exempel på förfrågan till webbserver}
+\end{figure}
+
+\noindent
 där en klient förfrågar om de nuvarande väderförhållandena i Stockholm i Sverige. Svaret från webbservern skulle kunna se ut som följande
 
-\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+\begin{figure}[h]
+	\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"timestamp": "06/01/2018 10:45:08",
 	"country": "Sweden",
@@ -113,8 +136,13 @@ där en klient förfrågar om de nuvarande väderförhållandena i Stockholm i S
 	"weather": "Snowing",
 	"temperature": -3
 }
-\end{minted}
-Där webbservern svarar att temperaturen är minus tre grader celsius och att det snöar. Exemplet visar hur simpelt JSON som dataformat är att förstå, vilket skulle kunna förklara populariteten.
+	\end{minted}
+	\vspace{-1em}
+	\caption{Exempel på svar på förfrågan från webbserver}
+\end{figure}
+
+\noindent
+där webbservern svarar att temperaturen är minus tre grader celsius och att det snöar. Exemplet visar hur simpelt JSON som dataformat är att förstå, vilket skulle kunna vara en delvis förklaring för populariteten.
 
 
 %\begin{figure}[h!]
@@ -154,7 +182,28 @@ Där webbservern svarar att temperaturen är minus tre grader celsius och att de
 \subsection{JSON Schema}
 Trots att JSON är det populäraste dataformatet för datautbyte mellan webbtjänster saknas det ett väletablerat standariserat ramverk för metadata-definition \cite{Pezoa2016}. En väldigt lovande formell standard är JSON Schema, vilket är ett ramverk som fortfarande utvecklas av Internet Engineering Task Force \textit{(IETF)}. IETF beskriver själva JSON Schema som \textit{"JSON Schema asserts what a JSON document must look like, ways to extract information from it, and how to interact with it."} \cite{A.Wright}.
 
-JSON Schema är ett ramverk för att förklara hur JSON värden kan se ut. JSON Schema specifiserar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur gilltiga värden får se ut. Användningsområden för detta är bland annat:
+JSON Schema är ett ramverk för att förklara hur JSON värden kan se ut. JSON Schema specifiserar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur gilltiga värden får se ut. 
+
+Objektet i Figur \ref{fig:json-object-example} skulle kunna valideras enligt följande JSON Schema:
+
+\begin{figure}[h]
+	\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+	{
+	"type": "object",
+	"required": ["firstName", "age"],
+	"properties": {
+	"firstName": { "type": "string" },
+	"lastName": { "type": "string" },
+	"age": { "type": "integer" }
+	}
+	}
+	\end{minted}
+	\vspace{-1em}
+	\caption{Exempel på simpelt JSON Schema}
+\end{figure}
+
+\noindent
+Användningsområden för detta är bland annat:
 
 % HYPER SCHEMA??
 
@@ -171,7 +220,7 @@ JSON Schema är ett ramverk för att förklara hur JSON värden kan se ut. JSON 
 
 % Beskriv JSON Schema lite enkelt
 
-Att använda JSON Schema för användningsområdena 1-3 är trivialt. Det går att utveckla program som kan hantera alla oändligt möjliga permutationer av JSON Schema. Det som däremot inte är trivialt är hur användningsområdena 4-6 skulle kunna generaliseras så pass mycket att ett program eller algoritm skulle kunna hantera vilket giltigt JSON Schema som helst. Ta exemplet att skapa ett användargränsnitt från följande JSON Schema:
+Att använda JSON Schema för användningsområdena 1-3 är trivialt. Det går att utveckla program som kan hantera alla oändligt möjliga permutationer av JSON Schema. Det som däremot inte är trivialt är hur användningsområdena 4-6 skulle kunna generaliseras så pass mycket att ett program eller algoritm skulle kunna hantera vilket giltigt JSON Schema som helst. Varför användningsområde 6 inte är trivialt diskuteras mer i kapitel XXX.
 
 % Diskutera JSON Schema
 
