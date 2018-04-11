@@ -14,4 +14,4 @@
 ## 2018-04-11
 - Idag var en halvdag pga ovan nämnda anledningar.
 - Jag skrev färdigt kapitlet som förklarade JSON.
-- Jag fixade till saker i JSON Schema kapitlet också.
+- Jag skrev "färdigt" kapitlet som förklarade JSON Schema.
