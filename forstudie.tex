@@ -57,7 +57,10 @@ Examensarbetet handlade om att undersöka möjligheten att skapa en modell för 
 
 % Vi använder paketet \emph{biblatex} för litteraturreferenser.  Därför anropar vi kommandot \texttt{parencite} för att få referenser inom parentes, så här \parencite{heisenberg2015}. Det är också möjligt att använda författarens namn som en del av en mening genom att använda \texttt{textcite}, om vi t.ex.\ talar om en studie av \textcite{einstein2016}.
 
-\section{Mimer SoftRadio}
+\section{Bakgrund}
+Diskutera js, json, json schema, samt rest och wdsl.
+
+\subsection{Mimer SoftRadio}
 Arbetet utfördes hos LS Elektronik AB \textit{(LSE)}, som är ett tekniskt företag, som utvecklar och tillverkar elektroniska produkter \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kommer datorn med klientprogrammet kallas operatörsdator, där användaren kallas operatör.
 
 Mimer SoftRadio var ett program med väldigt många möjliga inställningar. I många fall var dessa inställningar för komplexa för de vanliga operatörerna att redigera själva, så därför brukade vissa kunder låsa redigeringsmöjligheterna, och bara tillåta vissa administratörer att ställa in alla inställningar på rätt sätt. Det fanns också kundfall där flera operatörer använde samma dator, vid olika tidpunkter. Ett vanligt kundfall var då att en operatör jobbade dagtid med att leda och organisera dagsarbete, medan en annan operatör tog över nattskiftet för att övervaka många fler radioenheter.
@@ -72,6 +75,18 @@ Kommunikationsprotokollet var ett egetskapat som byggde på att skicka JSON-Obje
 Det vore orimligt kostsamt för LSE att skapa ett administratörsprogram per version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängligga inställningar, till klienten så att klienten sen skulle kunna anpassa sitt användargränsnitt, och det skulle ske på ett tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert.
 
 % Komplexiteten hos deras inställningar
+
+\section{Syfte}
+
+\section{Mål}
+
+\subsection{Samhällsnytta, Etik och Hållbarhet}
+
+\section{Metodval}
+
+\section{Avgränsningar}
+
+\section{Disposition}
 
 \section{Bakgrund}
 Introducera kapitlena här.
@@ -228,6 +243,8 @@ Att använda JSON Schema för användningsområdena 1-3 är trivialt. Det går a
 Hur skulle man kunna använda en delmängd av JSON Schema för att dynamiskt anpassa ett användargränsnitt mot olika versioner av apier som erbjuder olika funkionalitet, på ett långsiktigt sätt?
 
 
+\chapter{Teoretisk Bakgrund OBS BYT UT!}
+
 \chapter{Metodval}
 
 \textbf{OBS! Detta kapitel kan ignoreras. Det är nästan bara egna anteckningar}
@@ -266,6 +283,8 @@ Detta projekt intresserar sig enbart för att försöka använda JSON Schema fö
 Utöver funktionalitet kommer JSON parsern bara förstå en förenklad delmängd av JSON Schema, då vissa egenskaper av JSON Schema inte är eftertraktade. Ett exempel på ej eftertraktade egenskaper nyckelordet \texttt{multipleOf} är att kunna specificera att en \texttt{number} eller \texttt{integer} ska vara en multiple av en annan siffra.
 
 Modellen som rapporten föreslår för att annotera JSON data kommer inte nödvändigtvis vara en strikt delmängd av JSON Schema. Om ej implementerade egenskaper behövs, kan modellen utökas för att inkludera egenskaper som saknas i JSON Schema.
+
+\chapter{Arbetet}
 
 \chapter{Resultat}
 
@@ -330,7 +349,7 @@ Många språk skiljer på integer och double men det gör varken Javascript, JSO
 	\caption{Exempel på enkelt JSON Schema}
 \end{figure}
 
-\chapter{Diskussion och Slutsats}
+\chapter{Diskussion, slutsats och fortsatt arbete}
 
 \printbibliography[heading=bibintoc] % Print the bibliography (and make it appear in the table of contents)
 
