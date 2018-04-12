@@ -279,6 +279,10 @@ Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
 \section{Ett schema för att beskriva schemat}
 
 \section{Datarepresentation i Delphi}
+Många språk skiljer på integer och double men det gör varken Javascript, JSON eller JSON Schema
+
+
+\subsection{JSON Pointer and \$ref}
 
 \section{Användargränsnittet}
 
@@ -292,6 +296,7 @@ Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
 \subsection{Användargränsnitt utifrån specifika krav på schemat}
 \begin{figure}
 	\begin{subfigure}{\textwidth}
+		\centering
 		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
@@ -318,6 +323,7 @@ Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
 		\vspace{2em}
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
+		\centering
 		Här ska det finnas en bild med resultatet
 		\subcaption{Det resulterande användargränsnittet}
 	\end{subfigure}
