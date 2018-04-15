@@ -27,3 +27,7 @@
 
 - Strukturerade om hela rapporten. Byggde det efter kth-mallen i word.
 - Skrev ner saker under rubriken arbete.
+
+## 2018-04-13
+
+Det mest grundläggande användargränsnittet skapades, och ett json-schema kunde skickas från server, och sedan generera ett extremt enkelt gränsnitt på klienten. Inga värden kan ändras än och schemat är hårdkodat. Användargränsnittet jobbar enbart med "title" och "description" så ingen riktig data.
