@@ -31,3 +31,11 @@
 ## 2018-04-13
 
 Det mest grundläggande användargränsnittet skapades, och ett json-schema kunde skickas från server, och sedan generera ett extremt enkelt gränsnitt på klienten. Inga värden kan ändras än och schemat är hårdkodat. Användargränsnittet jobbar enbart med "title" och "description" så ingen riktig data.
+
+## 2018-04-16
+
+Idag skapade jag stöd för att generera ett gui som kan visa, beskriva, låta användare redigera och spara:
+- textsträngar
+- ipv4 formaterade textsträngar
+- heltal
+- booleska värden
