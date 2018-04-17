@@ -1,18 +1,12 @@
 \documentclass[swedish]{kththesis}
 
+\usepackage{style}
+
 \usepackage{csquotes} % Recommended by biblatex
 \usepackage[backend=bibtex, citestyle=ieee, bibstyle=ieee]{biblatex}
 \addbibresource{Kandidatexamensarbete.bib} % The file containing our references, in BibTeX format
 
-\usepackage{nameref}
-\usepackage{minted}
-\usepackage{listings}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{csquotes}
 \usepackage{tikz}
-
-\usemintedstyle{bw}
 \usetikzlibrary{shapes.geometric, arrows, positioning}
 
 \tikzstyle{defaultnode} = [
@@ -79,18 +73,18 @@
 
 \titlepage
 
-\begin{abstract}
-  Svensk sammanfattning.
-
-\end{abstract}
-
-
-\begin{otherlanguage}{english}
-  \begin{abstract}
-    English abstract.
-
-  \end{abstract}
-\end{otherlanguage}
+%\begin{abstract}
+%  Svensk sammanfattning.
+%
+%\end{abstract}
+%
+%
+%\begin{otherlanguage}{english}
+%  \begin{abstract}
+%    English abstract.
+%
+%  \end{abstract}
+%\end{otherlanguage}
 
 
 \tableofcontents
@@ -102,157 +96,119 @@
 \input{./tex/1-introduktion.tex}
 \input{./tex/2-bakgrund.tex}
 
-\chapter{Metodval}
 
-\textbf{OBS! Detta kapitel kan ignoreras. Det är nästan bara egna anteckningar}
-
-Dela upp i \enquote{hur man brukar göra} och \enquote{hur jag faktiskt gör}.
-
-qualative data
-
-textual analysis
-
-\begin{enumerate}
-	\item Föreslå ett eget JSON Schema
-	\item Skapa en JSON Schema genererare. ????
-	\item Skapa en JSON Schema parser för Delphi. / Undersök befintliga JSON Schema parsers för Delphi.
-	\item Skapa en direkt mappning mellan JSON Schema och en eller flera datatyp(er) i Delphi
-	\item Create a dynamic interface based on parsed JSON Schemas.
-\end{enumerate}
-
-\section{Avgränsningar}
-
-JSON Schema kan användas till:
-\begin{itemize}
-	\item validering av data
-	\item annotering av data
-	\item automatisk generering av kompatibel kod
-	\item beskrivning av REST APIer
-	\item automatisk generering av API-dokumentation
-\end{itemize}
-
-Det kanske går att använda för att automatisera tester?? Det skulle kunna gå att testa att datan ett api ger stämmer överens mot ett jsonSchema, eller att ett api klarar av att hantera all tillåten data.
-
-Dessutom finns det exempel på JSON Schema som automatiskt genereras utifrån kod XXXXX.
-
-Detta projekt intresserar sig enbart för att försöka använda JSON Schema för att annotera data som kan redigeras. Det vill säga beskriva vilken data som kan redigeras, samt hur den kan redigeras. Därför kommer inte all funktionalitet av en JSON Parser implementeras, då det är utanför intresseområdet av rapporten.
-
-Utöver funktionalitet kommer JSON parsern bara förstå en förenklad delmängd av JSON Schema, då vissa egenskaper av JSON Schema inte är eftertraktade. Ett exempel på ej eftertraktade egenskaper nyckelordet \texttt{multipleOf} är att kunna specificera att en \texttt{number} eller \texttt{integer} ska vara en multiple av en annan siffra.
-
-Modellen som rapporten föreslår för att annotera JSON data kommer inte nödvändigtvis vara en strikt delmängd av JSON Schema. Om ej implementerade egenskaper behövs, kan modellen utökas för att inkludera egenskaper som saknas i JSON Schema.
-
-\chapter{Arbetet}
-
-Stort problem är att json och json scheman inte skiljer på heltal och reela tal, medan många språk gör det. Specifikt Delphi som systemet utvecklades i.
-
-Ingen har beskrivit parsning av JSON Schema!!!
-
-\subsection{Systemet för att översätta JSON Schema till användargränsnitt}
-\begin{figure}
-	\begin{tikzpicture}
-		\node (origin) [defaultnode] {JSON Schema};
-		\node (data) [defaultnode, below of=origin, yshift=-2cm] {Datarepresentation i delphi};
-		\node (gui) [defaultnode, below of=data, yshift=-2cm] {Grafiskt användargränsnitt};
-		\node (save) [defaultnode, right=of origin, xshift=1.5cm] {Spara på operatörsdatorn};
-		
-		\draw [arrow] (origin) -- node[anchor=east] {Parsa schema} (data);
-		\draw [arrow] (data) -- node[anchor=east] {Skapa användargränsnitt} (gui);
-		\draw [arrow] (gui.east) -- ++(.5, 0) -- node[anchor=west] {on user input} ++(0, 2.8) -- ([shift={(0, -0.2)}]data.east);
-		\draw [arrow] ([shift={(0, 0.2)}]data.east) --  node[anchor=south] {on save} ++ (3.7, 0) -| (save.south);
-	
-		\draw [arrow] ([shift={(0, 1)}]origin.north) node[anchor=south] {Få schema från operatörsdatorn} -- (origin.north);
-		\draw [arrow] (save) -- node[anchor=south] {Spara på operatörsdatorn} ([shift={(0, 1)}]save.north);
-	\end{tikzpicture}
-\end{figure}
-
-% TODO: Förklara parse
-
-\subsection{Example diagram with TikZ}
-\begin{tikzpicture}[node distance=2cm]
-	\node (start) [startstop] {Start};
-	\node (in1) [io, below of=start] {Input};
-	\node (pro1) [process, below of=in1] {Process 1};
-	\node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
-	\node (pro2a) [process, below of=dec1, yshift=-1.3cm] {Process 2a text text text text text text text text text text};
-	\node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
-	\node (out1) [io, below of=pro2a] {Output};
-	\node (stop) [startstop, below of=out1] {Stop};
-	
-	\draw [arrow] (start) -- (in1);
-	\draw [arrow] (in1) -- (pro1);
-	\draw [arrow] (pro1) -- (dec1);
-	\draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
-	\draw [arrow] (dec1) -- node[anchor=south] {no} (pro2b);
-	\draw [arrow] (pro2b) |- (pro1);
-	\draw [arrow] (pro2a) -- (out1);
-	\draw [arrow] (out1) -- (stop);
-\end{tikzpicture}
+%\chapter{Arbetet}
+%
+%Stort problem är att json och json scheman inte skiljer på heltal och reela tal, medan många språk gör det. Specifikt Delphi som systemet utvecklades i.
+%
+%Ingen har beskrivit parsning av JSON Schema!!!
+%
+%\subsection{Systemet för att översätta JSON Schema till användargränsnitt}
+%\begin{figure}
+%	\begin{tikzpicture}
+%		\node (origin) [defaultnode] {JSON Schema};
+%		\node (data) [defaultnode, below of=origin, yshift=-2cm] {Datarepresentation i delphi};
+%		\node (gui) [defaultnode, below of=data, yshift=-2cm] {Grafiskt användargränsnitt};
+%		\node (save) [defaultnode, right=of origin, xshift=1.5cm] {Spara på operatörsdatorn};
+%		
+%		\draw [arrow] (origin) -- node[anchor=east] {Parsa schema} (data);
+%		\draw [arrow] (data) -- node[anchor=east] {Skapa användargränsnitt} (gui);
+%		\draw [arrow] (gui.east) -- ++(.5, 0) -- node[anchor=west] {on user input} ++(0, 2.8) -- ([shift={(0, -0.2)}]data.east);
+%		\draw [arrow] ([shift={(0, 0.2)}]data.east) --  node[anchor=south] {on save} ++ (3.7, 0) -| (save.south);
+%	
+%		\draw [arrow] ([shift={(0, 1)}]origin.north) node[anchor=south] {Få schema från operatörsdatorn} -- (origin.north);
+%		\draw [arrow] (save) -- node[anchor=south] {Spara på operatörsdatorn} ([shift={(0, 1)}]save.north);
+%	\end{tikzpicture}
+%\end{figure}
+%
+%% TODO: Förklara parse
+%
+%\subsection{Example diagram with TikZ}
+%\begin{tikzpicture}[node distance=2cm]
+%	\node (start) [startstop] {Start};
+%	\node (in1) [io, below of=start] {Input};
+%	\node (pro1) [process, below of=in1] {Process 1};
+%	\node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+%	\node (pro2a) [process, below of=dec1, yshift=-1.3cm] {Process 2a text text text text text text text text text text};
+%	\node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+%	\node (out1) [io, below of=pro2a] {Output};
+%	\node (stop) [startstop, below of=out1] {Stop};
+%	
+%	\draw [arrow] (start) -- (in1);
+%	\draw [arrow] (in1) -- (pro1);
+%	\draw [arrow] (pro1) -- (dec1);
+%	\draw [arrow] (dec1) -- node[anchor=east] {yes} (pro2a);
+%	\draw [arrow] (dec1) -- node[anchor=south] {no} (pro2b);
+%	\draw [arrow] (pro2b) |- (pro1);
+%	\draw [arrow] (pro2a) -- (out1);
+%	\draw [arrow] (out1) -- (stop);
+%\end{tikzpicture}
 
 
-\chapter{Resultat}
-
-\section{Vad saknas i JSON Schema}
-Hur hanterar man olika valideringsfel?
-
-Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
-
-\section{Hur ska schemat genereras?}
-
-\section{Ett schema för att beskriva schemat}
-
-\section{Datarepresentation i Delphi}
-Många språk skiljer på integer och double men det gör varken Javascript, JSON eller JSON Schema
-
-
-\subsection{JSON Pointer and \$ref}
-
-\section{Användargränsnittet}
-
-\subsection{JSON Editor}
-% Vanlig json editor
-
-\subsection{Generaliserat användargränsnitt}
+%\chapter{Resultat}
+%
+%\section{Vad saknas i JSON Schema}
+%Hur hanterar man olika valideringsfel?
+%
+%Föreslå kanske att JSON Schemat som föreslogs i rapport X ska användas.
+%
+%\section{Hur ska schemat genereras?}
+%
+%\section{Ett schema för att beskriva schemat}
+%
+%\section{Datarepresentation i Delphi}
+%Många språk skiljer på integer och double men det gör varken Javascript, JSON eller JSON Schema
+%
+%
+%\subsection{JSON Pointer and \$ref}
+%
+%\section{Användargränsnittet}
+%
+%\subsection{JSON Editor}
+%% Vanlig json editor
+%
+%\subsection{Generaliserat användargränsnitt}
 % Nestad form ischhhhhh
 	% går ej pga för många inställningar och möjligtvis för djup nestning
 
-\subsection{Användargränsnitt utifrån specifika krav på schemat}
-\begin{figure}
-	\begin{subfigure}{\textwidth}
-		\centering
-		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
-{
-	"$schema": "http://json-schema.org/draft-07/schema",
-	"type": "object",
-	"properties": {
-		"TMimerMainSettings": {
-			"title": "Mimer Main Settings",
-			"description": "The main settings to set.",
-			"type": "object",
-			"properties": {
-				"MyName": {
-					"title": "My Name",
-					"description":
-						"This is the name that will be shown on a place",
-					"type": "string",
-					"default": ""
-				}
-			}
-		}
-	}
-}
-		\end{minted}
-		\subcaption{Exempel på enkelt JSON Schema}
-		\vspace{2em}
-	\end{subfigure}
-	\begin{subfigure}{\textwidth}
-		\centering
-		Här ska det finnas en bild med resultatet
-		\subcaption{Det resulterande användargränsnittet}
-	\end{subfigure}
-	\caption{Exempel på enkelt JSON Schema}
-\end{figure}
+%\subsection{Användargränsnitt utifrån specifika krav på schemat}
+%\begin{figure}
+%	\begin{subfigure}{\textwidth}
+%		\centering
+%		\begin{minted}[tabsize=2, frame=lines, fontsize=\small, framesep=2mm]{json}
+%{
+%	"$schema": "http://json-schema.org/draft-07/schema",
+%	"type": "object",
+%	"properties": {
+%		"TMimerMainSettings": {
+%			"title": "Mimer Main Settings",
+%			"description": "The main settings to set.",
+%			"type": "object",
+%			"properties": {
+%				"MyName": {
+%					"title": "My Name",
+%					"description":
+%						"This is the name that will be shown on a place",
+%					"type": "string",
+%					"default": ""
+%				}
+%			}
+%		}
+%	}
+%}
+%		\end{minted}
+%		\subcaption{Exempel på enkelt JSON Schema}
+%		\vspace{2em}
+%	\end{subfigure}
+%	\begin{subfigure}{\textwidth}
+%		\centering
+%		Här ska det finnas en bild med resultatet
+%		\subcaption{Det resulterande användargränsnittet}
+%	\end{subfigure}
+%	\caption{Exempel på enkelt JSON Schema}
+%\end{figure}
 
-\chapter{Diskussion, slutsats och fortsatt arbete}
+%\chapter{Diskussion, slutsats och fortsatt arbete}
 
 \printbibliography[heading=bibintoc] % Print the bibliography (and make it appear in the table of contents)
 
@@ -260,7 +216,6 @@ Många språk skiljer på integer och double men det gör varken Javascript, JSO
 
 \chapter{API-beskrivning}
 \label{appendix:api-beskrivning}
-
-\chapter{Extra Material som Bilaga}
+TODO!
 
 \end{document}
