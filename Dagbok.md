@@ -39,3 +39,7 @@ Idag skapade jag stöd för att generera ett gui som kan visa, beskriva, låta a
 - ipv4 formaterade textsträngar
 - heltal
 - booleska värden
+
+## 2018-04-17
+
+Idag var en skrivardag. Förstudien är i princip färdig nu.
