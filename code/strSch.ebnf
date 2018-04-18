@@ -1,0 +1,8 @@
+JSDoc:={(defs,)?JSch};
+defs:="definitions":{string:{JSch}(,string:{JSch})∗};
+JSch:=strSch|numSch|intSch|objSch|arrSch|refSch|not|allOf|anyOf|enum;
+not:="not":{JSch};
+allOf:="allOf":[{JSch}(,{JSch})∗];
+anyOf:="anyOf":[{JSch}(,{JSch})∗];
+enum:="enum":[Jval(,Jval)∗];
+refSch:="$ref": "#JPointer";
