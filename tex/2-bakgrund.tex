@@ -4,7 +4,7 @@ Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används.
 
 \section{JSON}
 \label{sec:teori:json}
-JSON erbjuder stöd för några enkla datastrukturer: textsträngar \textit{(string)} (\mintinline{json}{"hej värld"}), tal \textit{(number)} (\mintinline{json}{4}), ett tomt värde \textit{(null)} (\mintinline{json}{null}), samt booleska värden \textit{(booleans)} (\mintinline{json}{false}). JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden vilket visas i Figur \ref{fig:json-array-example}, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}, som visas i Figur \ref{fig:json-object-example}.
+JSON erbjuder stöd för några enkla datastrukturer: textsträngar \textit{(string)} (\mintinline{json}{"hej värld"}), tal \textit{(number)} (\mintinline{json}{4}), ett tomt värde \textit{(null)} (\mintinline{json}{null}), samt booleska värden \textit{(booleans)} (\mintinline{json}{false}). JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden vilket visas i Figur \ref{fig:json-array-example}, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}, som visas i Figur \ref{fig:json-object-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datastrukturerna som kan representeras med JSON.
 
 \begin{figure}
 	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
@@ -107,3 +107,36 @@ Användningsområden för JSON Scheman är bland annat:
 \noindent
 Att använda JSON Schema för användningsområdena 1-3 är trivialt. Det går att utveckla program som kan hantera alla oändligt möjliga permutationer av JSON Schema. Det som däremot inte är trivialt är hur användningsområdena 4-6 skulle kunna generaliseras så pass mycket att ett program eller algoritm skulle kunna hantera vilket giltigt JSON Schema som helst. Användningsområde fyra och fem omfattas inte av den här rapporten, och varför användningsområde sex inte är trivialt diskuteras mer i resultatet.
 % Byt ut resultatet mot rätt kapitel
+
+%\section{JSON Schema förklarat med BNF}
+%
+%
+%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{bnf}{code/json-schema.bnf}
+%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{ebnf}{code/json-schema.ebnf}
+%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{ebnf}{code/strSch.ebnf}
+
+
+%	<statement> ::= <ident> `=' <expr> 
+%	\alt `for' <ident> `=' <expr> `to' <expr> `do' <statement> 
+%	\alt `{' <stat-list> `}' 
+%	\alt <empty> 
+%
+%	<stat-list> ::= <statement> `;' <stat-list> | <statement> 
+%
+%	<statement> ::= <ident> `=' <expr> 
+%	\alt `for' <ident> `=' <expr> `to' <expr> `do' <statement> 
+%	\alt `{' <stat-list> `}' 
+%	\alt <empty> 
+%	
+%	<stat-list> ::= <statement> `;' <stat-list> | <statement> 
+
+
+
+%\begin{syntdiag}
+%	<ident> ‘(’
+%	\begin{rep} \begin{stack} \\
+%			<type> \begin{stack} \\ <ident> \end{stack}
+%		\end{stack} \\ ‘,’ \end{rep}
+%	\begin{stack} \\ ‘...’ \end{stack} ‘)’
+%\end{syntdiag}
+
