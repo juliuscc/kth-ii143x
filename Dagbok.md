@@ -43,3 +43,11 @@ Idag skapade jag stöd för att generera ett gui som kan visa, beskriva, låta a
 ## 2018-04-17
 
 Idag var en skrivardag. Förstudien är i princip färdig nu.
+
+## 2018-04-18
+
+Idag renskrev jag en hel del innan jag skickade in min rapport. Jag läste Abdullahis och Rasmus rapport och noterade några kommentarer.
+
+## 2018-04-19
+
+Idag fortsatte jag skriva på teorin. Det saknades mycket om "hur andra gjort" och jag började skriva på det.
