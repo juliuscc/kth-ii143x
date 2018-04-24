@@ -123,7 +123,7 @@ The Json Schema organisation listar kända implementationer på sin hemsida, och
 \noindent
 Arbetet kommer behöva implementera tre av de listade implementationerna: Schema generation, Data parsing samt UI generation, vilket diskuteras i kapitel \ref{sec:teori:schema-användningsområden:generering}, \ref{sec:teori:schema-användningsområden:parsning} samt \ref{sec:teori:schema-användningsområden:ui-generering}.
 
-\subsection{Schemagenerering}
+\subsection{Generering av scheman}
 \label{sec:teori:schema-användningsområden:generering}
 Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i två kategorier. Det finns implementationer som utgår från JSON data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Kapitel xXxTODOxXx kommer att diskutera prestationen av de implementationerna, samt visa hur ingen av dem fungerar perfekt. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett typat språk, eller verktyg för att beskriva scheman. De borde enligt förväntan prestera bättre men inte alltid perfekt. \cite{TheJSONSchemaorganisation}
 
@@ -149,10 +149,41 @@ Schemagenerering som kategori består av tolv implementationer där det går att
 
 \subsection{Parsning av JSON Scheman}
 \label{sec:teori:schema-användningsområden:parsning}
-En parser tolkar JSON Scheman och representerar schemat med någon annan datastruktur. Ofta är parsning viktigt för att schemat ska kunna representeras med en datastruktur som programmeringsspråket är kompatibelt med.
+En parser tolkar JSON Scheman och representerar schemat med någon annan datastruktur. Ofta är parsning viktigt för att schemat ska kunna representeras med en datastruktur som programmeringsspråket är kompatibelt med. Vissa implementationer använder ett färdigt JSON Schema och genererar kod som är kompatibelt med att hantera JSON som är formaterad utifrån schemats struktur. Andra implementationer kan dynamiskt hantera vilket schema som helst under exekvering, och dynamiskt skapa parsers för JSON formaterad utifrån schemat. De parsers som listas på The Json Schema organisations hemsida är följande:
+
+\begin{itemize}
+	\item DJsonSchema \textit{Delphi} \cite{Schlothauer&WauerGmbH}
+	\item jsonCodeGen \textit{Groovy} \cite{Schlothauer&WauerGmbHa}
+	\item aeson-schema \textit{Haskell} \cite{Kowalczyk}
+	\item AutoParse \textit{Ruby} \cite{Googleb}
+	\item json-schema-codegen \textit{Scala} \cite{Tundra}
+	\item Argus \textit{Scala} \cite{Fenton}
+	\item Bric-à-brac \textit{Swift} \cite{GlimpseI/OInc}
+	\item gojsonschema \textit{Golang} \textbf{Obs:} Verktyget saknade information på engelska eller svenska och kommer därför exkluderas från resten av rapporten. \cite{Zhangtao}
+	\item jsonschema \textit{Golang} \cite{Qriinc.}
+\end{itemize}
 
 \subsection{Tidigare försök av generering av användargränsnitt baserade på JSON Scheman}
 \label{sec:teori:schema-användningsområden:ui-generering}
+Det finns olika implementationer av att generera ett användargränsnitt utifrån ett JSON Schema. Samtliga kända implementationer är skrivna i språket JavaScript och bemöter därför ingen av svårigheterna med att använda JSON eller JSON Schema med andra språk. Samtliga implementationer är implementationer för att generera hemsidor eller komponenter till hemsidor, vilket skiljer sig mycket mot att generera användargränsnitt åt Windows med Delphi, vilket arbetet gjorde.
+
+Vissa av implementationerna används för att generera ett användargränsnitt för att förklara ett API beskrivet med JSON Schema och andra implementationer används för att generera ett formulär för att manipulera data beskrivet av JSON Schema. Att generera ett formulär för att manipulera data beskrivet av JSON Schema är exakt vad den här rapporten utvärderar. Användargränsnittsgenererarna som listas på The Json Schema organisations hemsida är följande:
+
+\begin{itemize}
+	\item Alpaca Forms \cite{GitanaSoftwareInc.}
+	\item Angular Schema Form \cite{Textalk}
+	\item Angular2 Schema Form \cite{MakinaCorpus}
+	\item JSON Editor \cite{JeremyDorn}
+	\item JSON Form \cite{Joshfire}
+	\item json-forms \cite{Brutusin.org}
+	\item JSONForms  \cite{EclipseSource}
+	\item Jsonary  \textbf{OBS!}
+	\item liform-react \cite{NachoMartin}
+	\item Metawidget \cite{Metawidget}
+	\item pure-form webcomponent \textbf{Obs not found}
+	\item React JSON Schema Form \cite{MozillaServices}
+	\item React Schema Form \cite{MozillaServices}
+\end{itemize}
 
 %\section{JSON Schema förklarat med BNF}
 %

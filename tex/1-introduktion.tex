@@ -21,7 +21,7 @@ För att förenkla dessa två kundfall påbörjade LSE utvecklingen av funktiona
 
 \section{Problemområde}
 \label{sec:intro:problemområde}
-Systemet för att konfigurera profiler, som beskrevs i kapitel \ref{sec:intro:mimer}, bygger på att alla operatörsdatorer exponerar ett API mot en server, över en TCP-port. Administratörsprogrammet skulle erbjuda ett användargränssnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient.
+Systemet för att konfigurera profiler, som beskrevs i kapitel \ref{sec:intro:mimer}, bygger på att alla operatörsdatorer exponerar ett API mot en server, över en TCP-port. Administratörsprogrammet skulle erbjuda ett användargränssnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient. Administrationsprogrammet skrevs som en skrivbordsapplikation till Windows, med språket Delphi.
 
 Kommunikationsprotokollet var ett eget skapat protokoll som byggde på att skicka JSON-Objekt via TCP. För en beskrivning av JSON, se kapitel \ref{sec:teori:json}. För en mer utförlig beskrivning av kommunikationsprotokollet se Appendix \ref{appendix:api-beskrivning}. Problemet som LSE hade inför utvecklandet av användarprofilerna var skapandet av ett användargränssnitt på administratörsprogrammet. Olika operatörsdatorer, hos olika kunder, kunde ha olika versioner av Mimer, med olika funktionalitet tillgänglig, och därmed olika uppsättningar konfigurerbara inställningar. 
 
