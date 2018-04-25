@@ -68,3 +68,15 @@ Idag implementerade jag en massa sista grejer till uit. Nu kan man specificera:
 *   Att det finns "default"-värden
 
 Implementationen är i princip helt färdig nu.
+
+## 2018-04-24
+
+Idag var det halvpaus och jag pluggade inför en ks i indek. Däremot så läste jag en hel del i boken "Att genomföra examensarbete". Jag skrev dessutom färdigt listan med verktyg som skulle/har utvärderats.
+
+## 2018-04-25
+
+Idag var en produktiv dag. Jag har beskrivit 12 olika verktyg djupgående. Jag har beskrivit vad de gör och hur det relaterar till mitt arbete. 
+
+Jag har också skrivit en utförlig förklaring för hur det aldrig kan fungera med verktyg som gör: JSON -> JSON Schema
+
+Jag gör det genom att visa en JSON-fil och visar hur det kan beskrivas med 4 helt olika JSON Scheman och att det bara är "the tip of the iceberg"
