@@ -125,23 +125,27 @@ Arbetet kommer behöva implementera tre av de listade implementationerna: Schema
 
 \subsection{Generering av scheman}
 \label{sec:teori:schema-användningsområden:generering}
-Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i två kategorier. Det finns implementationer som utgår från JSON data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Kapitel xXxTODOxXx kommer att diskutera prestationen av de implementationerna, samt visa hur ingen av dem fungerar perfekt. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett typat språk, eller verktyg för att beskriva scheman. De borde enligt förväntan prestera bättre men inte alltid perfekt. \cite{TheJSONSchemaorganisation}
+Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i tre kategorier. Det finns implementationer som utgår från JSON data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett statiskt typat språk. Den tredje kategorin av implementation är implementationer som erbjuder en annan metod att beskriva datan, för att sedan översätta det till ett JSON Schema. \cite{TheJSONSchemaorganisation}
 
 \subsubsection{Implementationerna som genererar JSON Scheman från JSON data:}
 \begin{itemize}
 	\item Schema Guru \textit{(Scala)} \cite{Snowplow}
 	\item JSON Schema Generator \textit{(Visual Studio)} \cite{MadsKristensen}
+	\item json-schema-generator \textit{(JavaScript / JSON)} \cite{Romanovich}
 \end{itemize}
 
-\subsubsection{Implementationerna som genererar JSON Scheman från kända typer:}
+\subsubsection{Implementationerna som genererar JSON Scheman från statiska datatyper inbyggda i språket:}
 \begin{itemize}
 	\item Json.NET Schema \textit{.NET} \cite{Newtonsoft}
 	\item NJsonSchema for .NET \textit{.NET} \cite{Suter}
-	\item Liform \textit{(PHP)} \cite{Limenius}
-	\item JSL \textit{(Python)} \cite{Romanovich}
-	\item json-schema-generator \textit{(JavaScript / JSON)} \cite{Romanovich}
 	\item typescript-json-schema \textit{(TypeScript)} \cite{El-Dardiry}
 	\item Typson \textit{(TypeScript)} \cite{Bovet}
+\end{itemize}
+
+\subsubsection{Implementationerna som genererar JSON Scheman från andra liknande beskrivningar:}
+\begin{itemize}
+	\item Liform \textit{(PHP)} \cite{Limenius}
+	\item JSL \textit{(Python)} \cite{Romanovich}
 	\item JSONSchema.net \textit{(Online webbverktyg)} \cite{Bovet}
 	\item Schema Guru Web UI \textbf{Obs:} Verktyget hittades ej och kommer därför exkluderas från resten av rapporten.
 	\item APIAddIn \textit{(Sparx Enterprise Architect)} \cite{Tomlinson}

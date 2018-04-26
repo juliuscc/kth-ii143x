@@ -28,7 +28,6 @@ Då har antaganden tagits om att det objektet alltid ska ha en \textit{property}
 	\label{fig:schema-super-simple-example-2}
 \end{figure}
 
-
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example3.json}
 	\vspace{-1.7em}
@@ -45,14 +44,16 @@ Alla de här exemplena har enbart behandlat feltolkning av en \textit{property} 
 	\label{fig:schema-super-simple-example-4}
 \end{figure}
 
-\section{Generering av scheman från statiska datatyper i programmeringsspråk}
-
+\section{Generering av scheman från statiska datatyper i statisk typade programmeringsspråk}
+Det finns implementationer som utnyttjar att statiskt typade programmeringsspråk redan innehåller beskrivningar av data som ska bearbetas. Både \textit{.Net} och \textit{TypeScript} erbjuder programmeringsfunktioner inbyggda i språket för att beskriva komplexa datastrukturer. Att sedan översätta dem till JSON Schema-filer presterar riktigt bra. Varken \textit{.Net} eller \textit{TypeScript} erbjuder stöd för att exempelvis bestämma att ett tal bara får befinna sig inom ett bestämt intervall, och det saknas fler specificiteter som JSON Schema erbjuder. För att bemöta de bristerna använder samtliga implementationer speciellt formaterade kommentarer som kallas annotationer, vilket möjliggör all funktionalitet som JSON Schema erbjuder. Att TypeScript är ett språk som kompileras till JavaScript, vilket JSON och i sin tur JSON Scheman bygger på innebär att översättningen mellan datatyper i TypeScript och JSON Scheman fungerar väldigt smidigt. \cite{Newtonsoft,Suter,El-Dardiry,Bovet}
 
 
 \section{Andra genererare av scheman}
-Det finns två andra implementationer av JSON Schema genererare på listan, som varken genererar schemat från JSON-filer eller statiska datatyper i programmeringsspråk. Det ena är APIAddIn vilket är ett plugin åt \textit{Sparx Enterprise Architect}, vilket är ett verktyg för modellering, visualisering och design av system, mjukvara, processer eller arkitekturer. Verktyget baseras på UML vilket är ett generellt språk för modellering av system. Det erbjuder delvis en liknande funktion som JSON Schema erbjuder. Om datan som skulle beskrivas av JSON Scheman redan fanns definerade med UML, skulle det möjligtvis vara ett rimligt alternativ att överväga, men då datan inte fanns definerat med UML ansågs APIAddIn vara ett onödigt verktyg, när schemat lika gärna kan defineras med JSON Schema från första början.
+Liform och JSL erbjuder metoder och funktioner som underlättar dynamiskt skapande av JSON Scheman under exekvering. De erbjuder datatyper som är inbyggda i språket för att definera och hantera komponenter av JSON Scheman. De kan sedan generera ett JSON Schema utifrån de här instanserna av datatyperna. \cite{Romanovich,Limenius}
 
-Det andra verktyget för att generera JSON Scheman var online-verktyget JSONSchema.net. Det var ett verktyg för att skapa JSON Scheman, med hjälp av ett grafiskt användargränsnitt. Det erbjöd inte mer funktionalitet än att skriva JSON Schemat för hand. Dessutom genererade den inkorrekta JSON Scheman. Oktober 17, 2017 släpptes den sjätte versionen av JSON Schema-specifikationen och en ändring mot den tidigare versionen var att \textit{exclusiveMinimum} och \textit{exclusiveMaximum} tidigare var booleska värden men från den sjätte versionen skulle vara siffror. \cite{Andrews} JSONSchema.net påstår att de genererar JSON Scheman utifrån den sjätte eller sjunde versionen men \textit{exclusiveMinimum} och \textit{exclusiveMaximum} är fortfarande booleska värden i deras genererade scheman. \cite{Jackwootton}
+APIAddIn är ett plugin åt \textit{Sparx Enterprise Architect}, vilket är ett verktyg för modellering, visualisering och design av system, mjukvara, processer eller arkitekturer. Verktyget baseras på UML vilket är ett generellt språk för modellering av system. Det erbjuder delvis en liknande funktion som JSON Schema erbjuder. Om datan som skulle beskrivas av JSON Scheman redan fanns definerade med UML, skulle det möjligtvis vara ett rimligt alternativ att överväga, men då datan inte fanns definerat med UML ansågs APIAddIn vara ett onödigt verktyg, när schemat lika gärna kan defineras med JSON Schema från första början. \cite{Tomlinson}
+
+Online-verktyget JSONSchema.net är ett verktyg för att skapa JSON Scheman, med hjälp av ett grafiskt användargränsnitt. Det erbjöd inte mer funktionalitet än att skriva JSON Schemat för hand. Dessutom genererade den inkorrekta JSON Scheman. Oktober 17, 2017 släpptes den sjätte versionen av JSON Schema-specifikationen och en ändring mot den tidigare versionen var att \textit{exclusiveMinimum} och \textit{exclusiveMaximum} tidigare var booleska värden men från den sjätte versionen skulle vara siffror. \cite{Andrews} JSONSchema.net påstår att de genererar JSON Scheman utifrån den sjätte eller sjunde versionen men \textit{exclusiveMinimum} och \textit{exclusiveMaximum} är fortfarande booleska värden i deras genererade scheman. \cite{Jackwootton}
 
 \section{Parsning av JSON Scheman}
 
