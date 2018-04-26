@@ -80,3 +80,7 @@ Idag var en produktiv dag. Jag har beskrivit 12 olika verktyg djupgående. Jag h
 Jag har också skrivit en utförlig förklaring för hur det aldrig kan fungera med verktyg som gör: JSON -> JSON Schema
 
 Jag gör det genom att visa en JSON-fil och visar hur det kan beskrivas med 4 helt olika JSON Scheman och att det bara är "the tip of the iceberg"
+
+## 2018-04-26
+
+Idag blev jag färdig med att djupgående utvärdera, förstå, analysera och förklara ALLA kända implementationer som implementerar något i närheten av vad jag gör.
