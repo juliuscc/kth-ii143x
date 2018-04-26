@@ -78,3 +78,33 @@ jsonschema är ett verktyg som dynamiskt parsar JSON Scheman och erbjuder en ins
 Många av dessa projekt saknar tillräcklig dokumentation, vilket gör det omöjligt att använda dem i ett projekt. Dessutom är parsningen av JSON Scheman relativt enkelt, då det enbart handlar om att parsa JSON-filer som följer en förutbestämd struktur. Dessutom skiljer sig användningsområdena sig starkt efteråt, vilket kan kräva unik anpasssning av JSON Schema parsern, vilket är en stor anledning till att det finns så många olika sorters parsers. Ett annat problem att ta hänsyn till med implementationerna är att många av dem bara erbjuder generering av statisk kod i förväg, och klarar inte av att tolka olika JSON Scheman, under exekvering av programmet. Det här arbetet handlar om att dynamiskt tolka olika sorters scheman för att anpassa ett användargränsnitt till servern som klienten kommunicerar mot, vilket innebär att de implementationerna är oanvändbara. Det sista och största problemet med implementationerna är att bara en var kompatibel med Delphi, vilket är språket som systemet skrevs i. Med hänvisning till att det är relativs enkelt att skriva en parser och med problematiken alla implemenationer presenterade, skrevs en egen parser åt det här arbetet.
 
 \section{Användargränssnitt genererade baserat på JSON Scheman}
+Samtliga implementationer som genererar användargränssnitt utifrån JSON Scheman, gör det för hemsidor \textit{(HTML, CSS och JavaScript)}. Att generera ett användargränsnitt, baserat på JSON Scheman, med ett annat språk än JavaScript kan presentera hinder eller svårigheter. Att använda ett webbaserat användargränssnitt var inte ett alternativ för systemet men samtliga implementationer undersöktes, för att ta lärdom om hur de fungerade. Många lösningar separerar JSON Schemat med datan som JSON Schemat beskriver. Den faktiska datan som användargränsnittet visar, och sedan manipulerar kommer också kallas modell i resten av rapporten.
+
+Att använda JSON Schema för att generera användargränssnitt kan ske på olika sätt, och många implementationer bygger på att ytterligare information tillförs för att kunna specificera hur modellerna ska representeras i det grafiska användargränssnittet. Vissa lösningar är generella för användning på vilken hemsida som helst, medan andra är kopplade till att användas med ett visst ramverk, som React, JQuery eller Angular.
+
+Alpaca Forms är en unik lösning då den är den enda implementationen som inte använder ett JSON Schema som är formaterat med JSON, utan schemat är en instans av ett JavaScript-objekt, vilket möjliggör att schemat inkluderar funktionslogik; En funktionalitet som saknas hos JSON. Utöver funktionslogik, inkluderar schemat en \textit{property} som kallas \textit{options}, som används för att beskriva hur användargränssnittet ska se ut. De delarna av schemat som är korrekt JSON Schema används till stor del enbart för att koppla ihop användargränssnittet med datan. \cite{GitanaSoftwareInc.}
+
+Andra lösningar som utökade det oficiella JSON Schemat är:
+\begin{itemize}
+	\item Angular2 Schema Form \cite{MakinaCorpus}
+	\item JSON Editor \cite{JeremyDorn}
+	\item json-forms \cite{Brutusin.org}
+	\item JSONForms \cite{EclipseSource}
+	\item liform-react \cite{NachoMartin}
+	\item Metawidget \cite{Metawidget}
+	\item React JSON Schema Form \cite{MozillaServices}
+\end{itemize}
+
+En annan lösning till problemet är att använda ett separat JSON-objekt som fungerar som ett schema för formulärets utseende och beteende. Lösningarna som använder den sortens lösning är:
+\begin{itemize}
+	\item Angular Schema Form \cite{Textalk}
+	\item Angular2 Schema Form \cite{MakinaCorpus}
+	\item JSON Form \cite{Joshfire}
+	\item json-forms \cite{Brutusin.org}
+	\item JSONForms \cite{EclipseSource}
+	\item liform-react \cite{NachoMartin}
+	\item React JSON Schema Form \cite{MozillaServices}
+	\item React Schema Form \cite{NetworkNewTechnologiesInc.}
+\end{itemize}
+
+Observera att vissa implementationerna både utökar JSON Schemat, och lägger till extra scheman för att beskriva formulärets utseende och beteende. Vissa lösningar utökar Schemat för att sedan lägga till ett extra mellansteg där vissa parametrar i modellen kopplas till extra funktionslogik.
