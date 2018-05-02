@@ -84,3 +84,7 @@ Jag gör det genom att visa en JSON-fil och visar hur det kan beskrivas med 4 he
 ## 2018-04-26
 
 Idag blev jag färdig med att djupgående utvärdera, förstå, analysera och förklara ALLA kända implementationer som implementerar något i närheten av vad jag gör.
+
+## 2018-04-27
+
+Idag började jag beskriva systemet i helhet.
