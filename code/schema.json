@@ -1,0 +1,54 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"type": "object",
+	"properties": {
+		"TMimerMainSettings": {
+			"title": "Mimer main settings",
+			"description": "Mimer main settings",
+			"properties": {
+				"MyName": {
+					"title": "My name",
+					"description":
+						"This is the name that will be shown. Max length is 10 characters. Name has to be capitalized.",
+					"type": "string",
+					"maxLength": 10,
+					"minLength": 3,
+					"pattern": "^[A-Z].*"
+				},
+				"MyId": {
+					"title": "My id",
+					"description":
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+					"type": "integer",
+					"minimum": 10,
+					"maximum": 249
+				},
+				"FixedSize": {
+					"title": "Fixed size",
+					"description":
+						"If this is turned on, the Mimer SoftRadio window is not resizable",
+					"type": "boolean"
+				},
+				"SendUserInfoIP": {
+					"title": "Send user info IP address",
+					"description": "Address to send user info to",
+					"type": "string",
+					"format": "ipv4"
+				},
+				"FreeMoveEnabled": {
+					"title": "Device panels moveable mode",
+					"description":
+						"This mode decides if the device panels are fixed or moovable.",
+					"type": "boolean",
+					"enum": [
+						false,
+						{
+							"key": "Fixed",
+							"value": true
+						}
+					]
+				}
+			}
+		}
+	}
+}
