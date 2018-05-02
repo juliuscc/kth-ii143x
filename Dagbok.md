@@ -75,7 +75,7 @@ Idag var det halvpaus och jag pluggade inför en ks i indek. Däremot så läste
 
 ## 2018-04-25
 
-Idag var en produktiv dag. Jag har beskrivit 12 olika verktyg djupgående. Jag har beskrivit vad de gör och hur det relaterar till mitt arbete. 
+Idag var en produktiv dag. Jag har beskrivit 12 olika verktyg djupgående. Jag har beskrivit vad de gör och hur det relaterar till mitt arbete.
 
 Jag har också skrivit en utförlig förklaring för hur det aldrig kan fungera med verktyg som gör: JSON -> JSON Schema
 
@@ -88,3 +88,7 @@ Idag blev jag färdig med att djupgående utvärdera, förstå, analysera och f�
 ## 2018-04-27
 
 Idag började jag beskriva systemet i helhet.
+
+## 2018-05-02
+
+Idag skrev jag en stor del om arbetet. Jag förklarade hur JSON Scheman genererades. Dessutom skrev jag färdigt metoddelen, där jag lade till vad jag "faktiskt ska göra".
