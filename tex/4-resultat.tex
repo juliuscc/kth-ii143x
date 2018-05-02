@@ -4,8 +4,6 @@ Arbetet kan del
 
 Stort problem är att json och json scheman inte skiljer på heltal och reela tal, medan många språk gör det. Specifikt Delphi som systemet utvecklades i.
 
-Ingen har beskrivit parsning av JSON Schema!!!
-
 \section{Systemet i helhet}
 
 När administrationsprogrammet kopplar upp sig mot servern skickar servern ett JSON Schema, tillsammans med en JSON-fil som beskriver den riktiga datan. Det flödet illustreras i figur \ref{fig:system:ner}. Hur datan sedan propageras upp från användargränssnittet, till servern illustreras i figur \ref{fig:system:upp}.
@@ -35,17 +33,18 @@ Alternativet att handskriva JSON Scheman kräver mycket uppräthållning av sche
 
 JSL är ett exempel på en implementation som erbjuder specifika komplexa datatyper som underlättar genererandet av JSON Scheman. JSL skiljer på datastrukturerna som används för att representera och manipulera data, och själva schemat som används för att beskriva de tidigare nämnda datastrukturerna. \cite{Romanovich} Det ansågs vara ett väldigt praktiskt mellanting. Scheman skrivs för hand men de skrivs inte som JSON Scheman. Istället skrivs de som instanser av komplexa datatyper i Delphi, som sedan under exekvering dynamiskt tolkas för att generera ett JSON Schema. Det här tillåter servern att under exekvering utföra logiska bedömningar för att inkludera exakt det som ska inkluderas i schemat, beroende på vilken version av Mimer SoftRadio operatörsdatorn har, och med vilken tillgänglig funktionalitet datorn har. Schemagenerering är frikopplat från databehandling, men är samtidigt dynamiskt genererat utifrån tillgänglig funktionalitet på operatörsdatorn.
 
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\tiny, framesep=2mm, breaklines]{json}{code/schema.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema}
-	\label{fig:real-schema}
-\end{figure}
+Att generera scheman från JSON-filer ansågs inte vara praktiskt genomförbart (se kapitel \ref{sec:forarbete:json-till-schema}), och skulle inte kunna uppräthålla kraven på systemet. Det skulle dessutom helt ta bort möjligheten för utvecklare att beskriva användargränssnittet.
 
 \section{Parsningen av JSON Schema i Delphi}
 
 
 \section{Representation av data i användargänssnittet}
 
+\begin{figure}
+	\inputminted[tabsize=2, frame=single, fontsize=\tiny, framesep=2mm, breaklines]{json}{code/schema.json}
+	\vspace{-1.7em}
+	\caption{Exempel på genererat schema}
+	\label{fig:real-schema}
+\end{figure}
 
 \section{Manipulering av data utifrån användarinteraktion}
