@@ -92,3 +92,7 @@ Idag började jag beskriva systemet i helhet.
 ## 2018-05-02
 
 Idag skrev jag en stor del om arbetet. Jag förklarade hur JSON Scheman genererades. Dessutom skrev jag färdigt metoddelen, där jag lade till vad jag "faktiskt ska göra".
+
+## 2018-05-03
+
+Idag skrev jag väldigt mycket om själva arbetet. Jag kommer behöva åka till jobbet och ta några screenshots och kolla på lite kod (för att dubbelkolla implementationen). Dataflödet och systemet i helhet är beskrivet. Hur JSON Scheman parsas är beskrivet. Hur Schemat struktureras är beskrivet.
