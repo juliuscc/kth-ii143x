@@ -7,15 +7,17 @@ Stort problem är att json och json scheman inte skiljer på heltal och reela ta
 
 \section{Systemet i helhet}
 
-När administrationsprogrammet kopplar upp sig mot servern skickar servern ett JSON Schema, tillsammans med en JSON-fil som beskriver den riktiga datan. Det flödet illustreras i figur \ref{fig:system:ner}. Hur datan sedan propageras upp från användargränssnittet, till servern illustreras i figur \ref{fig:system:upp}.
+När användargränssnittet ska visas första gången, eller efter att en användare valt att trycka på "spara-knappen" (se figur \ref{label}), skickar servern två dokument till klienten. Det dataflödet illustreras i figur \ref{fig:system:ner}. Det ena dokumentet är ett JSON Schema som beskriver vilken data användaren med hjälp av klienten ska kunna se och redigera. Det andra dokumentet som skickas till klienten är den faktiska data som är sparad på servern. Först så parsas schemat och representeras i instanser av \textit{records} eller objekt i Delphi. Sedan används datan för att populera objekten med de korrekta värdena, för att tillsammans skapa modellen. Det sista steget är att det grafiska användargränssnittet genereras och presenteras för användaren.
+
+Varje gång användaren interagerar med användargränssnittet och matar in giltig data, uppdateras modellen vilket i sin tur uppdaterar det grafiska användargränssnittet. Det dataflödet illustreras i figur \ref{fig:system:upp} Detta sker utan någon kontakt med servern. Om användaren är nöjd med sina ändringar och vill spara dem på servern kan användaren trycka på "spara-knappen" (se figur \ref{label}) så uppdateras dataobjektet med de nya värdena från datamodellen, vilket sedan skickas till servern. Efter det börjar systemet igång från början igen.
 
 \begin{figure}
-	\begin{subfigure}[b]{0.5\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=0.9\textwidth,left]{./images/system-ner.png}
 		\caption{Flödesschema över systemet}
 		\label{fig:system:ner}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=0.9\textwidth,right]{./images/system-upp.png}
 		\caption{Flödesschema över systemet}
 		\label{fig:system:upp}	
@@ -32,7 +34,14 @@ Ett annat alternativ är att basera schemat på inbyggda datatyper i det statisk
 
 Alternativet att handskriva JSON Scheman kräver mycket uppräthållning av scheman och är väldigt mottagligt för misstag hos utvecklarna. Det kräver dock inget system för att dynamiskt generera scheman vid exekvering, då de redan skulle vara genererade. Alternativet att konstruera ett system som använder run-time type information \textit{(RTTI)} är väldigt smidigt för utvecklare under exekvering men kräver relativt mycket utveckling. Ett mellanting skulle vara felsäkert som handskrivna JSON Scheman, men samtidigt dynamiskt genererat vid exekvering för felfria scheman.
 
-JSL är ett exempel på en implementation som erbjuder specifika komplexa datatyper som underlättar genererandet av JSON Scheman. JSL skiljer på datastrukturerna som används för att representera och manipulera data, och själva schemat som används för att beskriva de tidigare nämnda datastrukturerna. \cite{Romanovich} Det ansågs vara ett väldigt praktiskt mellanting. Scheman skrivs för hand men de skrivs inte som JSON Scheman. Istället skrivs de som instanser av komplexa datatyper i Delphi, som sedan under exekvering dynamiskt tolkas för att generera ett JSON Schema. Det här tillåter servern att under exekvering utföra logiska bedömningar för att inkludera exakt det som ska inkluderas i schemat, beroende på vilken version av Mimer SoftRadio operatörsdatorn har, och med vilken tillgänglig funktionalitet datorn har. Schemagenerering är frikopplat från databehandling, men är samtidigt dynamiskt genererat utifrån tillgänglig funktionalitet på operatörsdatorn.
+JSL är ett exempel på en implementation som erbjuder specifika komplexa datatyper som underlättar genererandet av JSON Scheman. JSL skiljer på datastrukturerna som används för att representera och manipulera data, och själva schemat som används för att beskriva de tidigare nämnda datastrukturerna. \cite{Romanovich} Det ansågs vara ett väldigt praktiskt mellanting. Scheman skrivs för hand men de skrivs inte som JSON Scheman. Istället skrivs de som instanser av komplexa datatyper i Delphi, som sedan under exekvering dynamiskt tolkas för att generera ett JSON Schema. Det här tillåter servern att under exekvering utföra logiska bedömningar för att inkludera exakt det som ska inkluderas i schemat, beroende på vilken version av Mimer SoftRadio operatörsdatorn har, och med vilken tillgänglig funktionalitet datorn har. Schemagenerering är frikopplat från databehandling, men är samtidigt dynamiskt genererat utifrån tillgänglig funktionalitet på operatörsdatorn. Ett exempel på ett genererat schema presenteras i figur \ref{fig:real-schema}.
+
+\begin{figure}
+	\inputminted[tabsize=2, frame=single, fontsize=\tiny, framesep=2mm, breaklines]{json}{code/schema.json}
+	\vspace{-1.7em}
+	\caption{Exempel på genererat schema}
+	\label{fig:real-schema}
+\end{figure}
 
 Att generera scheman från JSON-filer ansågs inte vara praktiskt genomförbart (se kapitel \ref{sec:forarbete:json-till-schema}), och skulle inte kunna uppräthålla kraven på systemet. Det skulle dessutom helt ta bort möjligheten för utvecklare att beskriva användargränssnittet.
 
@@ -72,11 +81,18 @@ Figur \ref{fig:system:ner} beskriver systemet i helhet och där är parsningen e
 \section{Representation av data i användargänssnittet}
 \label{sec:arbetet:gui}
 
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\tiny, framesep=2mm, breaklines]{json}{code/schema.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema}
-	\label{fig:real-schema}
-\end{figure}
+Många implementationer diskuterade i \ref{sec:forarbete:gui-generering} använder ett extra JSON-dokument för att beskriva hur schemat, och modellen schemat representerar ska presenteras i användargränssnittet. Det ansågs vara överflödigt att behöva skicka två dokument som båda ska användas vid exakt samma steg i systemet. Det andra alternativet för att utöka funktionalitet hos JSON Schema är att använda egna nyckelord i schemat som inte finns standardiserade i JSON Schema specifikationerna. Det här arbetet krävde nästan ingen utökad funktionalitet hos JSON Scheman, förutom förbättrad funktionalitet hos \textit{enums} vilket diskuteras mer i kapitel \ref{sec:arbetet:gui:enums}. Det gick att generalisera användargränssnittet tillräckligt för att hantera alla datatyper som systemet använder sig av, och presentera ett relevant användargränssnitt av dem. Nyckelordet \textit{format} kunde erbjuda väldigt hög kontroll av användargränssnittet.
 
-\section{Manipulering av data utifrån användarinteraktion}
+\subsection{Det generella användargränssnittet}
+
+
+\subsection{Textsträngar och \textit{format} i användargränssnittet}
+
+
+\subsection{Booleska värden och heltal i användargränssnittet}
+
+
+\subsection{Flervalsalternativ och \textit{enums} i användargränssnittet}
+\label{sec:arbetet:gui:enums}
+
+

@@ -43,8 +43,8 @@
 					"enum": [
 						false,
 						{
-							"key": "Fixed",
-							"value": true
+							"title": "Fixed",
+							"const": true
 						}
 					]
 				}
