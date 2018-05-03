@@ -1,1 +1,34 @@
-﻿{"computerName":"New Operator Computer","settingsSchema":{},"profiles":[{"id":0,"name":"New Profile","password":"","canModify":false,"windowsUsersAllowed":[{"name":"Administrat\u00F6r","sid":"S-1-5-21-3808640548-4279830640-1022956473-500"},{"name":"DefaultAccount","sid":"S-1-5-21-3808640548-4279830640-1022956473-503"},{"name":"G\u00E4st","sid":"S-1-5-21-3808640548-4279830640-1022956473-501"},{"name":"lab-dev","sid":"S-1-5-21-3808640548-4279830640-1022956473-1001"},{"name":"WDAGUtilityAccount","sid":"S-1-5-21-3808640548-4279830640-1022956473-504"}]}]}
+﻿{
+	"computerName": "New Operator Computer",
+	"settingsSchema": {},
+	"profiles": [
+		{
+			"id": 0,
+			"name": "New Profile",
+			"password": "",
+			"canModify": false,
+			"windowsUsersAllowed": [
+				{
+					"name": "Administrat\u00F6r",
+					"sid": "S-1-5-21-3808640548-4279830640-1022956473-500"
+				},
+				{
+					"name": "DefaultAccount",
+					"sid": "S-1-5-21-3808640548-4279830640-1022956473-503"
+				},
+				{
+					"name": "G\u00E4st",
+					"sid": "S-1-5-21-3808640548-4279830640-1022956473-501"
+				},
+				{
+					"name": "lab-dev",
+					"sid": "S-1-5-21-3808640548-4279830640-1022956473-1001"
+				},
+				{
+					"name": "WDAGUtilityAccount",
+					"sid": "S-1-5-21-3808640548-4279830640-1022956473-504"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"values": [
+		{
+			"name": {
+				"type": "string",
+				"value": null
+			}
+		},
+		{
+			"age": {
+				"type": "integer",
+				"value": null
+			}
+		}
+	]
+}
