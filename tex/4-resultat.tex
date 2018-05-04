@@ -85,7 +85,33 @@ Många implementationer diskuterade i \ref{sec:forarbete:gui-generering} använd
 
 \subsection{Det generella användargränssnittet}
 
+Det enklaste valet av gränssnitt skulle vara att erbjuda en generell JSON editor. Det finns många exempel på användargränssnitt som erbjuder ett grundläggande gränssnitt för att redigera generell JSON-data. De skiljer sig inte mycket mot att skriva JSON manuellt, men kan erbjuda enkel hjälp med nyckelord och formatering. Figur \ref{fig:json-editor} visar JSON Editor Online, vilket är ett exempel på ett sådant användargränssnitt \cite{DeJong2018}. Det skulle behöva begränsa vad användaren skulle kunna mata in med hjälp av JSON Schemat men ett sådant formulär har möjlighet att hantera JSON Data som följer all möjlig sorts struktur. Det vore en stor fördel att kunna erbjuda ett formulär som kan hantera alla möjliga sorters scheman. En nackdel med att använda ett sådant användargränssnitt är att det inte är särskillt anpassat för ändamålet, och gränssnittet blir inte särskillt frikopplat mot datan som ska manipuleras. Det blir dessutom svårt att presentera information till användaren som kan hjälpa användaren förstå hur datan kommer användas.
 
+Ett annat alternativ är att göra som React JSON Schema Form (se figur \ref{fig:react-jsonschema-form}). React JSON Schema Form genererar ett webbformulär utifrån ett JSON Schema och ett extra JSON-dokument som kallas UISchema. \cite{MozillaServices} Användargränssnittet blir mycket mer anpassat till syftet, och lättare att använda. Dessutom utnyttjas annoteringsnyckelorden \textit{title} och \textit{description} från JSON Schemat, för att förklara för användaren vad datan betyder. Det som kan bli svårt med en design som är anpassad efter syftet som ett formulär är hur komplexa JSON-strukturer ska hanteras. Hur skulle exempelvis en vektor innehållande objekt med två properties, varav ena propertyn är ett objekt med två olika vektorer, presenteras på ett användarvänligt sätt? Att även presentera annoteringar som \textit{title} och \textit{description} till alla datanoder i det formuläret vore ännu en till utmaning. En vanlig JSON-Editor klarar av att presentera djupt komplexa datatyper, medan det kan vara väldigt svårt att göra samma sak på ett generellt sätt med formulär. Många lösningar som React JSON Schema Form erbjuder generella formulär som klarar av alla JSON Scheman, med alternativet att specificera mer hur formuläret ska se ut, med hjälp av ett extra JSON-dokument. \cite{MozillaServices} Det är en riktigt bra kompromiss om lösningen måste kunna klara av att presentera djupt komplexa datatyper, som inte följer en förutbestämd struktur.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/screenshot-json-editor.png}
+	\caption{JSON Editor Online \cite{DeJong2018}}
+	\label{fig:json-editor}
+\end{figure}
+
+Datan som skulle presenteras på användargränssnittet i arbetet var varken komplex eller totalt generell. Datan bestod av ett objekt med flera objekt som properties, där de objekten i sin tur var antingen en textsträng, ett heltal eller ett booleskt värde. Datan var som mest tre lager djup. Det gick dessutom att dela in datanoderna i inställningsgrupper och inställningsnoder. Därför kunde både en JSON-editor användas, eller ett formulär. Datan som skulle presenteras ansågs av LSE vara för komplex för många användare att förstå utan en ordentlig förklaring av varje inställningsnod. Därför ansågs ett formulär vara det bästa användargränssnittet. Användargränssnittet presenteras i figur \ref{fig:gui:helhet}. Då användargränssnittet skulle användas både för data med delvis förutbestämd struktur och inte djupt komplex data ansågs ett extra JSON-dokument för att lägga till extra specificering av användargränsnittet överflödigt och onödigt komplext.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/screenshot-react-jsonschema-form.png}
+	\caption{React JSON Schema Form \cite{MozillaServices}}
+	\label{fig:react-jsonschema-form}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/helhet-copy.png}
+	\caption{Användargränssnittet av administratörsprogrammet \textbf{(TODO! ta ny bild!!!)}}
+	\label{fig:gui:helhet}
+\end{figure}
+
+TODO: Skriv här om vad varje siffra betyder.
+
+\FloatBarrier
 \subsection{Textsträngar och \textit{format} i användargränssnittet}
 
 

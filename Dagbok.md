@@ -96,3 +96,7 @@ Idag skrev jag en stor del om arbetet. Jag förklarade hur JSON Scheman generera
 ## 2018-05-03
 
 Idag skrev jag väldigt mycket om själva arbetet. Jag kommer behöva åka till jobbet och ta några screenshots och kolla på lite kod (för att dubbelkolla implementationen). Dataflödet och systemet i helhet är beskrivet. Hur JSON Scheman parsas är beskrivet. Hur Schemat struktureras är beskrivet.
+
+## 2018-05-04
+
+Idag skrev jag en hel del om hur andra gjort GUIn och hur mitt förhåller sig till deras. Jag har kvar att skriva om specifika detaljer i min implementation men sen så är kapitel **4. Arbete** färdigskrivet och då är det bara diskussion och lite mer i introduktion kvar. Jag tog screenshots idag och lite sånt också.
