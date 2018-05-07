@@ -92,6 +92,13 @@ JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument,
 \subsection{JSON Schema Hyper-Schema}
 JSON Schema skapas till stor del för användandet hos webbtjänster. Därför beskriver det tredje dokumentet, JSON Schema Hyper-Schema, hur resurser kan manipuleras och interageras med över hypermediamiljöer som HTTP. JSON Schema Validation skulle kunna beskriva hur ett API anrop ska hanteras och vad som förväntas från förfrågningar och svar på dem. JSON Schema Hyper-Schema kan då användas för att beskriva ett helt API och hur de olika anropen och resurserna är relaterade till varandra. \cite{Andrews2018a}
 
+\subsection{Kontroversiella flyttal i JSON Schema}
+\label{sec:teori:schema:float}
+
+JSON Schema stöder två nyckelord för siffror: \textit{number}, och \textit{integer}, vilket motsvarar siffror respektive heltal \cite{Andrews}. Nyckelordet \textit{number} betyder inte nödvändigtvis flyttal då JSON och JavaScript inte skiljer på heltal och flyttal, vilket en betydligt stor andel programmeringsspråk gör som Python, Ruby, C, C++, C\#, Java, Delphi med många fler \cite{Embarcadero,Oracle,Microsofta,GNU,GNUa,Britt,Britta,PythonSoftwareFoundation2018,ECMA2013,EcmaInternational2017}. JSON Schema definerar ett heltal som alla siffror med en bråkdel som är lika med noll \cite{Andrews}. Det skulle betyda att både talet 1 och 1.0 skulle tolkas som ett heltal. Många JSON parsers i många språk tolkar 1.0 som ett flyttal vilket gör det svårt att kontrollera om en siffra är ett heltal. Flera implementationer av JSON Schema parsers som exempelvis Python-baserade jsonschema tolkar 1.0 som ett flyttal, trots att JSON Schema specificerar motsatsen \cite{SpaceTelescopeScienceInstitute2016}.
+
+Det finns andra oklarheter kring flyttal, som att det är svårt att validera om ett flyttal är en multipel av ett annat tal, då få språk erbjuder exakt nogranhet för flyttal \cite{Cederqvist2017}. Vissa föreslår att flyttal borde hanteras som textsträngar med nyckelordet \textit{format}, men då krävs en större bredd av valideringstermer för att erbjuda samma funktionalitet som det redan finns till datatyper av typen \textit{number} \cite{Poberezkin,Faassen}.
+
 \section{Användningsområden för JSON Schema}
 \label{sec:teori:schema-användningsområden}
 Användningsområden för JSON Scheman är bland annat:
