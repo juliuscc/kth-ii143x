@@ -107,16 +107,86 @@ Datan som skulle presenteras på användargränssnittet i arbetet var varken kom
 	\includegraphics[width=\textwidth]{./images/gui/helhet-copy.png}
 	\caption{Användargränssnittet av administratörsprogrammet \textbf{(TODO! ta ny bild!!!)}}
 	\label{fig:gui:helhet}
+	\begin{enumerate}
+		\item Inställningsgrupp
+		\item Namn på inställning
+		\item Värde på inställning
+		\item Formulär för att ställa in inställning
+		\item Spara-knapp
+		\item Omstarts-knapp
+	\end{enumerate}
 \end{figure}
 
-TODO: Skriv här om vad varje siffra betyder.
+Användargränssnittet som utvecklades blev tvådelat, där ena halvan av gränssnittet användes för att presentera tillgängliga inställningar och inställningsgrupper, samt låta användaren välja en inställning att manipulera. Andra halvan av användargränssnittet användes för att presentera en inställning, med beskrivning av inställningen samt möjligheter att ändra värdet på den valda inställningen. Beslutet grundades på att det skulle vara enkelt för användaren att få en överblick över vilka inställningar som fanns tillgängliga, samtidigt som varje inställning skulle vara enkel att förstå och ändra. Värdena på inställningarna kan alltid synas utan att en inställning väljs men en inställning måste väljas för att kunna bli manipulerad. Namnet på inställningsgrupperna och inställningarna är frikopplade från deras riktiga namn data-filerna och modellen med hjälp av nyckelordet \textit{title} i JSON Schemat.
 
-\FloatBarrier
+För att förenkla för användaren erbjuds en omstarts-knapp som raderar alla osparade ändringar och startar om formuläret så att formuläret motsvarar inställningarna på servern. Vid varje användarinteraktion, där en användare manipulerar ett värde på formuläret, propageras ändringen till datamodellen vilket i sin tur uppdaterar hela användargränsnittet, men ändringen skickas inte till servern. Användaren har erbjudits en spara-knapp och först då förmedlas alla ändringar till servern.
+
+\subsection{Hur formuläret förhindrar fel}
+
+Syftet med JSON-scheman är till stor del att förhindra att inkompatibel data sparas och används i applikationer. Det kan handla om att ett användargränssnitt inte är byggt för att presentera viss sorts data, eller att ett helt system upphör att fungera för att systemet inte kunde hantera den sparade datan. Användningen av JSON Scheman i det här arbetet handlar också om att säkerställa att enbart kompatibel data skickas mellan klient och server. En kritisk frågeställning vid utvecklandet av ett intuitivt användargränsnitt är hur felaktiga användarinteraktioner ska hanteras i användargränssnittet.
+
+Den enklaste hanteringen av inkompatibel data, är att när en användare har givit inkompatibel data, kan ett generiskt felmeddelande presenteras, samt att användaren förhindras från att spara datan före användaren givit kompatibel data. Det förlitar sig på att varje inställning har en tillräckligt utförlig förklaring för hur datan ska formateras. Ett annat alternativ är att förhindra att användaren kan mata in felaktig data. Det kan exempelvis handla om att användaren bara kan mata in siffror till formuläret, om datan ska formateras som en siffra. Om användaren försöker mata in en bokstav så ignoreras den användarinteraktionen. Det kan kompleteras med förklaringar av korrekt formatering i inställningsbeskrivningen, men att användaren inte ens kan mata in inkompatibel data är väldigt intuitivt. Det perfekta målet vore att när en användare matar in inkompatibel data, ändrar formuläret datan till den närmsta kompatibla datan. Om en användare matar in siffran 300 i ett formulär som bara tillåter siffror upp till siffran 255 så kan formuläret automatiskt ändra värdet till 255. Det kan dock vara svårt att lösa för mer komplexa situationer.
+
+För att erbjuda en grundlägande användbarhet av formuläret presenterades olika sorters inmatningsfält beroende på om typen av inställning var en textsträng, en siffra eller ett booleskt värde. Detta förhindrade att användare kunde mata in data som var av fel typ. Det fanns fler fall där ännu fler olika inmatningsfällt kunde presenteras beroende på mer formateringsinformation av datan. När det gick så skapades formuläret så att den aldrig tillät användaren att mata in inkompatibel data, men i vissa fall visades bara ett felmeddelande. Hur olika formateringar specificerat i schemat uppräthölls beskrivs i resten av kapitlet.
+
 \subsection{Textsträngar och \textit{format} i användargränssnittet}
 
+När en vald inställning ska vara formaterad som en sträng, presenteras ett inmatningsfält för strängar, som i figur \ref{fig:textstrang}. JSON Schema erbjuder tre valideringsnyckelord enbart för textsträngar: \textit{maxLength}, \textit{minLength} samt \textit{pattern}. Nyckelorden \textit{maxLength} och \textit{minLength} används för att bestämma längden av textsträngen. Nyckelordet \textit{pattern} bestämmer att textsträngen måste följa ett mönster, som specificeras som ett regular expression enligt ECMA 262 regular expression dialect \cite{EcmaInternational2017}. Utöver de tre nyckelorden finns det ett fjärde nyckelord som är applicerbart på textsträngar, vilket är \textit{format}. I de senaste JSON Schema specifikationerna är samtliga åtta definerade format enbart applicerbara på textsträngar. Det går att applicera nyckelordet \textit{format} på vilken datatyp som helst, vilket kort kommer diskuteras senare i rapporten. \cite{Andrews}
 
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/textstrang.png}
+	\caption{Inmatningsfält för textsträngar}
+	\label{fig:textstrang}
+\end{figure}
+
+Om en användare försöker mata in en karaktär i inmatningsfältet, och textsträngen redan är lika lång som den maximala tillåtna längden, ignoreras användarinteraktionen. På det sättet går det inte ens för en användare att mata in inkompatibel data, och försöka förstå hur korrekt formaterad data ska se ut. Detta bör kompleteras med en förklaring i beskrivningen av inställningen, så att användaren förstår varför formuläret hanterar användarinteraktioner på det sättet.
+
+Om en användare försöker ta bort så många karraktärer så att textsträngens längd är kortare än den minsta tillåtna längden, presenteras ett felmeddelande och den senaste tillåtna datan sparas i modellen (se figur \ref{fig:textstrang-minLength}). Det skulle kunna gå att förhindra användaren från att ta bort så många karraktärer, men det skulle kunna upplevas som omständigt av användaren, då det kan finnas fall då användaren vill ta bort hela textsträngen för att byta ut textsträngen mot en helt ny. Om användaren skulle förhindras från att ta bort för många karraktärer, och användaren skulle vilja byta ut hela textsträngen mot en helt annan, skulle användaren behöva mata in den nya samtidigt som den gamla delvis var kvar, vilket inte ansågs vara användarvänligt. Att kombinera det med en maximal längd på textsträngar skulle tvinga användaren att hela tiden förhålla sig inom ett intervall av textsträngslängd.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/textstrang-minLength.png}
+	\caption{Felmeddelande vid för kort textsträng}
+	\label{fig:textstrang-minLength}
+\end{figure}
+
+Om formatet av textsträngen är mer komplext än längd kan \textit{pattern} användas för att specificera väldigt komplexa mönster som en textsträng måste upprätthålla. Det kan exempelvis användas för att specificera att en textsträng ska inledas med versal som i figur \ref{fig:textstrang-pattern}. Då regular expression-mönster kan vara väldigt komplexa och oförutsägbara, är det svårt att hitta ett närmsta kompatiblet värde. Därför presenteras ett felmeddelande när textsträngen inte följer mönstret. Då det inte går att veta hur mönstret fungerar på ett användarvänligt sätt, används ett generiskt felmeddelande, vilket innebär att det är viktigt att inställningsbeskrivningen beskriver formatet som textsträngen ska följa.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/textstrang-pattern.png}
+	\caption{Felmeddelande vid för textsträng som inte följer regular expression-mönstret}
+	\label{fig:textstrang-pattern}
+\end{figure}
+
+\FloatBarrier
+\subsection{Nyckelordet \textit{format}}
+
+Nyckelordet \textit{pattern} är jättebra för att säkerställa att textsträngar följer ett mer komplext format än enbart längden på textsträngen, men \textit{pattern} kan inte användas för att bestämma hur inmatningsfältet ska se ut. Ibland skulle det passa bättre att presentera ett inmatningsfält som är mer lämpat för en specifik textsträng. Det kan exempelvis passa med ett litet inmatningsfält för korta textsträngar som bara ska vara ett eller några ord, men vid längre texter kanske ett större inmatingsfält behövs. Nyckelordet \textit{format} används både för annotering och validering enligt JSON Schema specifikationerna och får användas för att beskriva egna format på JSON-värden, som inte nödvändigtvis måste följa en standard upprättad av IETF, men som måste vara förutbestämd av alla parter i samma system \cite{Andrews}.
+
+För validering kan \textit{format} användas när nyckelordet \textit{pattern} inte räcker, eller blir komplext att använda, och för annotering kan det användas för att förklara formatet av ett JSON-värde. Det kan också användas för att annotera för ett användargränssnitt, att ett JSON-värde borde presenteras på ett specifikt sätt. Figur \ref{fig:textstrang-ip-format} visar hur \textit{format} används för att beskriva att en textsträng ska vara formaterad som en IPv4-adress. I det fallet kan ett specifikt inmatningsfält erbjudas, som bara tillåter användaren att mata in en IPv4-formaterad textsträng.
+
+Nyckelordet \textit{format} kan användas för andra typer än textsträngar och systemet som utvecklas har stöd både på klienten och servern, för att använda \textit{format} till siffror och booleska värden. När \textit{format} används till textsträngar är det viktigt att poängtera att det borde kompleteras med \textit{pattern} om möjligt. Alla delar av systemet ska vara bakåtkompatibla med tidigare versioner av systemet, för en betydligt lång tidsperiod, och om nya sorters \textit{format} läggs till, kan vissa äldre instanser av klienter vara inkompatibla med den sortens \textit{format}.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/textstrang-ip.png}
+	\caption{Textsträng formaterad som en IPv4-adress}
+	\label{fig:textstrang-ip-format}
+\end{figure}
+
+
+\FloatBarrier
 \subsection{Booleska värden och heltal i användargränssnittet}
 
+Booleska värden kan bara vara ett av två värden. Inmatningsfältet som valdes för att presentera booleska värden blev en kryssruta, som visas i figur \ref{fig:bool}. Det finns ingen möjlighet för användaren att mata in ett annat värde än de två tillåtna värdena. Om användargränssnittet ska presentera något annat värde än \textit{true} eller \textit{false} kan nyckelordet \textit{enums} användas, vilket diskuteras mer senare.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/bool.png}
+	\caption{Kryssruta för ett booleskt värde}
+	\label{fig:bool}
+\end{figure}
+
+Utöver booleska vären och textsträngar skulle systemet klara av att hantera heltal. Då hanteringen av flyttal fortfarande ansågs vara experimentel och ofärdig, samt att det saknades behov av flyttal så implementerades bara stöd för heltal. Då både klient och server utvecklades med hänsyn till varandra, i samma språk (Delphi), samt att systemet inte var byggt för att hantera flyttal, kunde alla siffror antas vara heltal, och inga oklarheter kring vad som räknas som heltal (se kapitel \ref{sec:teori:schema:float}) behövde hanteras. Om något tal skulle skickas som ett flyttal skulle det talet avrundas och hanteras som ett heltal vid parsningen av JSON-filen.
+
+TODO!!!!
 
 \subsection{Flervalsalternativ och \textit{enums} i användargränssnittet}
 \label{sec:arbetet:gui:enums}
