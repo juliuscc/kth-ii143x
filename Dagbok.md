@@ -100,3 +100,7 @@ Idag skrev jag väldigt mycket om själva arbetet. Jag kommer behöva åka till 
 ## 2018-05-04
 
 Idag skrev jag en hel del om hur andra gjort GUIn och hur mitt förhåller sig till deras. Jag har kvar att skriva om specifika detaljer i min implementation men sen så är kapitel **4. Arbete** färdigskrivet och då är det bara diskussion och lite mer i introduktion kvar. Jag tog screenshots idag och lite sånt också.
+
+## 2018-05-07
+
+Idag skrev jag väldigt väldigt mycket om Arbetet. Jag är nästan färdig med kapitlet. Efter det har jag bara diskussionskapitlet kvar innan jag ska korrläsa och fixa till allt.
