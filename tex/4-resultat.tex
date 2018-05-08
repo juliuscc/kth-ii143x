@@ -81,7 +81,7 @@ Figur \ref{fig:system:ner} beskriver systemet i helhet och där är parsningen e
 \section{Representation av data i användargänssnittet}
 \label{sec:arbetet:gui}
 
-Många implementationer diskuterade i \ref{sec:forarbete:gui-generering} använder ett extra JSON-dokument för att beskriva hur schemat, och modellen schemat representerar ska presenteras i användargränssnittet. Det ansågs vara överflödigt att behöva skicka två dokument som båda ska användas vid exakt samma steg i systemet. Det andra alternativet för att utöka funktionalitet hos JSON Schema är att använda egna nyckelord i schemat som inte finns standardiserade i JSON Schema specifikationerna. Det här arbetet krävde nästan ingen utökad funktionalitet hos JSON Scheman, förutom förbättrad funktionalitet hos \textit{enums} vilket diskuteras mer i kapitel \ref{sec:arbetet:gui:enums}. Det gick att generalisera användargränssnittet tillräckligt för att hantera alla datatyper som systemet använder sig av, och presentera ett relevant användargränssnitt av dem. Nyckelordet \textit{format} kunde erbjuda väldigt hög kontroll av användargränssnittet.
+Många implementationer diskuterade i \ref{sec:forarbete:gui-generering} använder ett extra JSON-dokument för att beskriva hur schemat, och modellen schemat representerar ska presenteras i användargränssnittet. Det ansågs vara överflödigt att behöva skicka två dokument som båda ska användas vid exakt samma steg i systemet. Det andra alternativet för att utöka funktionalitet hos JSON Schema är att använda egna nyckelord i schemat som inte finns standardiserade i JSON Schema specifikationerna. Det här arbetet krävde nästan ingen utökad funktionalitet hos JSON Scheman, förutom förbättrad funktionalitet hos \textit{enum} vilket diskuteras mer i kapitel \ref{sec:arbetet:gui:enum}. Det gick att generalisera användargränssnittet tillräckligt för att hantera alla datatyper som systemet använder sig av, och presentera ett relevant användargränssnitt av dem. Nyckelordet \textit{format} kunde erbjuda väldigt hög kontroll av användargränssnittet.
 
 \subsection{Det generella användargränssnittet}
 
@@ -91,6 +91,7 @@ Ett annat alternativ är att göra som React JSON Schema Form (se figur \ref{fig
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/screenshot-json-editor.png}
+	\vspace{-1.7em}
 	\caption{JSON Editor Online \cite{DeJong2018}}
 	\label{fig:json-editor}
 \end{figure}
@@ -99,12 +100,14 @@ Datan som skulle presenteras på användargränssnittet i arbetet var varken kom
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/screenshot-react-jsonschema-form.png}
+	\vspace{-1.7em}
 	\caption{React JSON Schema Form \cite{MozillaServices}}
 	\label{fig:react-jsonschema-form}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/helhet-copy.png}
+	\vspace{-1.7em}
 	\caption{Användargränssnittet av administratörsprogrammet \textbf{(TODO! ta ny bild!!!)}}
 	\label{fig:gui:helhet}
 	\begin{enumerate}
@@ -135,6 +138,7 @@ När en vald inställning ska vara formaterad som en sträng, presenteras ett in
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/textstrang.png}
+	\vspace{-1.7em}
 	\caption{Inmatningsfält för textsträngar}
 	\label{fig:textstrang}
 \end{figure}
@@ -145,6 +149,7 @@ Om en användare försöker ta bort så många karraktärer så att textstränge
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/textstrang-minLength.png}
+	\vspace{-1.7em}
 	\caption{Felmeddelande vid för kort textsträng}
 	\label{fig:textstrang-minLength}
 \end{figure}
@@ -153,6 +158,7 @@ Om formatet av textsträngen är mer komplext än längd kan \textit{pattern} an
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/textstrang-pattern.png}
+	\vspace{-1.7em}
 	\caption{Felmeddelande vid för textsträng som inte följer regular expression-mönstret}
 	\label{fig:textstrang-pattern}
 \end{figure}
@@ -160,7 +166,7 @@ Om formatet av textsträngen är mer komplext än längd kan \textit{pattern} an
 \FloatBarrier
 \subsection{Nyckelordet \textit{format}}
 
-Nyckelordet \textit{pattern} är jättebra för att säkerställa att textsträngar följer ett mer komplext format än enbart längden på textsträngen, men \textit{pattern} kan inte användas för att bestämma hur inmatningsfältet ska se ut. Ibland skulle det passa bättre att presentera ett inmatningsfält som är mer lämpat för en specifik textsträng. Det kan exempelvis passa med ett litet inmatningsfält för korta textsträngar som bara ska vara ett eller några ord, men vid längre texter kanske ett större inmatingsfält behövs. Nyckelordet \textit{format} används både för annotering och validering enligt JSON Schema specifikationerna och får användas för att beskriva egna format på JSON-värden, som inte nödvändigtvis måste följa en standard upprättad av IETF, men som måste vara förutbestämd av alla parter i samma system \cite{Andrews}.
+Nyckelordet \textit{pattern} är jättebra för att säkerställa att textsträngar följer ett mer komplext format än enbart längden på textsträngen, men \textit{pattern} kan inte användas för att bestämma hur inmatningsfältet ska se ut. Ibland skulle det passa bättre att presentera ett inmatningsfält som är mer lämpat för en specifik textsträng. Det kan exempelvis passa med ett litet inmatningsfält för korta textsträngar som bara ska vara ett eller några ord, men vid längre texter kanske ett större inmatingsfält behövs. Nyckelordet \textit{format} används både för annotering och validering enligt JSON Schema specifikationerna och får användas för att beskriva egna format på JSON-värden, som inte nödvändigtvis måste följa en standard upprättad av IETF, men som måste vara förutbestämd av alla parter i samma system \cite{Andrews2018}.
 
 För validering kan \textit{format} användas när nyckelordet \textit{pattern} inte räcker, eller blir komplext att använda, och för annotering kan det användas för att förklara formatet av ett JSON-värde. Det kan också användas för att annotera för ett användargränssnitt, att ett JSON-värde borde presenteras på ett specifikt sätt. Figur \ref{fig:textstrang-ip-format} visar hur \textit{format} används för att beskriva att en textsträng ska vara formaterad som en IPv4-adress. I det fallet kan ett specifikt inmatningsfält erbjudas, som bara tillåter användaren att mata in en IPv4-formaterad textsträng.
 
@@ -168,6 +174,7 @@ Nyckelordet \textit{format} kan användas för andra typer än textsträngar och
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/textstrang-ip.png}
+	\vspace{-1.7em}
 	\caption{Textsträng formaterad som en IPv4-adress}
 	\label{fig:textstrang-ip-format}
 \end{figure}
@@ -176,19 +183,82 @@ Nyckelordet \textit{format} kan användas för andra typer än textsträngar och
 \FloatBarrier
 \subsection{Booleska värden och heltal i användargränssnittet}
 
-Booleska värden kan bara vara ett av två värden. Inmatningsfältet som valdes för att presentera booleska värden blev en kryssruta, som visas i figur \ref{fig:bool}. Det finns ingen möjlighet för användaren att mata in ett annat värde än de två tillåtna värdena. Om användargränssnittet ska presentera något annat värde än \textit{true} eller \textit{false} kan nyckelordet \textit{enums} användas, vilket diskuteras mer senare.
+Booleska värden kan bara vara ett av två värden. Inmatningsfältet som valdes för att presentera booleska värden blev en kryssruta, som visas i figur \ref{fig:bool}. Det finns ingen möjlighet för användaren att mata in ett annat värde än de två tillåtna värdena. Om användargränssnittet ska presentera något annat värde än \textit{true} eller \textit{false} kan nyckelordet \textit{enum} användas, vilket diskuteras mer senare.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/bool.png}
+	\vspace{-1.7em}
 	\caption{Kryssruta för ett booleskt värde}
 	\label{fig:bool}
 \end{figure}
 
-Utöver booleska vären och textsträngar skulle systemet klara av att hantera heltal. Då hanteringen av flyttal fortfarande ansågs vara experimentel och ofärdig, samt att det saknades behov av flyttal så implementerades bara stöd för heltal. Då både klient och server utvecklades med hänsyn till varandra, i samma språk (Delphi), samt att systemet inte var byggt för att hantera flyttal, kunde alla siffror antas vara heltal, och inga oklarheter kring vad som räknas som heltal (se kapitel \ref{sec:teori:schema:float}) behövde hanteras. Om något tal skulle skickas som ett flyttal skulle det talet avrundas och hanteras som ett heltal vid parsningen av JSON-filen.
+Utöver booleska värden och textsträngar skulle systemet klara av att hantera heltal. Då hanteringen av flyttal fortfarande ansågs vara experimentel och ofärdig, samt att det saknades behov av flyttal så implementerades bara stöd för heltal. Då både klient och server utvecklades med hänsyn till varandra, i samma språk (Delphi), samt att systemet inte var byggt för att hantera flyttal, kunde alla siffror antas vara heltal, och inga oklarheter kring vad som räknas som heltal (se kapitel \ref{sec:teori:schema:float}) behövde hanteras. Om något tal skulle skickas som ett flyttal skulle det talet avrundas och hanteras som ett heltal vid parsningen av JSON-filen.
 
-TODO!!!!
+Heltal presenterades som i figur \ref{fig:heltal}. Inmatningsfältet hanterar endast siffror och har dessutom två hjälpknappar för att höja och sänka värdet i steg. Det finns fem valideringsnyckelord enbart för siffror: \textit{multipleOf}, \textit{maximum}, \textit{exclusiveMaximum}, \textit{minimum} samt \textit{exclusiveMinimum}. Nyckelordet \textit{multipleOf} kräver att siffran som valideras ska vara jämnt delbart med värdet beskrivet av \textit{multipleOf}. Användningsområdet för \textit{multipleOf} ansågs inte vara applicerbart för systemet och därför ignorerades. De resterande fyra nyckelorden specificerar ett interval som siffran måste befinna inom. Om en användare försökte mata in ett värde som var utanför intervallet så ändrades värdet till det närmaste kompatibla värdet inom intervallet. \cite{Andrews2018}
 
-\subsection{Flervalsalternativ och \textit{enums} i användargränssnittet}
-\label{sec:arbetet:gui:enums}
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/heltal.png}
+	\vspace{-1.7em}
+	\caption{Inmatningsfält för heltal}
+	\label{fig:heltal}
+\end{figure}
 
+Om stöd för flyttal skulle behövas i framtiden, föreslås att nyckelordet \textit{format} används för att specificera det. Det skulle kunna hanteras på ett sätt som är bakåtkompatibelt med klienter som bara kan hantera heltal, genom att de klienterna hanterar flyttalen som heltal, samtidigt som nyare klienter kan hantera flyttalen som flyttal.
 
+\subsection{Flervalsalternativ och \textit{enum} i användargränssnittet}
+\label{sec:arbetet:gui:enum}
+
+Vissa inställningar hade så pass begränsade tillåtna alternativ att bara ett fåtal alternativ på värden var tillåtna. Då användes nyckelordet \textit{enum}. Nyckelordet \textit{enum} används för att specificera en lista med tillåtna värden. Inmatningsfältet som valdes var en lista med alternativ som användaren kan välja, som presenteras i figur \ref{fig:enum}. Det fanns aldrig fall då olika alternativ skulle vara av olika typer, trots att JSON Schema tillåter det \cite{Andrews2018}.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/gui/enum.png}
+	\vspace{-1.7em}
+	\caption{Inmatningsfält för \textit{enum}}
+	\label{fig:enum}
+\end{figure}
+
+Enum tillåter inga alternativ för att annotera de förutsatta värdena med metadatainformation som \textit{title} eller \textit{description}. Det innebär att värdena som \textit{enum} specificerar, inte går att koppla till någon annan representation än det faktiska värdet. Ett problem skulle exempelvis kunna uppstå om ett värde bara få ha värdena \textit{1}, \textit{2} eller \textit{3} i en JSON-fil, men användarna ska presenteras med \textit{one}, \textit{two} och \textit{three} som svarsalternativ. React JSON Schema Form bemöter det problemet med att utöka JSON Schema och lägga till nyckelordet \textit{enumNames} som i figur \ref{fig:enum-example:extra-array} \cite{MozillaServices}. Användandet av det nyckelordet är inkompatibelt med JSON Schema \cite{Andrews2018}. Dessutom finns det massor av oklarheter över hur fall skulle hanteras om \textit{enumNames} finns men \textit{enum} saknas, eller om \textit{enumNames} och \textit{enum} innehåller olika antal element.
+
+\begin{figure}
+	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/extra-array.json}
+	\vspace{-1.7em}
+	\caption{Hur React JSON Schema Form föreslår \textit{enumNames} \cite{MozillaServices}}
+	\label{fig:enum-example:extra-array}
+\end{figure}
+
+Ett annat förslag som React JSON Schema Form föreslår är användandet av nyckelordet \textit{anyOf}, vilket är helt kompatibelt med JSON Schema specifikationerna men är väldigt verbost och använder \textit{anyOf} på ett sätt som det inte ursprungligen är menat för att användas på \cite{MozillaServices, Andrews2018}. Dessutom kräver deras implementation att nyckelordet \textit{enum} ska användas för att definera listor innehållande ett konstant värde, vilket inte är syftet med \textit{enum} \cite{Andrews2018}. Deras förslag visas i figur \ref{fig:enum-example:any-of}. Jag föreslår användandet av nyckelordet \textit{const} istället, vilket visas i figur \ref{fig:enum-example:any-of-const}. Nyckelordet är till för att specificera att en definition bara får ha ett enda konstant värde och är mindre än ett år gammalt, vilket kan vara en anledning till att React JSON Schema Form inte användt \textit{const} i sin implementation \cite{Andrews2018}.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/any-of.json}
+		\vspace{-1.2em}
+		\caption{React JSON Schema Forms alternativ till \textit{enumNames} \cite{MozillaServices}}
+		\label{fig:enum-example:any-of}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/any-of-const.json}
+		\vspace{-1.2em}
+		\caption{Ett modernare förslag av React JSON Schema Forms förslag med \textit{const}}
+		\label{fig:enum-example:any-of-const}
+	\end{subfigure}
+	\caption{Olika JSON Schema-kompatibla implementationer på alternativ för \textit{enum}}
+	\label{fig:enum-example:any-of-examples}
+\end{figure}
+
+Lösningen att använda \textit{anyOf} är helt kompatibelt med JSON Schema men kan introducera många risker för fel, då \textit{anyOf} kan användas för att definera flera olika generella definitioner, vilket är mycket mer komplext än att använda \textit{enum} för förbestämda värden. Jag föreslår ett fjärde alternativ vilket varken introducerar fler nyckelord, eller förlitar sig på att olika nyckelord förhåller sig korrekt till varandra, men som inte är helt kompatibelt med de nuvarande JSON Schema specifikationerna. Jag föreslår att \textit{enum} används som tidigare för att specificera förutbestämda värden, men att ett värde också kan vara ett objekt med vissa bestämda nyckelord som används för annotering. Figur \ref{fig:enum-example:const} är ett exempel på det formatet. Nyckelorden \textit{title}, \textit{description} och \textit{const} skulle kunna reserveras. Ett problem vore hur en parser skulle kunna skilja på ett objekt som faktiskt innehåller en \textit{property} med namnet \textit{title}, men det skulle kunna vara bestämt att om ett element i listan i \textit{enum} innehåller en \textit{const-property} så kommer eventuella \textit{title} och \textit{description} användas som metadata för värdet i \textit{const}. Om ett objekt med en \textit{property} med namnet \textit{title} ska specificeras i \textit{enum} så räcker det med att placera det objektet i ett objekt under dess \textit{const-property} som i figur \ref{fig:enum-example:title}. Självklart går det dessutom att blanda element som bara är värdet de representerar med annoterade objekt. Arbetet använde den här metoden för att hantera \textit{enums} och flervalsalternativ.
+
+\begin{figure}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/const.json}
+		\vspace{-1.2em}
+		\caption{Enkelt förslag på utökning av enum}
+		\label{fig:enum-example:const}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/nested.json}
+		\vspace{-1.2em}
+		\caption{Förslag på utökning av enum med objekt som använder \textit{title}}
+		\label{fig:enum-example:title}
+	\end{subfigure}
+	\caption{Förslag på utökning av \textit{enums} i JSON Scheman}
+\end{figure}

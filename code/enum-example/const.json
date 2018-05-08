@@ -1,0 +1,17 @@
+{
+	"type": "number",
+	"enum": [
+		{
+			"title": "one",
+			"const": 1
+		},
+		{
+			"title": "two",
+			"const": 2
+		},
+		{
+			"title": "three",
+			"const": 3
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"type": "number",
+	"anyOf": [
+		{
+			"type": "number",
+			"title": "one",
+			"const": 1
+		},
+		{
+			"type": "number",
+			"title": "two",
+			"const": 2
+		},
+		{
+			"type": "number",
+			"title": "three",
+			"const": 3
+		}
+	]
+}
