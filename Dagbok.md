@@ -104,3 +104,9 @@ Idag skrev jag en hel del om hur andra gjort GUIn och hur mitt förhåller sig t
 ## 2018-05-07
 
 Idag skrev jag väldigt väldigt mycket om Arbetet. Jag är nästan färdig med kapitlet. Efter det har jag bara diskussionskapitlet kvar innan jag ska korrläsa och fixa till allt.
+
+## 2018-05-08
+
+Idag blev jag färdig med kapitlet om Arbetet (Resultat) woop woop 🎊 🎈 🎉 🕺 💪
+
+Nu är det bara Diskussion kvar och allmänt fixande
