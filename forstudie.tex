@@ -2,58 +2,9 @@
 
 \usepackage{style}
 
-\usepackage{csquotes} % Recommended by biblatex
+%\usepackage{csquotes} % Recommended by biblatex
 \usepackage[backend=bibtex, citestyle=ieee, bibstyle=ieee]{biblatex}
 \addbibresource{Kandidatexamensarbete.bib} % The file containing our references, in BibTeX format
-
-\usepackage{tikz}
-\usetikzlibrary{shapes, arrows, positioning}
-
-\tikzstyle{defaultnode} = [
-	rectangle,
-	minimum width=3cm,
-	minimum height=1cm,
-	text centered,
-	draw=black,
-]
-
-\tikzstyle{startstop} = [
-	rectangle,
-	rounded corners,
-	minimum width=3cm,
-	minimum height=1cm,
-	text centered,
-	draw=black,
-	fill=red!30
-]
-\tikzstyle{io} = [
-	trapezium,
-	trapezium left angle=70,
-	trapezium right angle=110,
-	minimum width=3cm,
-	minimum height=1cm,
-	text centered,
-	draw=black,
-	fill=blue!30
-]
-\tikzstyle{process} = [
-	rectangle,
-	minimum width=3cm,
-	minimum height=1cm,
-	text centered,
-	draw=black,
-	text width=3cm,
-	fill=orange!30
-]
-\tikzstyle{decision} = [
-	diamond,
-	minimum width=3cm,
-	minimum height=1cm,
-	text centered,
-	draw=black,
-	fill=green!30
-]
-\tikzstyle{arrow} = [thick,->,>=stealth]
 
 \begin{document}
 
@@ -73,18 +24,18 @@
 
 \titlepage
 
-%\begin{abstract}
-%  Svensk sammanfattning.
-%
-%\end{abstract}
-%
-%
-%\begin{otherlanguage}{english}
-%  \begin{abstract}
-%    English abstract.
-%
-%  \end{abstract}
-%\end{otherlanguage}
+\begin{abstract}
+  Svensk sammanfattning.
+
+\end{abstract}
+
+
+\begin{otherlanguage}{english}
+  \begin{abstract}
+    English abstract.
+
+  \end{abstract}
+\end{otherlanguage}
 
 
 \tableofcontents
@@ -96,9 +47,7 @@
 \input{./tex/2-bakgrund.tex}
 \input{./tex/3-forarbetet.tex}
 \input{./tex/4-resultat.tex}
-
-\chapter{Diskussion, slutsats och fortsatt arbete}
-
+\input{./tex/5-diskussion.tex}
 
 \printbibliography[heading=bibintoc] % Print the bibliography (and make it appear in the table of contents)
 
