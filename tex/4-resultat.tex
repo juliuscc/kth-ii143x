@@ -37,7 +37,7 @@ Alternativet att handskriva JSON Scheman kräver mycket uppräthållning av sche
 JSL är ett exempel på en implementation som erbjuder specifika komplexa datatyper som underlättar genererandet av JSON Scheman. JSL skiljer på datastrukturerna som används för att representera och manipulera data, och själva schemat som används för att beskriva de tidigare nämnda datastrukturerna. \cite{Romanovich} Det ansågs vara ett väldigt praktiskt mellanting. Scheman skrivs för hand men de skrivs inte som JSON Scheman. Istället skrivs de som instanser av komplexa datatyper i Delphi, som sedan under exekvering dynamiskt tolkas för att generera ett JSON Schema. Det här tillåter servern att under exekvering utföra logiska bedömningar för att inkludera exakt det som ska inkluderas i schemat, beroende på vilken version av Mimer SoftRadio operatörsdatorn har, och med vilken tillgänglig funktionalitet datorn har. Schemagenerering är frikopplat från databehandling, men är samtidigt dynamiskt genererat utifrån tillgänglig funktionalitet på operatörsdatorn. Ett exempel på ett genererat schema presenteras i figur \ref{fig:real-schema}.
 
 \begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\tiny, framesep=2mm, breaklines]{json}{code/schema.json}
+	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/schema.json}
 	\vspace{-1.7em}
 	\caption{Exempel på genererat schema}
 	\label{fig:real-schema}
@@ -55,7 +55,7 @@ Strukturen av dessa JSON Scheman kunde antas ha en förutsatt struktur, då anv�
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/0.json}
 	\vspace{-1.7em}
-	\caption{Exempel på genererat inställningsfil}
+	\caption{Exempel på genererad inställningsfil}
 	\label{fig:profile-file}
 \end{figure}
 \FloatBarrier

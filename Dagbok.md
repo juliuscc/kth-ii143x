@@ -122,3 +122,5 @@ Idag skrev jag större delen av `Diskussion, Sammanfattning och Fortsatt arbete`
 ## 2018-05-11
 
 Idag skrev jag abstract.
+
+Jag fixade också en massa styling så att saker ska se bättre ut.

@@ -1,5 +1,9 @@
 \ProvidesPackage{style}
 
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage[T1]{fontenc} 
+
 \usepackage{nameref}
 \usepackage{minted}
 \usepackage{listings}
@@ -11,9 +15,113 @@
 \usepackage[section]{placeins}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox}
+\usepackage{fancyhdr} % Take control of headers and footers
+\usepackage{emptypage}
+\usepackage{geometry}
 
 \usemintedstyle{bw}
 
 \usepackage[rounded]{syntax}
 %\renewcommand*{\ttdefault}{lmvtt}
 %\renewcommand*{\ttdefault}{cmtt}
+
+% KTH stuff
+
+\newcommand{\frontmatter}{
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+}
+
+\newcommand{\mainmatter}{
+	\cleardoublepage
+	\pagenumbering{arabic}
+}
+
+% Define commands for setting the user definable parts of the title page
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\newcommand{\examiner}[1]{\def\@examiner{#1}}
+\let\@secondauthor\@empty
+\newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
+\let\@subtitle\@empty
+\newcommand{\subtitle}[1]{\def\@subtitle{#1}}
+\let\@alttitle\@empty
+\newcommand{\alttitle}[1]{\def\@alttitle{#1}}
+\let\@principal\@empty
+\newcommand{\principal}[1]{\def\@principal{#1}}
+\let\@email\@empty
+\newcommand{\email}[1]{\def\@email{#1}}
+\let\@school\@empty
+\newcommand{\school}[1]{\def\@school{#1}}
+\let\@programme\@empty
+\newcommand{\programme}[1]{\def\@programme{#1}}
+
+% Command to print out the standardized title page
+%\renewcommand{\titlepage}{
+%	\ifgfivepaper
+%	\newgeometry{top=65mm,bottom=30mm,left=62mm,right=18mm}
+%	\else
+%	\newgeometry{top=65mm,bottom=30mm,left=50mm,right=35mm}
+%	\fi
+%	\thispagestyle{empty}
+%	\ifinswedish\selectlanguage{swedish}\fi
+%	\begin{huge}
+%		\begin{flushleft}
+%			\noindent\sffamily\bfseries \@title \par
+%		\end{flushleft}
+%	\end{huge}
+%	\ifx\@subtitle\@empty\relax
+%	\else
+%	\begin{Large}
+%		\vspace{1ex}
+%		\begin{flushleft}
+%			\noindent\sffamily\bfseries \@subtitle \par
+%		\end{flushleft}
+%	\end{Large}
+%	\fi
+%	
+%	\vspace{10mm}
+%	\begin{large}
+%		\begin{flushleft}
+%			\sffamily
+%			\expandafter\MakeUppercase\expandafter\@author \par
+%			\ifx\@secondauthor\@empty\relax
+%			\else\vspace{1ex}\expandafter\MakeUppercase\expandafter\@secondauthor \par
+%			\fi
+%		\end{flushleft}
+%	\end{large}
+%	
+%	\vfill
+%	
+%	\begin{flushleft}
+%		\sffamily
+%		\ifinswedish
+%		\@programme\\
+%		\ifx\@date\@empty\relax\else Datum: \@date\\\fi
+%		Handledare: \@supervisor\\
+%		Examinator: \@examiner\\
+%		\ifx\@principal\@empty\relax\else Uppdragsgivare: \@principal\\\fi
+%		\ifx\@alttitle\empty\relax\else Engelsk titel: %
+%		\begin{otherlanguage}{english}\@alttitle\end{otherlanguage}\\\fi
+%		\@school\\
+%		\else
+%		\@programme\\
+%		\ifx\@date\@empty\relax\else Date: \@date\\\fi
+%		Supervisor: \@supervisor\\
+%		Examiner: \@examiner\\
+%		\ifx\@principal\@empty\relax\else Principal: \@principal\\\fi
+%		\ifx\@alttitle\empty\relax\else Swedish title: %
+%		\begin{otherlanguage}{swedish}\@alttitle\end{otherlanguage}\\\fi
+%		\@school\\
+%		\fi
+%	\end{flushleft}
+%	\restoregeometry
+%	\cleardoublepage
+%}
+
+% Set up the header and footer
+\fancyhead{}
+\fancyhead[RO]{\sffamily\small\leftmark\qquad\thepage}
+\fancyhead[LE]{\sffamily\small\thepage\qquad\leftmark}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
