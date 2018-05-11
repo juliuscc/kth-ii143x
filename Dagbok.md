@@ -110,3 +110,15 @@ Idag skrev jag väldigt väldigt mycket om Arbetet. Jag är nästan färdig med 
 Idag blev jag färdig med kapitlet om Arbetet (Resultat) woop woop 🎊 🎈 🎉 🕺 💪
 
 Nu är det bara Diskussion kvar och allmänt fixande
+
+## 2018-05-09
+
+Idag var en ledig dag för jag pluggade inför en kontrollskrivning.
+
+## 2018-05-10
+
+Idag skrev jag större delen av `Diskussion, Sammanfattning och Fortsatt arbete`-kapitlet. Det är (typ) färdigt.
+
+## 2018-05-11
+
+Idag skrev jag abstract.
