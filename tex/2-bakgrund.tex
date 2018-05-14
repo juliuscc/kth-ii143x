@@ -4,28 +4,56 @@ Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används.
 
 \section{JSON}
 \label{sec:teori:json}
-JSON erbjuder stöd för några enkla datastrukturer: textsträngar \textit{(string)} (\mintinline{json}{"hej värld"}), tal \textit{(number)} (\mintinline{json}{4}), ett tomt värde \textit{(null)} (\mintinline{json}{null}), samt booleska värden \textit{(booleans)} (\mintinline{json}{false}). JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden vilket visas i Figur \ref{fig:json-array-example}, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}, som visas i Figur \ref{fig:json-object-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datastrukturerna som kan representeras med JSON.
+JSON erbjuder stöd för några enkla datatyper: textsträngar,  siffror, tomt värde samt booleska värden, som presenteras i figur \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON.
+
+\begin{table}
+	\centering
+	\caption{De primitiva datatyperna i JSON}
+	\label{tab:json-primitives}
+	\begin{tabular}{ | l | l | p{2.2cm} | }
+		\hline
+		Datatyp & Namn i JSON och JavaScript & Exempel \\
+		\hline
+		Textsträng & String & \mintinline{json}{"hej värld"} \\
+		\hline
+		Siffra & Number & \mintinline{json}{4} \\
+		\hline
+		Tomt värde & Null & \mintinline{json}{null} \\
+		\hline
+		Booleskt värde & Boolean & \mintinline{json}{false} \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \begin{figure}
-	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-["hej värld", 4, null, false]
-	\end{minted}
-	\vspace{-1.7em}
-	\caption{Exempel på JSON-array}
-	\label{fig:json-array-example}
-\end{figure}
-
-\begin{figure}
-	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
+[
+	"hej värld",
+	4,
+	null,
+	false
+]
+		\end{minted}
+		\vspace{-1.2em}
+		\caption{Exempel på JSON-array}
+		\label{fig:json-array-example}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
 {
 	"firstName": "Erik",
 	"lastName": "Andersson",
-	"age": 30
+	"age": 30,
+	"human": true
 }
-	\end{minted}
-	\vspace{-1.7em}
-	\caption{Exempel på JSON-object}
-	\label{fig:json-object-example}
+		\end{minted}
+		\vspace{-1.2em}
+		\caption{Exempel på JSON-object}
+		\label{fig:json-object-example}
+	\end{subfigure}
+	\caption{De komplexa datatyperna i JSON}
+	\label{fig:json-komplex-example}
 \end{figure}
 
 \noindent
@@ -33,22 +61,22 @@ Med hjälp av att rekursivt använda \textit{array} eller \textit{object} går d
 
 \section{JSON i webbkommunikation}
 \label{sec:teori:json-web}
-På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos många språk och implementationer, har JSON blivit väldigt utbrett bland webbtjänster. En hypotetisk förfrågan till en webbtjänst skulle kunna se ut som i Figur \ref{fig:json-request-example}, där en klient förfrågar om de nuvarande väderförhållandena i Stockholm i Sverige. Svaret från webbservern skulle kunna se ut som i Figur \ref{fig:json-response-example} där webbservern svarar att temperaturen är minus tre grader Celsius och att det snöar. Exemplet visar hur simpelt JSON som dataformat är att förstå, vilket skulle kunna delvis vara en förklaring för populariteten.
+På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos många språk och implementationer, har JSON blivit väldigt utbrett bland webbtjänster. Figur \ref{fig:json-exchange-example} visar ett exempel på en hypotetiskt transaktion av data på webben. En hypotetisk förfrågan till en webbtjänst skulle kunna se ut som i Figur \ref{fig:json-request-example}, där en klient förfrågar om de nuvarande väderförhållandena i Stockholm i Sverige. Svaret från webbservern skulle kunna se ut som i Figur \ref{fig:json-response-example} där webbservern svarar att temperaturen är minus tre grader Celsius och att det snöar. Exemplet visar hur simpelt JSON som dataformat är att förstå, vilket delvis skulle kunna vara en förklaring för populariteten.
 
 \begin{figure}
-	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
 {
 	"country": "Sweden",
 	"city": "Stockholm"
 }
-\end{minted}
-	\vspace{-1.7em}
-	\caption{Exempel på förfrågan till webbserver}
-	\label{fig:json-request-example}
-\end{figure}
-
-\begin{figure}
-	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
+		\end{minted}
+		\vspace{-1.2em}
+		\caption{Exempel på förfrågan till webbserver}
+		\label{fig:json-request-example}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
 {
 	"timestamp": "06/01/2018 10:45:08",
 	"country": "Sweden",
@@ -56,15 +84,18 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 	"weather": "Snowing",
 	"temperature": -3
 }
-	\end{minted}
-	\vspace{-1.7em}
-	\caption{Exempel på svar på förfrågan från webbserver}
-	\label{fig:json-response-example}
+		\end{minted}
+		\vspace{-1.2em}
+		\caption{Exempel på svar på förfrågan från webbserver}
+		\label{fig:json-response-example}
+	\end{subfigure}
+	\caption{Exempel på datatransaktion mellan webbklient och webbserver}
+	\label{fig:json-exchange-example}
 \end{figure}
 
 \section{JSON Schema}
 \label{sec:teori:schema}
-JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i Figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat som visas i Figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,Andrews2018,Andrews2018a}
+JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,Andrews2018,Andrews2018a}
 
 \begin{figure}
 	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
@@ -74,7 +105,8 @@ JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON 
 	"properties": {
 		"firstName": { "type": "string" },
 		"lastName": { "type": "string" },
-		"age": { "type": "integer" }
+		"age": { "type": "integer" },
+		"human": { "type": "boolean" }
 	}
 }
 	\end{minted}
@@ -87,10 +119,10 @@ JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON 
 JSON Schema Core täcker grunderna för JSON Schema. Dokumentet fastställer exempelvis mediatypen som borde användas för att skicka JSON Scheman över HTTP, förhållandet mellan flera JSON Scheman, samt hur heltal borde behandlas. Att JSON Scheman själva är JSON-dokument bestäms också. Dokumentet fastställer också att validering och annotering av JSON-värden ska ske enligt dokumentet draft-handrews-json-schema-validation-01 \textit{(Validation)}, samt att draft-handrews-json-schema-hyperschema-01 \textit{(Hyper-Schema)} behandlar reglerna kring att beskriva hypertextstrukturen hos JSON-dokument. \cite{A.Wright}
 
 \subsection{JSON Schema Validation}
-JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument, hur man ger tips åt användargränsnitt för att jobba med JSON-dokument samt hur man kan beskriva påståenden om ett dokuments validitet. Förenklat beskriver det här dokumentet strukturen hos ett JSON Schema, med beskrivningar av nästan alla nyckelorden. Utöver att beskriva hur JSON-dokument ska valideras, presenteras nyckelord som \mintinline{json}{"title"} och \mintinline{json}{"description"}, där \mintinline{json}{"title"} är en kort förklaring för JSON värdet den validerar, och \mintinline{json}{"description"} är en längre förklaring. \cite{Andrews2018}
+JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument, hur man ger tips åt användargränsnitt för att jobba med JSON-dokument samt hur man kan beskriva påståenden om ett dokuments validitet. Förenklat beskriver det här dokumentet strukturen hos ett JSON Schema, med beskrivningar av nästan alla nyckelorden. Utöver att beskriva hur JSON-dokument ska valideras, presenteras annoteringsnyckelord som \mintinline{json}{"title"} och \mintinline{json}{"description"}, där \mintinline{json}{"title"} är en kort förklaring för JSON värdet den validerar, och \mintinline{json}{"description"} är en längre förklaring. \cite{Andrews2018}
 
 \subsection{JSON Schema Hyper-Schema}
-JSON Schema skapas till stor del för användandet hos webbtjänster. Därför beskriver det tredje dokumentet, JSON Schema Hyper-Schema, hur resurser kan manipuleras och interageras med över hypermediamiljöer som HTTP. JSON Schema Validation skulle kunna beskriva hur ett API anrop ska hanteras och vad som förväntas från förfrågningar och svar på dem. JSON Schema Hyper-Schema kan då användas för att beskriva ett helt API och hur de olika anropen och resurserna är relaterade till varandra. \cite{Andrews2018a}
+JSON Schema utvecklas till stor del för användandet av JSON Scheman i webbtjänster. Därför beskriver det tredje dokumentet, JSON Schema Hyper-Schema, hur resurser kan manipuleras och interageras med över hypermediamiljöer som HTTP. JSON Schema Validation skulle kunna beskriva hur ett API anrop ska hanteras och vad som förväntas från förfrågningar och svar på dem. JSON Schema Hyper-Schema kan då användas för att beskriva ett helt API och hur de olika anropen och resurserna är relaterade till varandra. \cite{Andrews2018a}
 
 \subsection{Kontroversiella flyttal i JSON Schema}
 \label{sec:teori:schema:float}
