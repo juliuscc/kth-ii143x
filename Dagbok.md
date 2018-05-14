@@ -124,3 +124,13 @@ Idag skrev jag större delen av `Diskussion, Sammanfattning och Fortsatt arbete`
 Idag skrev jag abstract.
 
 Jag fixade också en massa styling så att saker ska se bättre ut.
+
+## 2018-05-14
+
+Idag korrläste jag en massa och fixade jättemånga grejer.
+
+*   Nu ser citeringar korrekta ut
+*   Nu har jag en mer ordentlig introduktion
+*   Nu ser all kod bättre ut. Flera kodexempel är flyttade till 2-kolumns-layouter för smaller footprint
+*   JSON förklaras på ett bättre sätt.
+*   osv...
