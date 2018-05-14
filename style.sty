@@ -9,8 +9,8 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{csquotes}
-\usepackage{framed}
+%\usepackage{csquotes}
+%\usepackage{framed}
 \usepackage{listings}
 \usepackage[section]{placeins}
 \usepackage{graphicx}
@@ -21,12 +21,8 @@
 
 \usemintedstyle{bw}
 
-\usepackage[rounded]{syntax}
-%\renewcommand*{\ttdefault}{lmvtt}
-%\renewcommand*{\ttdefault}{cmtt}
 
 % KTH stuff
-
 \newcommand{\frontmatter}{
 	\pagenumbering{roman}
 	\setcounter{page}{1}
@@ -54,69 +50,6 @@
 \newcommand{\school}[1]{\def\@school{#1}}
 \let\@programme\@empty
 \newcommand{\programme}[1]{\def\@programme{#1}}
-
-% Command to print out the standardized title page
-%\renewcommand{\titlepage}{
-%	\ifgfivepaper
-%	\newgeometry{top=65mm,bottom=30mm,left=62mm,right=18mm}
-%	\else
-%	\newgeometry{top=65mm,bottom=30mm,left=50mm,right=35mm}
-%	\fi
-%	\thispagestyle{empty}
-%	\ifinswedish\selectlanguage{swedish}\fi
-%	\begin{huge}
-%		\begin{flushleft}
-%			\noindent\sffamily\bfseries \@title \par
-%		\end{flushleft}
-%	\end{huge}
-%	\ifx\@subtitle\@empty\relax
-%	\else
-%	\begin{Large}
-%		\vspace{1ex}
-%		\begin{flushleft}
-%			\noindent\sffamily\bfseries \@subtitle \par
-%		\end{flushleft}
-%	\end{Large}
-%	\fi
-%	
-%	\vspace{10mm}
-%	\begin{large}
-%		\begin{flushleft}
-%			\sffamily
-%			\expandafter\MakeUppercase\expandafter\@author \par
-%			\ifx\@secondauthor\@empty\relax
-%			\else\vspace{1ex}\expandafter\MakeUppercase\expandafter\@secondauthor \par
-%			\fi
-%		\end{flushleft}
-%	\end{large}
-%	
-%	\vfill
-%	
-%	\begin{flushleft}
-%		\sffamily
-%		\ifinswedish
-%		\@programme\\
-%		\ifx\@date\@empty\relax\else Datum: \@date\\\fi
-%		Handledare: \@supervisor\\
-%		Examinator: \@examiner\\
-%		\ifx\@principal\@empty\relax\else Uppdragsgivare: \@principal\\\fi
-%		\ifx\@alttitle\empty\relax\else Engelsk titel: %
-%		\begin{otherlanguage}{english}\@alttitle\end{otherlanguage}\\\fi
-%		\@school\\
-%		\else
-%		\@programme\\
-%		\ifx\@date\@empty\relax\else Date: \@date\\\fi
-%		Supervisor: \@supervisor\\
-%		Examiner: \@examiner\\
-%		\ifx\@principal\@empty\relax\else Principal: \@principal\\\fi
-%		\ifx\@alttitle\empty\relax\else Swedish title: %
-%		\begin{otherlanguage}{swedish}\@alttitle\end{otherlanguage}\\\fi
-%		\@school\\
-%		\fi
-%	\end{flushleft}
-%	\restoregeometry
-%	\cleardoublepage
-%}
 
 % Set up the header and footer
 \fancyhead{}
