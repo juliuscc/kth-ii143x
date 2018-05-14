@@ -27,27 +27,13 @@ JSON erbjuder stöd för några enkla datatyper: textsträngar,  siffror, tomt v
 
 \begin{figure}
 	\begin{subfigure}[t]{0.47\textwidth}
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-[
-	"hej värld",
-	4,
-	null,
-	false
-]
-		\end{minted}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/array.json}
 		\vspace{-1.2em}
 		\caption{Exempel på JSON-array}
 		\label{fig:json-array-example}
 	\end{subfigure}\hfill
 	\begin{subfigure}[t]{0.47\textwidth}
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-{
-	"firstName": "Erik",
-	"lastName": "Andersson",
-	"age": 30,
-	"human": true
-}
-		\end{minted}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/object.json}
 		\vspace{-1.2em}
 		\caption{Exempel på JSON-object}
 		\label{fig:json-object-example}
@@ -65,26 +51,13 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 
 \begin{figure}
 	\begin{subfigure}[t]{0.47\textwidth}
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-{
-	"country": "Sweden",
-	"city": "Stockholm"
-}
-		\end{minted}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/request.json}
 		\vspace{-1.2em}
 		\caption{Exempel på förfrågan till webbserver}
 		\label{fig:json-request-example}
 	\end{subfigure}\hfill
 	\begin{subfigure}[t]{0.47\textwidth}
-		\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-{
-	"timestamp": "06/01/2018 10:45:08",
-	"country": "Sweden",
-	"city": "Stockholm",
-	"weather": "Snowing",
-	"temperature": -3
-}
-		\end{minted}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/response.json}
 		\vspace{-1.2em}
 		\caption{Exempel på svar på förfrågan från webbserver}
 		\label{fig:json-response-example}
@@ -98,18 +71,7 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,Andrews2018,Andrews2018a}
 
 \begin{figure}
-	\begin{minted}[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}
-{
-	"type": "object",
-	"required": ["firstName", "age"],
-	"properties": {
-		"firstName": { "type": "string" },
-		"lastName": { "type": "string" },
-		"age": { "type": "integer" },
-		"human": { "type": "boolean" }
-	}
-}
-	\end{minted}
+	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/schema.json}
 	\vspace{-1.7em}
 	\caption{Exempel på simpelt JSON Schema}
 	\label{fig:json-schema-example}

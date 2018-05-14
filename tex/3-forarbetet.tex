@@ -4,50 +4,51 @@ För att förstå hur systemet skulle utvecklas, och om det redan fanns liknande
 
 \section{Generering av scheman från JSON}
 \label{sec:forarbete:json-till-schema}
-Att generera JSON Scheman från en JSON-fil perfekt är omöjligt. Att bara observera en JSON fil är inte tillräcklig information för att generera ett JSON Schema för i så fall skulle inte JSON Schema behövas. Observera exemplet i figur \ref{fig:json-super-simple-example}. Att skapa ett JSON Schema som beskriver det objektet skulle kunna se ut som i figur \ref{fig:schema-super-simple-example-1}. 
+Att generera JSON Scheman från en JSON-fil perfekt är omöjligt. Att bara observera en JSON fil är inte tillräcklig information för att generera ett JSON Schema för i så fall skulle inte JSON Schema behövas. Observera exemplet i figur \ref{fig:json-super-simple-example}. Att skapa ett JSON Schema som beskriver det objektet skulle kunna se ut som i figur \ref{fig:schema-super-simple-example-1}. Då har antaganden tagits om att det objektet alltid ska ha en \textit{property} som heter \textit{name} och ska innehålla en textsträng. Det skulle kunna vara så att \textit{name} alltid ska innehålla en textsträng som börjar på stor bokstav, vilket är rimligt när det representerar ett namn, och då skulle schemat se ut som i figur \ref{fig:schema-super-simple-example-2}. Det skulle annars kunna vara så att \textit{name} inte får vara vilken textsträng som helst utan måste vara en av två textsträngar. Det skulle till och med kunna vara så att \textit{name} också skulle kunna vara det booleska värdet \textit{false}. Då skulle schemat se ut som i figur \ref{fig:schema-super-simple-example-3}.
 
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/json-file.json}
 	\vspace{-1.7em}
-	\caption{Exempel på enkelt json objekt}
+	\caption{Exempel på enkelt JSON-objekt}
 	\label{fig:json-super-simple-example}
-\end{figure}
-
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example1.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema}
-	\label{fig:schema-super-simple-example-1}
-\end{figure}
-
-Då har antaganden tagits om att det objektet alltid ska ha en \textit{property} som heter \textit{name} och ska innehålla en textsträng. Det skulle kunna vara så att \textit{name} alltid ska innehålla en textsträng som börjar på stor bokstav, vilket är rimligt när det representerar ett namn, och då skulle schemat se ut som i figur \ref{fig:schema-super-simple-example-2}. Det skulle annars kunna vara så att \textit{name} inte får vara vilken textsträng som helst utan måste vara en av två textsträngar. Det skulle till och med kunna vara så att \textit{name} också skulle kunna vara det booleska värdet \textit{false}. Då skulle schemat se ut som i figur \ref{fig:schema-super-simple-example-3}.
-
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example2.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema med strängmönster}
-	\label{fig:schema-super-simple-example-2}
-\end{figure}
-
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example3.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema med \textit{enums}}
-	\label{fig:schema-super-simple-example-3}
 \end{figure}
 
 Alla de här exemplena har enbart behandlat feltolkning av en \textit{property} och inte diskuterat ännu större missförstånd med objektets struktur. Objektet skulle möjligtvis kunna ha en valfri \textit{property} som representerar efternamn. Då skulle schemat se ut som i figur \ref{fig:schema-super-simple-example-4}. Alla exempel är giltiga scheman till objektet i det givna exemplet. Det finns ingen möjlighet att förstå vilket schema som faktiskt beskriver datan, utan att göra många antaganden om datan. Därför ansågs samtliga lösningar som genererar JSON Scheman från JSON-filer vara otilräckliga för projektet.
 
 \begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example4.json}
-	\vspace{-1.7em}
-	\caption{Exempel på genererat schema med dolda \textit{properties}}
-	\label{fig:schema-super-simple-example-4}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example1.json}
+		\vspace{-1.2em}
+		\caption{Exempel på genererat schema}
+		\label{fig:schema-super-simple-example-1}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example2.json}
+		\vspace{-1.2em}
+		\caption{Exempel på genererat schema med strängmönster}
+		\label{fig:schema-super-simple-example-2}
+		\vspace{.8em}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example3.json}
+		\vspace{-1.2em}
+		\caption{Exempel på genererat schema med \textit{enums}}
+		\label{fig:schema-super-simple-example-3}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{0.47\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/schema-generation-example/schema-example4.json}
+		\vspace{-1.2em}
+		\caption{Exempel på genererat schema med dolda \textit{properties}}
+		\label{fig:schema-super-simple-example-4}
+	\end{subfigure}
+	\caption{Olika JSON Scheman som är kompatibla med JSON-objektet i figur \ref{fig:json-super-simple-example}}
+	\label{fig:schema-super-simple-example-group}
 \end{figure}
+
+
 
 \section{Generering av scheman från statiska datatyper i statisk typade programmeringsspråk}
 Det finns implementationer som utnyttjar att statiskt typade programmeringsspråk redan innehåller beskrivningar av data som ska bearbetas. Både \textit{.Net} och \textit{TypeScript} erbjuder programmeringsfunktioner inbyggda i språket för att beskriva komplexa datastrukturer. Att sedan översätta dem till JSON Schema-filer presterar riktigt bra. Varken \textit{.Net} eller \textit{TypeScript} erbjuder stöd för att exempelvis bestämma att ett tal bara får befinna sig inom ett bestämt intervall, och det saknas fler specificiteter som JSON Schema erbjuder. För att bemöta de bristerna använder samtliga implementationer speciellt formaterade kommentarer som kallas annotationer, vilket möjliggör all funktionalitet som JSON Schema erbjuder. Att TypeScript är ett språk som kompileras till JavaScript, vilket JSON och i sin tur JSON Scheman bygger på innebär att översättningen mellan datatyper i TypeScript och JSON Scheman fungerar väldigt smidigt. \cite{Newtonsoft,Suter,El-Dardiry,Bovet}
-
 
 \section{Andra genererare av scheman}
 Liform och JSL erbjuder metoder och funktioner som underlättar dynamiskt skapande av JSON Scheman under exekvering. De erbjuder datatyper som är inbyggda i språket för att definera och hantera komponenter av JSON Scheman. De kan sedan generera ett JSON Schema utifrån de här instanserna av datatyperna. \cite{Romanovich,Limenius}

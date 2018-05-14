@@ -205,6 +205,7 @@ Heltal presenterades som i figur \ref{fig:heltal}. Inmatningsfältet hanterar en
 
 Om stöd för flyttal skulle behövas i framtiden, föreslås att nyckelordet \textit{format} används för att specificera det. Det skulle kunna hanteras på ett sätt som är bakåtkompatibelt med klienter som bara kan hantera heltal, genom att de klienterna hanterar flyttalen som heltal, samtidigt som nyare klienter kan hantera flyttalen som flyttal.
 
+\FloatBarrier
 \subsection{Flervalsalternativ och \textit{enum} i användargränssnittet}
 \label{sec:arbetet:gui:enum}
 
@@ -219,29 +220,29 @@ Vissa inställningar hade så pass begränsade tillåtna alternativ att bara ett
 
 Enum tillåter inga alternativ för att annotera de förutsatta värdena med metadatainformation som \textit{title} eller \textit{description}. Det innebär att värdena som \textit{enum} specificerar, inte går att koppla till någon annan representation än det faktiska värdet. Ett problem skulle exempelvis kunna uppstå om ett värde bara få ha värdena \textit{1}, \textit{2} eller \textit{3} i en JSON-fil, men användarna ska presenteras med \textit{one}, \textit{two} och \textit{three} som svarsalternativ. React JSON Schema Form bemöter det problemet med att utöka JSON Schema och lägga till nyckelordet \textit{enumNames} som i figur \ref{fig:enum-example:extra-array} \cite{MozillaServices}. Användandet av det nyckelordet är inkompatibelt med JSON Schema \cite{Andrews2018}. Dessutom finns det massor av oklarheter över hur fall skulle hanteras om \textit{enumNames} finns men \textit{enum} saknas, eller om \textit{enumNames} och \textit{enum} innehåller olika antal element.
 
-\begin{figure}
-	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/extra-array.json}
-	\vspace{-1.7em}
-	\caption{Hur React JSON Schema Form föreslår \textit{enumNames} \cite{MozillaServices}}
-	\label{fig:enum-example:extra-array}
-\end{figure}
-
 Ett annat förslag som React JSON Schema Form föreslår är användandet av nyckelordet \textit{anyOf}, vilket är helt kompatibelt med JSON Schema specifikationerna men är väldigt verbost och använder \textit{anyOf} på ett sätt som det inte ursprungligen är menat för att användas på \cite{MozillaServices, Andrews2018}. Dessutom kräver deras implementation att nyckelordet \textit{enum} ska användas för att definera listor innehållande ett konstant värde, vilket inte är syftet med \textit{enum} \cite{Andrews2018}. Deras förslag visas i figur \ref{fig:enum-example:any-of}. Jag föreslår användandet av nyckelordet \textit{const} istället, vilket visas i figur \ref{fig:enum-example:any-of-const}. Nyckelordet är till för att specificera att en definition bara får ha ett enda konstant värde och är mindre än ett år gammalt, vilket kan vara en anledning till att React JSON Schema Form inte användt \textit{const} i sin implementation \cite{Andrews2018}.
 
 \begin{figure}
+	\begin{subfigure}[t]{\textwidth}
+		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/extra-array.json}
+		\vspace{-1.2em}
+		\caption{Hur React JSON Schema Form föreslår \textit{enumNames} \cite{MozillaServices}}
+		\label{fig:enum-example:extra-array}
+		\vspace{.8em}
+	\end{subfigure}
 	\begin{subfigure}[t]{0.47\textwidth}
 		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/any-of.json}
 		\vspace{-1.2em}
-		\caption{React JSON Schema Forms alternativ till \textit{enumNames} \cite{MozillaServices}}
+		\caption{React JSON Schema Forms JSON Schema-kompatibla alternativ till \textit{enumNames} \cite{MozillaServices}}
 		\label{fig:enum-example:any-of}
 	\end{subfigure}\hfill
 	\begin{subfigure}[t]{0.47\textwidth}
 		\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm, breaklines]{json}{code/enum-example/any-of-const.json}
 		\vspace{-1.2em}
-		\caption{Ett modernare förslag av React JSON Schema Forms förslag med \textit{const}}
+		\caption{Ett modernare förslag av React JSON Schema Forms JSON Schema-kompatibla förslag med \textit{const}}
 		\label{fig:enum-example:any-of-const}
 	\end{subfigure}
-	\caption{Olika JSON Schema-kompatibla implementationer på alternativ för \textit{enum}}
+	\caption{Olika alternativ av annotering av \textit{enum}}
 	\label{fig:enum-example:any-of-examples}
 \end{figure}
 
