@@ -134,3 +134,7 @@ Idag korrläste jag en massa och fixade jättemånga grejer.
 *   Nu ser all kod bättre ut. Flera kodexempel är flyttade till 2-kolumns-layouter för smaller footprint
 *   JSON förklaras på ett bättre sätt.
 *   osv...
+
+## 2018-05-15
+
+Idag har jag också korrläst och fixat en massa småsaker. Mycket börjar komma ihop nu. 2 kapitel är "klara". 3 kapitel måste korrläsas lite mer och 1 metodkapitel måste skrivas.
