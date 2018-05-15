@@ -148,7 +148,7 @@ Schemagenerering som kategori består av tolv implementationer där det går att
 	\item Liform \textit{(PHP)} \cite{Limenius}
 	\item JSL \textit{(Python)} \cite{Romanovich}
 	\item JSONSchema.net \textit{(Online webbverktyg)} \cite{Bovet}
-	\item Schema Guru Web UI \textbf{Obs:} Verktyget hittades ej och kommer därför exkluderas från resten av rapporten.
+	\item Schema Guru Web UI
 	\item APIAddIn \textit{(Sparx Enterprise Architect)} \cite{Tomlinson}
 \end{itemize}
 
@@ -164,7 +164,7 @@ En parser tolkar JSON Scheman och representerar schemat med någon annan datastr
 	\item json-schema-codegen \textit{Scala} \cite{Tundra}
 	\item Argus \textit{Scala} \cite{Fenton}
 	\item Bric-à-brac \textit{Swift} \cite{GlimpseI/OInc}
-	\item gojsonschema \textit{Golang} \textbf{Obs:} Verktyget saknade information på engelska eller svenska och kommer därför exkluderas från resten av rapporten. \cite{Zhangtao}
+	\item gojsonschema \textit{Golang} \cite{Zhangtao}
 	\item jsonschema \textit{Golang} \cite{Qriinc.}
 \end{itemize}
 
@@ -182,43 +182,14 @@ Vissa av implementationerna används för att generera ett användargränsnitt f
 	\item JSON Form \cite{Joshfire}
 	\item json-forms \cite{Brutusin.org}
 	\item JSONForms  \cite{EclipseSource}
-	\item Jsonary  \textbf{OBS!}
+	\item Jsonary \cite{Jsonary-js}
 	\item liform-react \cite{NachoMartin}
 	\item Metawidget \cite{Metawidget}
-	\item pure-form webcomponent \textbf{Obs not found}
+	\item pure-form webcomponent
 	\item React JSON Schema Form \cite{MozillaServices}
 	\item React Schema Form \cite{NetworkNewTechnologiesInc.}
 \end{itemize}
 
-%\section{JSON Schema förklarat med BNF}
-%
-%
-%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{bnf}{code/json-schema.bnf}
-%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{ebnf}{code/json-schema.ebnf}
-%\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{ebnf}{code/strSch.ebnf}
+\subsection{Implementationer som utesluts ur rapporten}
 
-
-%	<statement> ::= <ident> `=' <expr> 
-%	\alt `for' <ident> `=' <expr> `to' <expr> `do' <statement> 
-%	\alt `{' <stat-list> `}' 
-%	\alt <empty> 
-%
-%	<stat-list> ::= <statement> `;' <stat-list> | <statement> 
-%
-%	<statement> ::= <ident> `=' <expr> 
-%	\alt `for' <ident> `=' <expr> `to' <expr> `do' <statement> 
-%	\alt `{' <stat-list> `}' 
-%	\alt <empty> 
-%	
-%	<stat-list> ::= <statement> `;' <stat-list> | <statement> 
-
-
-
-%\begin{syntdiag}
-%	<ident> ‘(’
-%	\begin{rep} \begin{stack} \\
-%			<type> \begin{stack} \\ <ident> \end{stack}
-%		\end{stack} \\ ‘,’ \end{rep}
-%	\begin{stack} \\ ‘...’ \end{stack} ‘)’
-%\end{syntdiag}
-
+Vissa av implementationerna uteslöts från rapporten då det ansågs vara omöjligt att förstå implementationerna. \textit{Schema Guru Web UI} kunde inte hittas. AutoParse är ett verktyg som inte uppdaterats sedan 26 Mars 2013, vilket betyder att den som bäst kan implementera version tre av JSON Schema \cite{Googleb}. Dessutom länkar projektet till en hemsida som länkar tillbaka till projektet, vilket saknar dokumentation \cite{Googleb}. Verktyget \textit{gojsonschema} saknade tillräcklig information på engelska eller svenska \cite{Zhangtao}. \textit{Jsonary} hade bristande dokumentation, med länkar till en hemsida som inte finns \cite{Jsonary-js}. Länken till \textit{pure-form webcomponent} på Json Schemas hemsida returnerade felkoden 404 vilket betecknar att webbsidan som efterfrågats inte finns eller inte kan hittas. Efter omfattande sökningar hittades inte verktyget.
