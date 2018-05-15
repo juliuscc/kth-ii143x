@@ -4,4 +4,4 @@ Rapporten till kanditatexamensarbetet
 
 [Klicka här för att komma till dagboken](Dagbok.md)
 
-[Klicka här för att komma till den senaste uppladdade versionen av rapporten som pdf](forstudie.pdf)
+[Klicka här för att komma till den senaste uppladdade versionen av rapporten som pdf](report.pdf)
