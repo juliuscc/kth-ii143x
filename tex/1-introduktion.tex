@@ -52,27 +52,14 @@ En ekonomisk risk är risken som alltid finns vid all hantering av data. Om någ
 
 \section{Metodval}
 \label{sec:intro:metodval}
-Arbetet som ska utföras är till viss del en fallstudie, men samtidigt ska den utforska något nytt och med det föreslå en ny modell. Designorienterad forskning \textit{(Design science research)} är den metod som passar bäst för den här sortens arbete och därför har den metoden valts.
-\noindent
-Arbetet följde de följande stegen:
 
-\begin{enumerate}
-	\item \textbf{Medvetenhet} En beskrivning av problemet som ska lösas med modellen.
-	\item \textbf{Förslag} Förslag på lösning presenteras.
-	\item \textbf{Utveckling} Modellen utvecklas.
-	\item \textbf{Utvärdering} Modellen utvärderas. Lyckades modellen lösa problemet beskrivet i \textit{Medvetenhet}?
-	\item \textbf{Sammanfattning} Dra slutsatser
-\end{enumerate}
+Arbetet var av kvalitativ karraktär. Arbetet handlade inte om att bekräfta någon teori utan handlade mer om att utforska ett ämne och utforska möjligheterna med en ny utveklande teknik. Det saknas stora dataset som krävs för att genomföra statistisk analys, som är kärnan av kvantitativa studier. Dessutom är JSON Schema som ämne fortfarande outforskat, och speciellt att använda JSON Scheman för att generera grafiska användargränssnitt för att manipulera datan som schemat beskriver.
 
-\noindent
-För att skapa en medvetenhet över hur andra tidigare löst eller försökt lösa liknande problem utvärderades och testades 30 olika implementationer som erbjuder liknande funktionalitet. Det skapade en bra bild över vad som krävdes för att genomföra arbetet. Efter det konstruerades systemarkitekturen för systemet, så att resten av arbetet kunde planeras utifrån det. De stora praktiska problemenen som skulle lösas blev:
+Problemet som arbetet grundade sig på var en fallstudie. Ett specifikt problem skulle lösas utifrån vissa krav och en ny, oprövad och ofärdig teknik skulle användas för att lösa problemet. De två forskningsmetoderna som skulle kunna passa bra till arbetet är \textit{Fundamental Research} och \textit{Applied Research}. \textit{Fundamental Research} fokuserar på nya fundamentala principer och att testa nya teorier. Det används för all sorts forskning för att skapa nya innovationer, principer och teorier \cite{Hakansson}.
 
-\begin{itemize}
-	\item Hur ska schemat som formuläret baseras på, genereras?
-	\item Hur ska schemat parsas, tolkas och sedan representeras i språket Delphi?
-	\item Hur ska schemats representation tillsammans med data presenteras i ett användargränssnitt?
-	\item Hur ska användarinteraktion integreras i detta system, så att interaktion faktiskt manipulerar data?
-\end{itemize}
+\textit{Applied Research} handlar om att besvara specifika frågeställningar och att lösa kända och praktiska problem \cite{Hakansson}. En grov jämförelse går att göra där \textit{Fundamental Research} bryr sig om generella lösningar medan \textit{Applied Research} handlar om specifika lösningar, men där båda metoderna resulterar i nyskapande teknik.
+
+Ämnet kring JSON Scheman med inriktning på dess applicering på grafiska användargränssnitt är till stor del outforskat i den akademiska världen; Dock finns det icke-vetenskapliga verktyg som använt JSON Schema för att skapa grafiska användargränssnitt med varierande kvalitet på resultat och ofta bristande dokuemntation (se kapitel \ref{sec:teori:schema-användningsområden:ui-generering} och \ref{sec:forarbete:gui-generering}). Då arbetet är väldigt tidigt i att utforska ämnet vetenskapligt, skulle \textit{Fundamental Research} kunna vara rätt forksningsmetod men \textit{Applied Research} går också att använda; Speciellt med tanke på att ämnet inte är helt nytt. Då lösningen som utvecklades ansågs vara väldigt specifik och inte tillräckligt generell så valdes \textit{Applied Research} som forskningsmetod.
 
 \section{Avgränsningar}
 \label{sec:intro:avgränsningar}
@@ -86,4 +73,4 @@ Validering av data är något som webbtjänster ofta måste ta hänsyn till. En 
 
 \section{Disposition}
 \label{sec:intro:disposition}
-Kapitel \ref{sec:teori} presenterar den teoretiska bakgrunden. Kapitel \ref{sec:forarbete} presenterar och utvärderade kända implementationer som berörde liknande ämnesområden som det här arbetet. Kapitel \ref{sec:arbetet} redovisar hur systemet utvecklades, vilka val som togs, varför de valen togs samt diskuterar hur arbetet förhåller sig till tidigare implementationer av liknande projekt och verktyg. Kapitel \ref{sec:slutsats} diskuterar hur bra JSON Schema är som verktyg för att annotera manipulerbar data, vilka outforskade intresseområden som skulle kunna behöva fortsatt arbete, samt utvärderar arbetets resultat.
+Kapitel \ref{sec:teori} presenterar den teoretiska bakgrunden. Kapitel \ref{sec:metod} beskriver metodologin som valdes. Kapitel \ref{sec:forarbete} presenterar och utvärderade kända implementationer som berörde liknande ämnesområden som det här arbetet. Kapitel \ref{sec:arbetet} redovisar hur systemet utvecklades, vilka val som togs, varför de valen togs samt diskuterar hur arbetet förhåller sig till tidigare implementationer av liknande projekt och verktyg. Kapitel \ref{sec:slutsats} diskuterar hur bra JSON Schema är som verktyg för att annotera manipulerbar data, vilka outforskade intresseområden som skulle kunna behöva fortsatt arbete, samt utvärderar arbetets resultat.

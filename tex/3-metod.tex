@@ -1,1 +1,26 @@
-\chapter{Metod}
+\chapter{Metodologi}
+\label{sec:metod}
+
+Metodologin kan delas upp i tre delar. Först utvärderades 29 olika implementationer som erbjuder liknande funktionalitet som delar av systemet som skulle utvecklas. Sedan utvecklades systemet. Där utvärderades olika alternativ på lösningar och JSON Schema som verktyg utvärderades. Både hur JSON Schema kan användas och vad det erbjuder men också vad JSON Schema inte erbjuder och hur det kan lösas. Sist utvärderades arbetet och slutsatser drogs kring JSON Schema som verktyg.
+
+\section{Systemet att förhålla sig till}
+Det grafiska användargränssnittet som skulle utvecklas för att manipulera data på operatörsdatorer, skulle vara en del av administratörsprogrammet som bestod av flera delar. Dessutom skulle servern på operatörsdatorerna bli ett tillägg till befintliga Mimer. Därför behövde arbetet av teknisk anledning ta hänsyn till hur LSE utvecklade resten av systemet med val av programmeringsspråk och utvecklingsmiljö. LSE arbetar huvudsakligen med språket Delphi för att utveckla skrivbordsapplikationer till Windows, vilket båda komponenterna av systemet är. Därför utvecklades arbetet i programmeringsspråket Delphi.
+
+\section{Utvärdering av kända verktyg}
+
+För att skapa en medvetenhet över hur andra tidigare löst eller försökt lösa liknande problem utvärderades och testades 29 olika implementationer som erbjuder liknande funktionalitet. Det skapade en bra bild över vad som krävdes för att genomföra arbetet. Utvärderingen beskrivs i kapitel \ref{sec:forarbete} och hur implementationerna förhåller sig till det praktiska arbetet som genomfördes beskrivs i kapitel \ref{sec:arbetet}.
+
+\section{Skapande av systemet}
+Efter utvärderingen konstruerades systemarkitekturen för systemet, så att resten av arbetet kunde planeras utifrån det. De stora praktiska problemenen som skulle lösas blev:
+
+\begin{itemize}
+	\item Hur ska användarinteraktion integreras i detta system, så att interaktion faktiskt manipulerar data?
+	\item Hur ska schemat som formuläret baseras på, genereras?
+	\item Hur ska schemat parsas, tolkas och sedan representeras i språket Delphi?
+	\item Hur ska schemats representation tillsammans med data presenteras i ett användargränssnitt?
+\end{itemize}
+
+De fyra frågorna diskuteras och besvaras i varsin del av kapitel \ref{sec:arbetet}.
+
+\section{Utvärdering av arbetet}
+Efter att arbetet blev genomfört och färdigt utvärderades det. Det utvärderades bland annat utifrån hur generellt systemet blev. Förbättringar på systemet diskuteras och fortsatt arbete föreslås, inte bara för systemet i arbetet utan primärt fortsatta utvecklingsområden hos JSON Schema.
