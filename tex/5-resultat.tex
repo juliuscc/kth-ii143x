@@ -61,20 +61,9 @@ Strukturen av dessa JSON Scheman kunde antas ha en förutsatt struktur, då anv�
 \FloatBarrier
 
 \noindent
-För att både generering och parsning hanterades av samma tjänst ansågs nyckelordet \textit{definitions} och \textit{\$ref} vara onödigt. Parsern hade därför inte stöd för de två nyckelorden. Det var också känt att parsern aldrig skulle behöva hantera vektorer \textit{(array)} som datatyp vilket innebar att alla nyckelord relaterade till array kunde ignoreras i implementationen. Utöver det var den grundläggande strukturen väl känd och därför behövdes inte nyckelord som:
+För att både generering och parsning hanterades av samma tjänst ansågs nyckelordet \textit{definitions} och \textit{\$ref} vara onödigt. Parsern hade därför inte stöd för de två nyckelorden. Det var också känt att parsern aldrig skulle behöva hantera vektorer \textit{(array)} som datatyp vilket innebar att alla nyckelord relaterade till array kunde ignoreras i implementationen. Utöver det var den grundläggande strukturen väl känd och därför behövdes inte nyckelord som: \textit{if}, \textit{then}, \textit{else}, \textit{allOf}, \textit{anyOf}, \textit{oneOf} och \textit{not}.
 
-\begin{itemize}
-	\item if
-	\item then
-	\item else
-	\item allOf
-	\item anyOf
-	\item oneOf
-	\item not
-\end{itemize}
-
-\noindent
-Det fanns fler nyckelord som inte implementerades då bara en delmängd av JSON Schema. För att flersvarsalternativ skulle kunna erbjudas i det grafiska användargränssnittet implementerades stöd för nyckelordet \textit{enum}, dock med vissa tillägg vilket diskuteras mer i kapitel \ref{sec:arbetet:gui}.
+Det fanns fler nyckelord som inte implementerades då bara en delmängd av JSON Schema implementerades. För att flersvarsalternativ skulle kunna erbjudas i det grafiska användargränssnittet implementerades stöd för nyckelordet \textit{enum}, dock med vissa tillägg vilket diskuteras mer i kapitel \ref{sec:arbetet:gui}.
 
 Figur \ref{fig:system:ner} beskriver systemet i helhet och där är parsningen en viktig del av dataflödet. Först parsas schemat för att skapa en representation av schemat i Delphi, med de tidigare nämnda objekten. Objekten innehåller också värdet av datan de beskriver men i det första steget är alla värden tomma. Nästa steg är att traversera JSON-filen som innehåller den riktiga datan, och sedan populera objekten med korrekta värden. Först då kan det grafiska användargränssnittet genereras.
 
@@ -108,9 +97,9 @@ Datan som skulle presenteras på det grafiska användargränssnittet i arbetet v
 \begin{figure}
 	\includegraphics[width=\textwidth]{./images/gui/helhet.png}
 	\vspace{-1.7em}
-	\caption{Användargränssnittet av administratörsprogrammet \textbf{(TODO! ta ny bild!!!)}}
+	\caption{Användargränssnittet av administratörsprogrammet}
 	\label{fig:gui:helhet}
-	\begin{enumerate}
+	\begin{enumerate}[noitemsep]
 		\item Inställningsgrupp
 		\item Namn på inställning
 		\item Värde på inställning
