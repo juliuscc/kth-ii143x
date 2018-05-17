@@ -142,3 +142,9 @@ Idag har jag också korrläst och fixat en massa småsaker. Mycket börjar komma
 ## 2018-05-15
 
 Idag ändrade jag mycket och lade till mycket. Jag skrev bland annat ett metodikkapitel, och skrev om underkapitlet metod i introduktionen. Det mesta börjar komma ihop och jag förväntar mig att jag kan lämna in en första version nu på fredag.
+
+## 2018-05-16
+
+Idag har jag skrivit de sista småsakerna som saknades. Jag skrev om arbetskapitlet lite och lade till en introduktion på början av den. Allt är korrläst minst en gång men jag ska korrläsa hela rapporten imorgon igen.
+
+Jag måste fixa ett diagram så att det blir snyggare och så ska jag kolla rättstavningen på allt också.
