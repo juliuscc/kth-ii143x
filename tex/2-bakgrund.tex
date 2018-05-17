@@ -4,7 +4,7 @@ Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används.
 
 \section{JSON}
 \label{sec:teori:json}
-JSON erbjuder stöd för några enkla datatyper: textsträngar,  siffror, tomt värde samt booleska värden, som presenteras i figur \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON.
+JSON erbjuder stöd för några enkla datatyper: textsträngar,  siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON.
 
 \begin{table}
 	\centering
@@ -81,7 +81,7 @@ JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON 
 JSON Schema Core täcker grunderna för JSON Schema. Dokumentet fastställer exempelvis mediatypen som borde användas för att skicka JSON Scheman över HTTP, förhållandet mellan flera JSON Scheman, samt hur heltal borde behandlas. Att JSON Scheman själva är JSON-dokument bestäms också. Dokumentet fastställer också att validering och annotering av JSON-värden ska ske enligt dokumentet draft-handrews-json-schema-validation-01 \textit{(Validation)}, samt att draft-handrews-json-schema-hyperschema-01 \textit{(Hyper-Schema)} behandlar reglerna kring att beskriva hypertextstrukturen hos JSON-dokument. \cite{A.Wright}
 
 \subsection{JSON Schema Validation}
-JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument, hur man ger tips åt användargränsnitt för att jobba med JSON-dokument samt hur man kan beskriva påståenden om ett dokuments validitet. Förenklat beskriver det här dokumentet strukturen hos ett JSON Schema, med beskrivningar av nästan alla nyckelorden. Utöver att beskriva hur JSON-dokument ska valideras, presenteras annoteringsnyckelord som \textit{title} och \textit{description}, där \textit{title} är en kort förklaring för JSON värdet den validerar, och \textit{description} är en längre förklaring. \cite{Andrews2018}
+JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument, hur man ger tips åt användargränsnitt för att jobba med JSON-dokument samt hur man kan beskriva påståenden om ett dokuments validitet. Förenklat beskriver det här dokumentet strukturen hos ett JSON Schema, med beskrivningar av nästan alla nyckelord. Utöver att beskriva hur JSON-dokument ska valideras, presenteras annoteringsnyckelord som \textit{title} och \textit{description}, där \textit{title} är en kort förklaring för JSON värdet den validerar, och \textit{description} är en längre förklaring. \cite{Andrews2018}
 
 \subsection{JSON Schema Hyper-Schema}
 JSON Schema utvecklas till stor del för användandet av JSON Scheman i webbtjänster. Därför beskriver det tredje dokumentet, JSON Schema Hyper-Schema, hur resurser kan manipuleras och interageras med över hypermediamiljöer som HTTP. JSON Schema Validation skulle kunna beskriva hur ett API anrop ska hanteras och vad som förväntas från förfrågningar och svar på dem. JSON Schema Hyper-Schema kan då användas för att beskriva ett helt API och hur de olika anropen och resurserna är relaterade till varandra. \cite{Andrews2018a}
@@ -89,7 +89,7 @@ JSON Schema utvecklas till stor del för användandet av JSON Scheman i webbtjä
 \subsection{Kontroversiella flyttal i JSON Schema}
 \label{sec:teori:schema:float}
 
-JSON Schema stöder två nyckelord för siffror: \textit{number}, och \textit{integer}, vilket motsvarar siffror respektive heltal \cite{Andrews}. Nyckelordet \textit{number} betyder inte nödvändigtvis flyttal då JSON och JavaScript inte skiljer på heltal och flyttal, vilket en betydligt stor andel programmeringsspråk gör som Python, Ruby, C, C++, C\#, Java, Delphi med många fler \cite{Embarcadero,Oracle,Microsofta,GNU,GNUa,Britt,Britta,PythonSoftwareFoundation2018,ECMA2013,EcmaInternational2017}. JSON Schema definerar ett heltal som alla siffror med en bråkdel som är lika med noll \cite{Andrews}. Det skulle betyda att både talet 1 och 1.0 skulle tolkas som ett heltal. Många JSON parsers i många språk tolkar 1.0 som ett flyttal vilket gör det svårt att kontrollera om en siffra är ett heltal. Flera implementationer av JSON Schema parsers som exempelvis Python-baserade jsonschema tolkar 1.0 som ett flyttal, trots att JSON Schema specificerar motsatsen \cite{SpaceTelescopeScienceInstitute2016}.
+JSON Schema stöder två nyckelord för siffror: \textit{number}, och \textit{integer}, vilket motsvarar siffror respektive heltal \cite{Andrews}. Nyckelordet \textit{number} betyder inte nödvändigtvis flyttal då JSON och JavaScript inte skiljer på heltal och flyttal, vilket en betydligt stor andel programmeringsspråk gör som Python, Ruby, C, C++, C\#, Java, Delphi med många fler \cite{Embarcadero,Oracle,Microsofta,GNU,GNUa,Britt,Britta,PythonSoftwareFoundation2018,ECMA2013,EcmaInternational2017}. JSON Schema definerar ett heltal som alla siffror med en bråkdel som är lika med noll \cite{Andrews}. Det skulle betyda att både talet 1 och 1.0 skulle tolkas som ett heltal. Många JSON-parsers i många språk tolkar 1.0 som ett flyttal vilket gör det svårt att kontrollera om en siffra är ett heltal. Flera implementationer av JSON Schema parsers som exempelvis Python-baserade jsonschema tolkar 1.0 som ett flyttal, trots att JSON Schema specificerar motsatsen \cite{SpaceTelescopeScienceInstitute2016}.
 
 Det finns andra oklarheter kring flyttal, som att det är svårt att validera om ett flyttal är en multipel av ett annat tal, då få språk erbjuder exakt nogranhet för flyttal \cite{Cederqvist2017}. Vissa föreslår att flyttal borde hanteras som textsträngar med nyckelordet \textit{format}, men då krävs en större bredd av valideringstermer för att erbjuda samma funktionalitet som det redan finns till datatyper av typen \textit{number} \cite{Poberezkin,Faassen}.
 
@@ -120,11 +120,11 @@ The Json Schema organisation listar kända implementationer på sin hemsida, och
 	\item Documentation generation
 \end{itemize}
 \noindent
-Arbetet kommer behöva implementera tre av de listade implementationerna: Schema generation, Data parsing samt UI generation, vilket diskuteras i kapitel \ref{sec:teori:schema-användningsområden:generering}, \ref{sec:teori:schema-användningsområden:parsning} samt \ref{sec:teori:schema-användningsområden:ui-generering}.
+Arbetet kommer behöva implementera tre av de listade implementationerna: Schema generation, Data parsing samt UI generation, vilket diskuteras i resten av kapitlet.
 
 \subsection{Generering av scheman}
 \label{sec:teori:schema-användningsområden:generering}
-Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i tre kategorier. Det finns implementationer som utgår från JSON data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett statiskt typat språk. Den tredje kategorin av implementation är implementationer som erbjuder en annan metod att beskriva datan, för att sedan översätta det till ett JSON Schema. \cite{TheJSONSchemaorganisation}
+Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i tre kategorier. Det finns implementationer som utgår från JSON-data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett statiskt typat språk. Den tredje kategorin av implementation är implementationer som erbjuder en annan metod att beskriva datan, för att sedan översätta det till ett JSON Schema. \cite{TheJSONSchemaorganisation}
 
 \subsubsection{Implementationerna som genererar JSON Scheman från JSON data:}
 \begin{itemize}
@@ -135,8 +135,8 @@ Schemagenerering som kategori består av tolv implementationer där det går att
 
 \subsubsection{Implementationerna som genererar JSON Scheman från statiska datatyper inbyggda i språket:}
 \begin{itemize}
-	\item Json.NET Schema \textit{.NET} \cite{Newtonsoft}
-	\item NJsonSchema for .NET \textit{.NET} \cite{Suter}
+	\item Json.NET Schema \textit{(.NET)} \cite{Newtonsoft}
+	\item NJsonSchema for .NET \textit{(.NET)} \cite{Suter}
 	\item typescript-json-schema \textit{(TypeScript)} \cite{El-Dardiry}
 	\item Typson \textit{(TypeScript)} \cite{Bovet}
 \end{itemize}
@@ -168,7 +168,7 @@ En parser tolkar JSON Scheman och representerar schemat med någon annan datastr
 
 \subsection{Tidigare försök av generering av användargränsnitt baserade på JSON Scheman}
 \label{sec:teori:schema-användningsområden:ui-generering}
-Det finns olika implementationer av att generera ett användargränsnitt utifrån ett JSON Schema. Samtliga kända implementationer är skrivna i språket JavaScript och bemöter därför ingen av svårigheterna med att använda JSON eller JSON Schema med andra språk. Samtliga implementationer är implementationer för att generera hemsidor eller komponenter till hemsidor, vilket skiljer sig mycket mot att generera användargränsnitt åt Windows med Delphi, vilket arbetet gjorde.
+Det finns olika implementationer av att generera ett grafiskt användargränssnitt utifrån ett JSON Schema. Samtliga kända implementationer är skrivna i språket JavaScript och bemöter därför ingen av svårigheterna med att använda JSON eller JSON Schema med andra språk. Samtliga implementationer är implementationer för att generera hemsidor eller komponenter till hemsidor, vilket skiljer sig mycket mot att generera användargränsnitt åt Windows med Delphi, vilket arbetet gjorde.
 
 Vissa av implementationerna används för att generera ett användargränsnitt för att förklara ett API beskrivet med JSON Schema och andra implementationer används för att generera ett formulär för att manipulera data beskrivet av JSON Schema. Att generera ett formulär för att manipulera data beskrivet av JSON Schema är exakt vad den här rapporten utvärderar. Användargränsnittsgenererarna som listas på The Json Schema organisations hemsida är följande:
 
