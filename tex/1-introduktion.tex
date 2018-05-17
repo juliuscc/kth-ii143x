@@ -1,6 +1,6 @@
 \chapter{Introduktion}
 
-Examensarbetet handlade om att använda JSON Schema för att annotera manipulerbar data, och sedan sedan automatiskt generera ett användargränssnitt för att interagera med datan. Vad jag känner till var detta det första publikt dokumenterade försöket av att generera ett användargränssnitt från JSON Schema, som var implementerat i något annat programmeringsspråk än HTML, CSS eller JavaScript. Detta var relevant då JSON Scheman utvecklats med hänsyn till JSON och JavaScript, samtidigt som många andra språk och miljöer skulle kunna dra nytta av funktionaliteten som JSON Schema kan erbjuda. Det är viktigt att JSON Schema fungerar bra med andra språk än JavaScript för att det ska vara ett bra och användbart verktyg.
+Examensarbetet handlade om att använda JSON Schema för att annotera manipulerbar data, och sedan sedan automatiskt generera ett grafiskt användargränssnitt för att interagera med datan. Vad jag känner till var detta det första publikt dokumenterade försöket av att generera ett grafiskt användargränssnitt från JSON Schema, som var implementerat i något annat programmeringsspråk än HTML, CSS eller JavaScript. Detta var relevant då JSON Scheman utvecklats med hänsyn till JSON och JavaScript, samtidigt som många andra språk och miljöer skulle kunna dra nytta av funktionaliteten som JSON Schema kan erbjuda. Det är viktigt att JSON Schema fungerar bra med andra språk än JavaScript för att det ska vara ett bra och användbart verktyg.
 
 \section{Bakgrund}
 \label{sec:intro:bakgrund}
@@ -22,25 +22,25 @@ För att förenkla dessa två kundfall påbörjade LSE utvecklingen av funktiona
 
 \section{Problemområde}
 \label{sec:intro:problemområde}
-Systemet för att konfigurera profiler (se kapitel \ref{sec:intro:mimer}) bygger på att alla operatörsdatorer exponerar ett API mot en server, över en TCP-port. Administratörsprogrammet skulle erbjuda ett användargränssnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient. Administrationsprogrammet skrevs som en skrivbordsapplikation till Windows, med språket Delphi.
+Systemet för att konfigurera profiler (se kapitel \ref{sec:intro:mimer}) bygger på att alla operatörsdatorer exponerar ett API mot en server, över en TCP-port. Administratörsprogrammet skulle erbjuda ett grafiskt användargränssnitt för att konfigurera profilinställningar, för att sedan kommunicera ändringarna till operatörsdatorerna. I resten av rapporten kan operatörsdatorerna och administratörsprogrammet kallas server respektive klient. Administrationsprogrammet skrevs som en skrivbordsapplikation till Windows, med språket Delphi.
 
-Kommunikationsprotokollet var ett eget skapat protokoll som byggde på att skicka JSON-objekt via TCP. För en beskrivning av JSON, se kapitel \ref{sec:teori:json}. För en mer utförlig beskrivning av kommunikationsprotokollet se Appendix \ref{appendix:api-beskrivning}. Problemet som LSE hade inför utvecklandet av användarprofilerna var skapandet av ett användargränssnitt på administratörsprogrammet. Olika operatörsdatorer, hos olika kunder, kunde ha olika versioner av Mimer, med olika funktionalitet tillgänglig, och därmed olika uppsättningar konfigurerbara inställningar. 
+Kommunikationsprotokollet var ett eget skapat protokoll som byggde på att skicka JSON-objekt via TCP. För en beskrivning av JSON, se kapitel \ref{sec:teori:json}. För en mer utförlig beskrivning av kommunikationsprotokollet se Appendix \ref{appendix:api-beskrivning}. Problemet som LSE hade inför utvecklandet av användarprofilerna var skapandet av ett grafiskt användargränssnitt på administratörsprogrammet. Olika operatörsdatorer, hos olika kunder, kunde ha olika versioner av Mimer, med olika funktionalitet tillgänglig, och därmed olika uppsättningar konfigurerbara inställningar. 
 
-Det vore orimligt kostsamt för LSE att skapa olika administratörsprogram för varje version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängliga inställningar till klienten, så att klienten sen skulle kunna anpassa sitt användargränssnitt, och det skulle ske på ett så tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert för framtida version av Mimer.
+Det vore orimligt kostsamt för LSE att skapa olika administratörsprogram för varje version av Mimer, då både Mimer ändrades med tiden, samt att olika kunder köpte till extra funktionalitet. Samtidigt behövde det grafiska användargränssnittet på administratörsprogrammet anpassas så att det skulle vara tydligt vad en administratör kunde konfigurera. Helst skulle ett administratörsprogram fungera bra med framtida versioner av Mimer, utan några eller utan stora justeringar av programmet. LSE ville helt enkelt att servern kommunicerade tillgängliga inställningar till klienten, så att klienten sen skulle kunna anpassa sitt grafiska användargränssnitt, och det skulle ske på ett så tillräckligt generellt sätt att administratörsprogrammet var framtidssäkert för framtida version av Mimer.
 
 \section{Problem}
 \label{sec:intro:problem}
-Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett användargränssnitt, är det möjligt, samt hur generella JSON Scheman går det att använda sig av?
+Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt, är det möjligt, samt hur generella JSON Scheman går det att använda sig av?
 
 \section{Syfte}
 \label{sec:intro:syfte}
-Syftet med tesen är att systematiskt analysera problemen med att försöka skapa automatiskt genererade användargränssnitt utifrån olika JSON Scheman. Målet är att föreslå både en strukturell modell samt en metod för att lösa detta problem.
+Syftet med tesen är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Målet är att föreslå både en strukturell modell samt en metod för att lösa detta problem.
 
-Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.
+Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt grafiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.
 
 \section{Mål}
 \label{sec:intro:mål}
-Målet med arbetet är att kunna skapa en grund för användare av Mimer att enkelt kunna konfigurera inställningar, oavsett version eller uppsättning extra funktionalitet. Det skulle kunna innebära att Mimer blir ett bättre verktyg för många potentiella kunder. Samtidigt finns det ett mål med att utforska samt att metodiskt utvärdera och beskriva hur användargränssnitt för att redigera data, automatiskt kan genereras.
+Målet med arbetet är att kunna skapa en grund för användare av Mimer att enkelt kunna konfigurera inställningar, oavsett version eller uppsättning extra funktionalitet. Det skulle kunna innebära att Mimer blir ett bättre verktyg för många potentiella kunder. Samtidigt finns det ett mål med att utforska samt att metodiskt utvärdera och beskriva hur grafiska användargränssnitt för att redigera data, automatiskt kan genereras.
 
 \subsection{Samhällsnytta, Etik och Hållbarhet}
 
@@ -63,11 +63,11 @@ Problemet som arbetet grundade sig på var en fallstudie. Ett specifikt problem 
 
 \section{Avgränsningar}
 \label{sec:intro:avgränsningar}
-En viktig avgränsning är att rapporten endast väldigt ytligt kommer undersöka olika användargränssnitt, och användbarheten hos dem. Arbetet handlar inte primärt om användbarhet, utan arbetet handlar i större grad om hur JSON Schema kan automatisera skapandet av användbara gränssnitt. Med hjälp av kunskapen som arbetet presenterar kan användbara användargränssnitt enklare skapas.
+En viktig avgränsning är att rapporten endast väldigt ytligt kommer undersöka olika grafiska användargränssnitt, och användbarheten hos dem. Arbetet handlar inte primärt om användbarhet, utan arbetet handlar i större grad om hur JSON Schema kan automatisera skapandet av användbara gränssnitt. Med hjälp av kunskapen som arbetet presenterar kan användbara grafiska användargränssnitt enklare skapas.
 
 Ett annat ämne som också är viktigt är säkerhet av systemet som skapas. Säkerheten hos applikationen omfattas inte av arbetet, men det ignoreras samtidigt inte. Systemet som utvecklas för att utbyta JSON Scheman och JSON-data sker över en SSL-krypterad säker uppkoppling. Det här arbetet utvärderar inte säkerheten hos den uppkopplingen.
 
-Att skapa ett användarvänligt användargränssnitt utifrån alla möjliga sorters JSON Scheman med samma verktyg omfattas inte av arbetet. Arbetet kommer utforska olika strategier och metoder för att arbeta med förutbestämda JSON Scheman. Dessutom kommer bara en delmängd av JSON Scheman att hanteras, och en färdig JSON Schema parser skapas och testas ej.
+Att skapa ett användbart grafiskt användargränssnitt utifrån alla möjliga sorters JSON Scheman med samma verktyg omfattas inte av arbetet. Arbetet kommer utforska olika strategier och metoder för att arbeta med förutbestämda JSON Scheman. Dessutom kommer bara en delmängd av JSON Scheman att hanteras, och en färdig JSON Schema parser skapas och testas ej.
 
 Validering av data är något som webbtjänster ofta måste ta hänsyn till. En klient kan annars skicka otillåten data till en webbserver och därför måste webbservern alltid validera data när den tar emot data, innan data används eller lagras. JSON Scheman fungerar utmärkt för validering av data, men då datan valideras hos klienten, både klienten och servern omfattas av arbetet, samt att användarna inte anses ha uppsåt att förstöra eller falsifiera data, kommer JSON Scheman inte användas för att validera data hos servern.
 
