@@ -1,6 +1,6 @@
 \chapter{Introduktion}
 
-Examensarbetet handlade om att använda JSON Schema för att annotera manipulerbar data, och sedan sedan automatiskt generera ett grafiskt användargränssnitt för att interagera med datan. Vad jag känner till var detta det första publikt dokumenterade försöket av att generera ett grafiskt användargränssnitt från JSON Schema, som var implementerat i något annat programmeringsspråk än HTML, CSS eller JavaScript. Detta var relevant då JSON Scheman utvecklats med hänsyn till JSON och JavaScript, samtidigt som många andra språk och miljöer skulle kunna dra nytta av funktionaliteten som JSON Schema kan erbjuda. Det är viktigt att JSON Schema fungerar bra med andra språk än JavaScript för att det ska vara ett bra och användbart verktyg.
+Examensarbetet handlade om att annotera manipulerbar data, och sedan sedan automatiskt generera ett grafiskt användargränssnitt för att interagera med datan. Vad jag känner till var detta det första publikt publicerade försöket av att generera ett grafiskt användargränssnitt från JSON Schema, som var implementerat i något annat programmeringsspråk än HTML, CSS eller JavaScript. Detta var relevant då JSON Scheman utvecklats med hänsyn till JSON och JavaScript, samtidigt som många andra språk och miljöer skulle kunna dra nytta av funktionaliteten som JSON Schema kan erbjuda. Det är viktigt att JSON Schema fungerar bra med andra språk än JavaScript för att det ska vara ett bra och användbart verktyg.
 
 \section{Bakgrund}
 \label{sec:intro:bakgrund}
@@ -14,7 +14,7 @@ Trots att JSON är det populäraste dataformatet för datautbyte mellan webbtjä
 
 \subsection{Mimer SoftRadio}
 \label{sec:intro:mimer}
-Arbetet utfördes hos LSE, som är ett tekniskt företag, som utvecklar och tillverkar elektroniska produkter \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärrstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kan datorn med klientprogrammet kallas operatörsdator, där användaren kan kallas operatör.
+Arbetet utfördes hos LSE, som är ett teknikföretag, som utvecklar och tillverkar elektroniska produkter \cite{Ehne}. LSE erbjuder bland annat ett radiosystem som heter Mimer SoftRadio vilket kan användas för att ansluta ett flertal annars inkompatibla radioenheter i ett och samma system, samt fjärrstyra radioenheterna från en persondator med ett klientprogram. I resten av rapporten kan datorn med klientprogrammet kallas operatörsdator, där användaren kan kallas operatör.
 
 Mimer SoftRadio \textit{Mimer} är ett program med väldigt många möjliga inställningar. I många fall är dessa inställningar för komplexa för de vanliga operatörerna att redigera själva, så därför brukar vissa kunder låsa redigeringsmöjligheterna, och bara tillåta vissa administratörer att ställa in alla inställningar på rätt sätt. Det finns också kundfall där flera operatörer använder samma dator, vid olika tidpunkter. Ett förekommande kundfall är att en operatör jobbade dagtid med att leda och organisera dagsarbete, medan en annan operatör tar över nattskiftet för att övervaka många fler radioenheter.
 
@@ -30,11 +30,11 @@ Det vore orimligt kostsamt för LSE att skapa olika administratörsprogram för 
 
 \section{Problem}
 \label{sec:intro:problem}
-Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt, är det möjligt, samt hur generella JSON Scheman går det att använda sig av?
+Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt? Är det möjligt? Hur generella JSON Scheman går det att använda sig av?
 
 \section{Syfte}
 \label{sec:intro:syfte}
-Syftet med tesen är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Målet är att föreslå både en strukturell modell samt en metod för att lösa detta problem.
+Syftet med rapporten är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Målet är att föreslå både en strukturell modell samt en metod för att lösa detta problem.
 
 Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt grafiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.
 

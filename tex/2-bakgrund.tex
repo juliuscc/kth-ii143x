@@ -4,7 +4,7 @@ Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används.
 
 \section{JSON}
 \label{sec:teori:json}
-JSON erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON.
+JSON erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON. \cite{ECMA2013}
 
 \begin{table}
 	\centering
@@ -68,7 +68,7 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 
 \section{JSON Schema}
 \label{sec:teori:schema}
-JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,Andrews2018,Andrews2018a}
+JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite{A.Wright}. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,TheJSONSchemaorganisationa}
 
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/schema.json}
@@ -86,21 +86,21 @@ JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument,
 \subsection{JSON Schema Hyper-Schema}
 JSON Schema utvecklas till stor del för användandet av JSON Scheman i webbtjänster. Därför beskriver det tredje dokumentet, JSON Schema Hyper-Schema, hur resurser kan manipuleras och interageras med över hypermediamiljöer som HTTP. JSON Schema Validation skulle kunna beskriva hur ett API anrop ska hanteras och vad som förväntas från förfrågningar och svar på dem. JSON Schema Hyper-Schema kan då användas för att beskriva ett helt API och hur de olika anropen och resurserna är relaterade till varandra. \cite{Andrews2018a}
 
-\subsection{Kontroversiella flyttal i JSON Schema}
+\subsection{Kontroversiell representation av flyttal i JSON Schema}
 \label{sec:teori:schema:float}
 
-JSON Schema stöder två nyckelord för siffror: \textit{number}, och \textit{integer}, vilket motsvarar siffror respektive heltal \cite{Andrews}. Nyckelordet \textit{number} betyder inte nödvändigtvis flyttal då JSON och JavaScript inte skiljer på heltal och flyttal, vilket en betydligt stor andel programmeringsspråk gör som Python, Ruby, C, C++, C\#, Java, Delphi med många fler \cite{Embarcadero,Oracle,Microsofta,GNU,GNUa,Britt,Britta,PythonSoftwareFoundation2018,ECMA2013,EcmaInternational2017}. JSON Schema definierar ett heltal som alla siffror med en bråkdel som är lika med noll \cite{Andrews}. Det skulle betyda att både talet 1 och 1.0 skulle tolkas som ett heltal. Många JSON-parsers i många språk tolkar 1.0 som ett flyttal vilket gör det svårt att kontrollera om en siffra är ett heltal. Flera implementationer av JSON Schema parsers som exempelvis Python-baserade jsonschema tolkar 1.0 som ett flyttal, trots att JSON Schema specificerar motsatsen \cite{SpaceTelescopeScienceInstitute2016}.
+JSON Schema stöder två nyckelord för siffror: \textit{number}, och \textit{integer}, vilket motsvarar siffror respektive heltal \cite{Andrews}. Nyckelordet \textit{number} betyder inte nödvändigtvis flyttal då JSON och JavaScript inte skiljer på heltal och flyttal, vilket en betydligt stor andel programmeringsspråk gör som Python, Ruby, C, C++, C\#, Java, Delphi med många fler \cite{Embarcadero,Oracle,Microsofta,GNU,GNUa,Britt,Britta,PythonSoftwareFoundation2018,ECMA2013,EcmaInternational2017}. JSON Schema definierar ett heltal som alla siffror med en decimaldel som är lika med noll \cite{Andrews}. Det skulle betyda att både talet 1 och 1.0 skulle tolkas som ett heltal. Många JSON-parsers i många språk tolkar 1.0 som ett flyttal vilket gör det svårt att kontrollera om en siffra är ett heltal. Flera implementationer av JSON Schema parsers som exempelvis Python-baserade jsonschema tolkar 1.0 som ett flyttal, trots att JSON Schema specificerar motsatsen \cite{SpaceTelescopeScienceInstitute2016}.
 
-Det finns andra oklarheter kring flyttal, som att det är svårt att validera om ett flyttal är en multipel av ett annat tal, då få språk erbjuder exakt noggrannhet för flyttal \cite{Cederqvist2017}. Vissa föreslår att flyttal borde hanteras som textsträngar med nyckelordet \textit{format}, men då krävs en större bredd av valideringstermer för att erbjuda samma funktionalitet som det redan finns till datatyper av typen \textit{number} \cite{Poberezkin,Faassen}.
+Det finns andra oklarheter kring flyttal, som att det är svårt att validera om ett flyttal är en multipel av ett annat tal, då få språk erbjuder exakt noggrannhet för flyttal \cite{Cederqvist2017}. Vad jag känner till finns det inga språk som erbjuder exakt noggrannhet för flyttal. Vissa föreslår att flyttal borde hanteras som textsträngar med nyckelordet \textit{format}, men då krävs en större bredd av valideringstermer för att erbjuda samma funktionalitet som det redan finns till datatyper av typen \textit{number} \cite{Poberezkin,Faassen}.
 
 \section{Användningsområden för JSON Schema}
 \label{sec:teori:schema-användningsområden}
 \citeauthor{Hilaiel} delar upp informationen som JSON Schema beskriver i tre typer \cite{Hilaiel} vilket han kallar:
-\begin{itemize}
+\textit{\begin{itemize}
 	\item Data structure (for documentation and validation purposes)
 	\item Storage attributes (information pertinent to tools that wish to persist JSON data)
 	\item Interaction Control (providing hints on how to render a UI where data can be manipulated)
-\end{itemize}
+\end{itemize}}
 
 \textit{Data structure} handlar om uppsättningen regler som kan användas för att validera om ett JSON-dokument upprätthåller en förutbestämd korrekt struktur. Vissa av de reglerna kan användas för att extrapolera information om vilken sorts data schemat beskriver, men för vissa valideringsregler kan det vara svårt att förstå sammanhanget av vad det är för sorts data som beskrivs.
 
