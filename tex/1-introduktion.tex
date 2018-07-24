@@ -8,7 +8,7 @@ Det här kapitlet beskriver bakgrunden till varför och i vilka ämnesområden a
 
 \subsection{JSON och JSON Schema}
 \label{sec:intro:json}
-JavaScript Object Notation \textit{(JSON)} är ett textbaserat dataformat för att utbyta data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt, vilket är en anledning till att det är ett av de mest populäraste dataformaten för datautbyte mellan webbtjänster \cite{Pezoa2016}. JSON utvecklades med inspiration till språket ECMAScript \textit{(JavaScript)} men samtidigt programmeringsspråksoberoende, vilket lett till att implementationer för att generera och parsa JSON finns tillgängliga i många olika programmeringsspråk \cite{ECMA2013}. ECMAScript är ett språk som stöds av alla moderna webbläsare, och har därför blivit en kärnteknik för webben.
+JavaScript Object Notation \textit{(JSON)} är ett textbaserat dataformat för att utbyta data mellan webbtjänster. Till skillnad mot andra alternativ, som exempelvis XML, är det både läsbart för människor och datorer, samtidigt som det är väldigt kompakt, vilket är en anledning till att det är ett av de mest populäraste dataformaten för datautbyte mellan webbtjänster \cite{Pezoa2016}. JSON utvecklades med inspiration till språket ECMAScript \textit{(JavaScript)} men är samtidigt oberoende av programmeringsspråk, vilket lett till att implementationer för att generera och parsa JSON finns tillgängliga i många olika programmeringsspråk \cite{ECMA2013}. ECMAScript är ett språk som stöds av alla moderna webbläsare, och har därför blivit en kärnteknik för webben.
 
 Trots att JSON är det populäraste dataformatet för datautbyte mellan webbtjänster saknas det ett väletablerat standardiserat ramverk för metadata-definition \cite{Pezoa2016}. En väldigt lovande formell standard är JSON Schema, vilket är ett ramverk som fortfarande utvecklas av Internet Engineering Task Force \textit{(IETF)}. JSON Schema är ett ramverk för att beskriva och annotera JSON-data \cite{A.Wright}. Kapitel \ref{sec:teori} beskriver JSON och JSON Schema i mer detalj.
 
@@ -34,9 +34,7 @@ Vilka svårigheter finns det med att använda JSON Schema för att automatisk ge
 
 \section{Syfte}
 \label{sec:intro:syfte}
-Syftet med rapporten är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Målet är att föreslå både en strukturell modell samt en metod för att lösa detta problem.
-
-Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt grafiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.
+Syftet med rapporten är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt grafiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.
 
 \section{Mål}
 \label{sec:intro:mål}
