@@ -1,10 +1,10 @@
-\chapter{JSON och JSON Scheman}
+\chapter{Bakgrund}
 \label{sec:teori}
 Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används. Kapitel \ref{sec:teori:json} beskriver vad JSON är. Kapitel \ref{sec:teori:json-web} beskriver hur JSON används för kommunikation mellan webbtjänster. Kapitel \ref{sec:teori:schema} beskriver JSON Scheman, vad de är och hur de är specificerade. Kapitel \ref{sec:teori:schema-användningsområden} diskuterar användningsområden av JSON Schema samt listar kända implementationer.
 
 \section{JSON}
 \label{sec:teori:json}
-JSON erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON. \cite{ECMA2013}
+Detta kapitel är en sammanfattning av European Computer Manufacturers Associations \textit{(ECMA)} specifikationsdokument för JSON syntaxen  \cite{ECMA2013}. JSON är ett dataformat som erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON. \cite{ECMA2013}
 
 \begin{table}
 	\centering
@@ -68,7 +68,7 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 
 \section{JSON Schema}
 \label{sec:teori:schema}
-JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite{A.Wright}. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} av ramverket bygger på tre dokument: \textit{Core}, \textit{Validation} samt \textit{Hyper-Schema}. \cite{A.Wright,TheJSONSchemaorganisationa}
+JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite{A.Wright}. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} \cite{TheJSONSchemaorganisationa} av ramverket bygger på tre dokument: \textit{Core} \cite{A.Wright}, \textit{Validation} \cite{Andrews2018} samt \textit{Hyper-Schema} \cite{Andrews2018a}.
 
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/schema.json}
@@ -108,23 +108,11 @@ Det finns andra oklarheter kring flyttal, som att det är svårt att validera om
 
 Både validering och annotering täcks mycket av dokumentet JSON Schema Validation, medan \textit{Storage attributes} nästan helt är synonymt med JSON Schema Hyper-Schema. Att beskriva relationer mellan olika resurser och hur de ska interageras med omfattas inte av den här rapporten.
 
-The Json Schema organisation listar kända implementationer på sin hemsida, och har delat upp dem i följande kategorier \cite{TheJSONSchemaorganisation}:
-\begin{itemize}
-	\item Validators
-	\item Hyper-Schema
-	\item Schema generation
-	\item Data parsing
-	\item UI generation
-	\item Editors
-	\item Compatibility
-	\item Documentation generation
-\end{itemize}
-\noindent
-Arbetet kommer behöva implementera tre av de listade implementationerna: Schema generation, Data parsing samt UI generation, vilket diskuteras i resten av kapitlet.
+The Json Schema organisation listar kända implementationer på sin hemsida, och har delat upp dem i kategorierna \cite{TheJSONSchemaorganisation}: Validators, Hyper-Schema, Schema generation, Data parsing, UI generation, Editors, Compatibility, Documentation generation. Arbetet kommer behöva implementera tre av de listade implementationerna: Schema generation, Data parsing samt UI generation, vilket diskuteras i resten av kapitlet.
 
 \subsection{Generering av scheman}
 \label{sec:teori:schema-användningsområden:generering}
-Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i tre kategorier. Det finns implementationer som utgår från JSON-data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett statiskt typat språk. Den tredje kategorin av implementation är implementationer som erbjuder en annan metod att beskriva datan, för att sedan översätta det till ett JSON Schema. \cite{TheJSONSchemaorganisation}
+Schemagenerering som kategori består av tolv implementationer där det går att ytterligare dela upp implementationerna i tre kategorier. Det finns implementationer som utgår från JSON-data, och genererar ett JSON Schema för att beskriva datan. Det kan användas om det går att anta att all användning av JSON Schemat kommer att användas på data med exakt likadan struktur. Den andra kategorin av implementationer är implementationer som genererar JSON Scheman utifrån kända datatyper i ett statiskt typat språk. Den tredje kategorin av implementation är implementationer som erbjuder en annan metod att beskriva datan, för att sedan översätta det till ett JSON Schema. Kapitel \ref{sec:forarbete:json-till-schema} dsikuterar ämnet i mer detalj.
 
 \subsubsection{Implementationerna som genererar JSON Scheman från JSON data:}
 \begin{itemize}
@@ -168,9 +156,9 @@ En parser tolkar JSON Scheman och representerar schemat med någon annan datastr
 
 \subsection{Tidigare försök av generering av grafiska användargränssnitt baserade på JSON Scheman}
 \label{sec:teori:schema-användningsområden:ui-generering}
-Det finns olika implementationer av att generera ett grafiskt användargränssnitt utifrån ett JSON Schema. Samtliga kända implementationer är skrivna i språket JavaScript och bemöter därför ingen av svårigheterna med att använda JSON eller JSON Schema med andra språk. Samtliga implementationer är implementationer för att generera hemsidor eller komponenter till hemsidor, vilket skiljer sig mycket mot att generera grafiska användargränssnitt åt Windows med Delphi, vilket arbetet gjorde.
+Det finns olika implementationer av att generera ett grafiskt användargränssnitt utifrån ett JSON Schema. Samtliga kända implementationer är skrivna i språket JavaScript och bemöter därför ingen av svårigheterna med att använda JSON eller JSON Schema med andra språk. Samtliga implementationer är implementationer för att generera hemsidor eller komponenter till hemsidor, vilket skiljer sig mycket mot att generera grafiska användargränssnitt åt Windows med Delphi, vilket arbetet gjorde. Dessa implementationer utvärderas för att avgöra om de kan användas i systemet som skulle utvecklas, men annars för att förstå hur de fungerar, så att det ska gå att dra slutsatser om hur den här rapportens system ska fungera.
 
-Vissa av implementationerna används för att generera ett grafiskt användargränssnitt för att förklara ett API beskrivet med JSON Schema och andra implementationer används för att generera ett formulär för att manipulera data beskrivet av JSON Schema. Att generera ett formulär för att manipulera data beskrivet av JSON Schema är exakt vad den här rapporten utvärderar. Användargränssnittsgenererarna som listas på The Json Schema organisations hemsida är följande:
+Vissa av implementationerna används för att generera ett grafiskt användargränssnitt för att förklara ett API beskrivet med JSON Schema och andra implementationer används för att generera ett formulär för att manipulera data beskrivet av JSON Schema. Att generera ett formulär för att manipulera data beskrivet av JSON Schema är exakt vad den här rapporten utvärderar. Verktygen för att generera grafiska användargränssnitt som listas på The Json Schema organisations hemsida är följande:
 
 \begin{itemize}
 	\item Alpaca Forms \cite{GitanaSoftwareInc.}
@@ -187,7 +175,3 @@ Vissa av implementationerna används för att generera ett grafiskt användargr�
 	\item React JSON Schema Form \cite{MozillaServices}
 	\item React Schema Form \cite{NetworkNewTechnologiesInc.}
 \end{itemize}
-
-\subsection{Implementationer som utesluts ur rapporten}
-
-Vissa av implementationerna uteslöts från rapporten då det ansågs vara omöjligt att förstå implementationerna. \textit{Schema Guru Web UI} kunde inte hittas. \textit{AutoParse} är ett verktyg som inte uppdaterats sedan 26 Mars 2013, vilket betyder att den som bäst kan implementera version tre av JSON Schema \cite{Googleb}. Dessutom länkar projektet till en hemsida som länkar tillbaka till projektet, vilket saknar dokumentation \cite{Googleb}. Verktyget \textit{gojsonschema} saknade tillräcklig information på engelska eller svenska \cite{Zhangtao}. \textit{Jsonary} hade bristande dokumentation, med länkar till en hemsida som inte finns \cite{Jsonary-js}. Länken till \textit{pure-form webcomponent} på Json Schemas hemsida returnerade felkoden 404 vilket betecknar att webbsidan som efterfrågats inte finns eller inte kan hittas. Efter omfattande sökningar hittades inte verktyget.
