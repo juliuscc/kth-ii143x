@@ -32,6 +32,15 @@ Det vore orimligt kostsamt för LSE att skapa olika administratörsprogram för 
 \label{sec:intro:problem}
 Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt? Är det möjligt? Hur generella JSON Scheman går det att använda sig av?
 
+Det finns även mer praktiska problem som uppstår vid konstruktionen av arkitekturen för systemet som ska utveckas. De är:
+
+\begin{itemize}
+	\item Hur ska användarinteraktion integreras i detta system, så att interaktion faktiskt manipulerar data?
+	\item Hur ska schemat som formuläret baseras på, genereras?
+	\item Hur ska schemat parsas, tolkas och sedan representeras i språket Delphi?
+	\item Hur ska schemats representation tillsammans med data presenteras i ett grafiskt användargränssnitt?
+\end{itemize}
+
 \section{Syfte}
 \label{sec:intro:syfte}
 Syftet med rapporten är att systematiskt analysera problemen med att försöka skapa automatiskt genererade grafiska användargränssnitt utifrån olika JSON Scheman. Syftet med arbetet är att med hjälp av JSON Scheman skapa ett dynamiskt grafiskt användargränssnitt som anpassade sig efter syfte. Utan att uppdatera administratörsklienten ska samma administratörsklient kunna konfigurera inställningar hos olika datorer med olika versioner av Mimer, och därmed olika uppsättningar konfigurerbara inställningar. Det skulle inte bara innebära stark kompatibilitet utan också framtidssäkerhet hos LSEs produkter.

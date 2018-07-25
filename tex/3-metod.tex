@@ -1,18 +1,64 @@
-\chapter{Metodologi}
+\chapter{Metod}
 \label{sec:metod}
 
-Metodologin kan delas upp i tre delar. Först utvärderades 29 olika implementationer som erbjuder liknande funktionalitet som delar av systemet som skulle utvecklas. Sedan utvecklades systemet. Där utvärderades olika alternativ på lösningar och JSON Schema som verktyg utvärderades. Både hur JSON Schema kan användas och vad det erbjuder men också vad JSON Schema inte erbjuder och hur det kan lösas. Sist utvärderades arbetet och slutsatser drogs kring JSON Schema som verktyg.
+Det här kapitlet diskuterar metod både utifrån ett övergripande forskningsperspektiv samt ett mer praktiskt perspektiv över hur arbetet faktiskt genomfördes. I grova drag genomfördes arbetet i två faser. Den första fasen var en förstudie där 29 olika verktyg utvärderades som löste liknande problem som systemet skulle lösa. I den andra fasen implementerades ett system.
+
+De första två kapitlena (\ref{sec:metod:forskningsmetod} och \ref{sec:metod:forskningsstrategi}) diskuterar hur arbetet genomfördes och varför. Det handlar om de övergripande forskningsmetoderna. Kapitel \ref{sec:metod:förhålla}, \ref{sec:metod:utvärdering-verktyg} samt \ref{sec:metod:praktiska-frågor} diskuterar de krav som ställdes på potentiella lösningar och den faktiska implementationen. De handlar dessutom om hur arbetet praktiskt genomfördes. Det sista kapitlet (\ref{sec:metod:utvärdering-arbetet}) beskriver hur arbetet utvärderades och hur slutsatser om arbetet drogs.
+
+Det här kapitlet använder termerna \textit{``Forskningsmetod''} och \textit{``Forskningsstrategi''} på samma sätt som \citeauthor{Hakansson} använder \textit{``Research Method''} och \textit{``Research Strategy''} i \textit{\citetitle{Hakansson}}. Tillsammans kan de ofta kallas forskningsmetod men de särskilljs här vilket läsaren ska vara extra uppmärksam på.
+
+\section{Forskningsmetod}
+\label{sec:metod:forskningsmetod}
+Arbetet var av kvalitativ karaktär. Arbetet handlade inte om att bekräfta någon teori utan handlade mer om att utforska ett ämne och utforska möjligheterna med en ny utvecklande teknik. Det saknas stora datamängder som krävs för att genomföra statistisk analys, som är kärnan av kvantitativa studier. Dessutom är JSON Schema som ämne fortfarande outforskat, och speciellt att använda JSON Scheman för att generera grafiska användargränssnitt för att manipulera datan som schemat beskriver.
+
+Problemet som arbetet grundade sig på var en fallstudie. Ett specifikt problem skulle lösas utifrån vissa krav och en ny, oprövad och ofärdig teknik skulle användas för att lösa problemet. De två forskningsmetoderna som arbetet skulle kunna kategoriseras som är \textit{Fundamental Research} och \textit{Applied Research}. \textit{Fundamental Research} fokuserar på nya fundamentala principer och att testa nya teorier. Det används för all sorts forskning för att skapa nya innovationer, principer och teorier \cite{Hakansson}.
+
+\textit{Applied Research} handlar om att besvara specifika frågeställningar och att lösa kända och praktiska problem \cite{Hakansson}. En grov jämförelse går att göra där \textit{Fundamental Research} bryr sig om generella lösningar medan \textit{Applied Research} handlar om specifika lösningar, men där båda metoderna resulterar i nyskapande teknik.
+
+Ämnet kring JSON Scheman med inriktning på dess applicering på grafiska användargränssnitt är till stor del outforskat i den akademiska världen; Dock finns det icke-vetenskapliga verktyg som använt JSON Schema för att skapa grafiska användargränssnitt med varierande kvalitet på resultat och ofta bristande dokumentation (se kapitel \ref{sec:teori:schema-användningsområden:ui-generering} och \ref{sec:forarbete:gui-generering}). Då arbetet är väldigt tidigt i att utforska ämnet vetenskapligt, skulle det gå att säga att forskningsmetoden räknas som \textit{Fundamental Research} samtidigt som det också skulle gå att kalla det \textit{Applied Research} \cite{Hakansson}; Speciellt med tanke på att ämnet inte är helt nytt \cite{Hakansson}. Då lösningen som utvecklades ansågs vara väldigt specifik och inte tillräckligt generell så ansågs forskningsmetoden vara \textit{Applied Research}.
+
+\section{Forksningsstrategi}
+\label{sec:metod:forskningsstrategi}
+Arbetet var en fallstudie. Det fanns vissa krav och begränsningar som skulle identifieras och en lösning skulle utvecklas. Det finns tidigare lösningar som löser liknande problem och de utvärderades. Genom att undersöka de lösningarna gick det att dra slutsatser om vilka svårigheter det finns med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt. Det gick också att dra slutsatser om hur generella JSON Scheman det går att använda sig av.
+
+För att svara på de mer praktiska frågorna som presenterades i kapitel \ref{sec:intro:problem} utformades vissa krav för hur systemet skulle fungera och utifrån de kraven utvärderades alla tidigare liknande lösningar. Om någon av de verktygen löste alla problem inom kravspecifikationen skulle de användas. Om det bara fanns verktyg som delvis kunde användas skulle det utvärderas om det skulle vara möjligt att delvis använda det verktyget i utvecklandet av systemet. De kraven beskrivs senare i kapitlet.
 
 \section{Systemet att förhålla sig till}
+\label{sec:metod:förhålla}
 Det grafiska användargränssnittet som skulle utvecklas för att manipulera data på operatörsdatorer, skulle vara en del av administratörsprogrammet som bestod av flera delar. Dessutom skulle servern på operatörsdatorerna bli ett tillägg till befintliga Mimer. Därför behövde arbetet av teknisk anledning ta hänsyn till hur LSE utvecklade resten av systemet med val av programmeringsspråk och utvecklingsmiljö. LSE arbetar huvudsakligen med språket Delphi för att utveckla skrivbordsapplikationer till Windows, vilket båda komponenterna av systemet är. Därför utvecklades arbetet i programmeringsspråket Delphi.
 
 \section{Utvärdering av kända verktyg}
+\label{sec:metod:utvärdering-verktyg}
+För att skapa en medvetenhet över hur andra tidigare löst eller försökt lösa liknande problem utvärderades och testades 29 olika implementationer som erbjuder liknande funktionalitet. Det skapade en bra bild över vad som krävdes för att genomföra arbetet.
 
-För att skapa en medvetenhet över hur andra tidigare löst eller försökt lösa liknande problem utvärderades och testades 29 olika implementationer som erbjuder liknande funktionalitet. Det skapade en bra bild över vad som krävdes för att genomföra arbetet. Utvärderingen beskrivs i kapitel \ref{sec:forarbete} och hur implementationerna förhåller sig till det praktiska arbetet som genomfördes beskrivs i kapitel \ref{sec:arbetet}.
+\subsection{Krav för verktyg som genererar eller parsar JSON Scheman}
+Kraven för verktygen som erbjöd funktionalitet för att generera eller parsa JSON Scheman utvärderades utifrån tre krav:
+
+\begin{itemize}
+	\item Verktyget måste vara enkelt att integrera med resten av systemet.
+	\item Verktyget måste vara enkelt att använda för det verkliga användningsområdet.
+	\item Verkyget måste använda sig av den senaste versionen av JSON Schema (version 7)?
+\end{itemize}
+
+De två första kraven kan anses vara subjektiva och måste baseras på författarens försåelse av verktygen. Det är problematiskt då reliabiliteten är svag. För att förstärka reliabiliteten diskuteras kraven utförligt i kapitel \ref{sec:forarbete}. Ett sätt att förbättra reliabiliteten av frågeställningarna skulle kunna vara att byta ut ordet \textit{enkelt} mot \textit{möjligt} i de första två kraven då det skulle kunna vara enklare att svara på frågorna då \textit{möjligt} är ett mindre subjektivt ord än \textit{enkelt}. Problemet med ordet \textit{möjligt} är att det öppnar upp frågan till den grad att en orimligt komplex lösning skulle kunna användas i utvecklandet av systemet trots att det vore mycket enklare att skapa ett nytt verktyg. Därför ansågs kraven vara rimliga, men det kan vara bra om läsaren har reliabilitet i åtanke när utvärderingarna presenteras i kapitel \ref{sec:forarbete} och implementationen beskrivs i kapitel \ref{sec:arbetet}.
+
+Det första kravet utformades för att avgöra om verktyget går att använda med resten av systemet. Om verktyget är gjort för att fungera med ett specifikt programmeringsspråk som inte är Delphi kan det vara svårt eller omöjligt att implementera verktyget i systemet. Det andra kravet handlar om att verktyget måste gå att använda för syftet. Det kan handla om att ett verktyg genererar JSON Scheman utifrån information som inte finns tillgänglig eller att verktyget bara parsar vissa sorters JSON Scheman.
+
+Det sista kravet utformades för att LSE vill att deras system ska vara kompatibelt med den mest relevanta standarden. JSON Schema är fortfarande inte en helt färdig standard men det går att spekulera att en senare standard är mer lik den färdiga standarden. Det skulle också öka kompatibiliteten med andra system som använder den senaste standarden vilket skulle kunna vara relevant om systemet skulle integreras med något annat.
+
+\subsection{Krav för verktyg som genererar ett grafiskt användargränssnit utifrån ett JSON Schema}
+Kraven för verktygen som genererar ett grafiskt användargränssnit utifrån ett JSON Schema är samma som kraven i förra kapitlet och:
+
+\begin{itemize}
+	\item Verktyget får inte använda ett extra \textit{``ui-schema''} eller liknande för att presentera komplexa datastrukturer på ett bra sätt.
+	\item Verktyget får inte lägga till extra \textit{properties} till JSON Schemat som gör det inkompatibelt med JSON Schema-standarden för att presentera datakomplexa strukturer på ett bra sätt.
+\end{itemize}
+
+Dessa krav kan också anses vara subjektiva då både komplexa datastrukturer och bra presentation är odefinerade. Författaren ansågs dra tillräckligt tillförlitliga slutsatser utifrån kompetensen om systemet som skulle byggas, och hur verktygen passade systemet.
 
 \section{Skapande av systemet}
 \label{sec:metod:praktiska-frågor}
-Efter utvärderingen konstruerades systemarkitekturen för systemet, så att resten av arbetet kunde planeras utifrån det. De stora praktiska problemenen som skulle lösas blev:
+Efter utvärderingen av befintliga verktyg implementerades systemet. Om något av verktygen kunde användas skulle de användas och annars skulle ett eget verktyg skapas. I kapitel \ref{sec:arbetet} diskuteras och besvaras frågorna som presenterades i kapitel \ref{sec:intro:problem}:
 
 \begin{itemize}
 	\item Hur ska användarinteraktion integreras i detta system, så att interaktion faktiskt manipulerar data?
@@ -21,7 +67,6 @@ Efter utvärderingen konstruerades systemarkitekturen för systemet, så att res
 	\item Hur ska schemats representation tillsammans med data presenteras i ett grafiskt användargränssnitt?
 \end{itemize}
 
-De fyra frågorna diskuteras och besvaras i varsin del av kapitel \ref{sec:arbetet}.
-
 \section{Utvärdering av arbetet}
-Efter att arbetet blev genomfört och färdigt utvärderades det. Det utvärderades bland annat utifrån hur generellt systemet blev. Förbättringar på systemet diskuteras och fortsatt arbete föreslås, inte bara för systemet i arbetet utan primärt fortsatta utvecklingsområden hos JSON Schema.
+\label{sec:metod:utvärdering-arbetet}
+Efter att arbetet blev genomfört och färdigt utvärderades det. Utvärderingen är dock väldigt subjektiv då den inte bygger på någon kvantitativ data, eller objektiv datainsamling. Utvärderingen bygger på subjektiv förståellse av det färdiga systemet. Det utvärderades bland annat hur generellt systemet blev. Förbättringar på systemet diskuteras och fortsatt arbete föreslås, inte bara för systemet i arbetet utan primärt fortsatta utvecklingsområden hos JSON Schema.
