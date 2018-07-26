@@ -109,4 +109,30 @@ En annan lösning till problemet är att använda ett separat JSON-objekt som fu
 	\item React Schema Form \cite{NetworkNewTechnologiesInc.}
 \end{itemize}
 
-Observera att vissa implementationer både utökar JSON Schemat, och lägger till extra scheman för att beskriva formulärets utseende och beteende. Vissa lösningar utökar schemat för att sedan lägga till ett extra mellansteg där vissa parametrar i modellen kopplas till extra funktionslogik. Inget verktyg ansågs vara enkelt att integrera med systemet då de skrevs för att fungera med hemsidor. Dessutom skrevs många verktyg för fel version av JSON Schema. Utöver det så använde nästan alla verktyg ett externt \textit{´´ui-schema''} eller inkompatibla JSON Scheman. Därför ansågs inga verktyg vara tillräckliga och ett nytt skapades.
+Observera att vissa implementationer både utökar JSON Schemat, och lägger till extra scheman för att beskriva formulärets utseende och beteende. Vissa lösningar utökar schemat för att sedan lägga till ett extra mellansteg där vissa parametrar i modellen kopplas till extra funktionslogik. Inget verktyg ansågs vara enkelt att integrera med systemet då de skrevs för att fungera med hemsidor. Dessutom skrevs många verktyg för fel version av JSON Schema. Utöver det så använde nästan alla verktyg ett externt \textit{``ui-schema''} eller inkompatibla JSON Scheman. Därför ansågs inga verktyg vara tillräckliga och ett nytt skapades.
+
+\section{Fördjupad utvärdering av grafiska användargränssnitt baserade på JSON Scheman}
+
+De grafiska användargränssnitt som genererades av verktygen går att dela in i två kategorier vilket här kallas \textit{trädstruktur} samt \textit{platt formulär}. En \textit{trädstruktur} är ett grafiskt användargränssnitt som erbjuder en generell JSON-editor där datan visuellt representeras med en trädstruktur. Det finns många exempel på grafiska användargränssnitt som erbjuder ett grundläggande gränssnitt för att redigera generell JSON-data. De skiljer sig inte mycket mot att skriva JSON manuellt, men kan erbjuda enkel hjälp med nyckelord och formatering. Figur \ref{fig:json-editor} visar JSON Editor Online, vilket är ett exempel på ett sådant grafiskt användargränssnitt \cite{DeJong2018}. Det skulle kunna gå att begränsa vad användaren skulle kunna mata in med hjälp av JSON Schemat men ett sådant formulär har möjlighet att hantera JSON Data som följer all möjlig sorts struktur.
+
+En stor fördel med \textit{trädstrukturer} är att då de speglar strukturen av ett JSON-dokument kan de enkelt användas för att visualisera nästan vilken sorts JSON-data som helst, oberoende datans komplexitet. En nackdel med att använda ett sådant grafiskt användargränssnitt är att det inte är enkla att anpassa för ändamålet, och det grafiska användargränssnittet blir inte särskilt frikopplat mot datan som ska manipuleras. Det blir dessutom svårt att presentera information till användaren som kan hjälpa användaren förstå hur datan kommer användas.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/screenshot-json-editor.png}
+	\vspace{-1.7em}
+	\caption{JSON Editor Online \cite{DeJong2018}}
+	\label{fig:json-editor}
+\end{figure}
+
+Ett annat alternativ är att göra som React JSON Schema Form (se figur \ref{fig:react-jsonschema-form}), vilket då hamnar i kategorin \textit{platt formulär}. React JSON Schema Form genererar ett webbformulär utifrån ett JSON Schema och ett extra JSON-dokument som kallas UISchema \cite{MozillaServices}. Varje datanod som kan manipuleras representeras med ett inmatningsfält och objekt och vektorer representeras med visuella grupperingar. Användargränssnittet blir mycket mer anpassat till syftet, och lättare att använda. Dessutom utnyttjas annoteringsnyckelorden \textit{title} och \textit{description} från JSON Schemat, för att förklara för användaren vad datan betyder.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{./images/screenshot-react-jsonschema-form.png}
+	\vspace{-1.7em}
+	\caption{React JSON Schema Form \cite{MozillaServices}}
+	\label{fig:react-jsonschema-form}
+\end{figure}
+
+Det som är en nackdel hos \textit{platta formulär} är hur de presenterar djupt komplexa JSON-strukturer. Det är inte uppenbart hur ett grafiskt användargränssnitt skulle visualisera en vektor innehållande objekt med två \textit{properties}, varav ena \textit{propertyn} är ett objekt med två olika vektorer. I ett komplext formulär kan det också vara svårt att veta hur annoteringar som \textit{title} och \textit{description} borde presenteras. För att lösa problemet med representation av komplex data använder verktygen oftast ett externt \textit{``ui-schema''} eller tillägg till JSON Schemat för att tillföra extra annoteringsinformation om formulärets utseende. Det är en riktigt bra kompromiss om lösningen måste kunna klara av att presentera djupt komplexa datatyper, som inte följer en förutbestämd struktur, dock så uppfyller det inte kraven som ställdes på verktygen.
+
+En \textit{trädstruktur} hanterar representation av djupt komplex data som \textit{platta formulär} inte klarar av lika bra. Det kan vara enklare att förstå den övergripande strukturen med en \textit{trädstruktur}, vilket speciellt gynnar datatyperna objekt och vektorer. Däremot bidrar \textit{platta formulär} mycket bättre förklaringar av enstaka datanoder som är någon av de andra datatyperna, vilket ger bättre förståelse för datanoderna, vilket \textit{trädstrukturer} inte lyckas med.

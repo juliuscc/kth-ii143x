@@ -1,6 +1,6 @@
-\chapter{Arbetet}
+\chapter{Implementering}
 \label{sec:arbetet}
-Det här kapitlet presenterar hur arbetet genomfördes. Det diskuterar även frågeställningar som bemöttes samt hur det här arbetet förhåller sig till tidigare implementationer. De fyra underkapitlen i det här kapitlet besvarar en av de fyra praktiska frågorna var som introducerades i kapitel \ref{sec:metod:praktiska-frågor}.
+Det här kapitlet presenterar hur systemet implementerades. Det diskuterar även frågeställningar som bemöttes samt hur det här arbetet förhåller sig till tidigare implementationer av liknande lösningar. De fyra underkapitlen i det här kapitlet besvarar en av de fyra praktiska frågorna var som introducerades i kapitel \ref{sec:intro:problem}.
 
 \section{Systemet i helhet}
 
@@ -72,21 +72,8 @@ Många implementationer diskuterade i kapitel \ref{sec:forarbete:gui-generering}
 
 Det enklaste valet av grafiskt användargränssnitt skulle vara att erbjuda en generell JSON editor där datan visuellt representeras med en trädstruktur. Det finns många exempel på grafiska användargränssnitt som erbjuder ett grundläggande gränssnitt för att redigera generell JSON-data. De skiljer sig inte mycket mot att skriva JSON manuellt, men kan erbjuda enkel hjälp med nyckelord och formatering. Figur \ref{fig:json-editor} visar JSON Editor Online, vilket är ett exempel på ett sådant grafiskt användargränssnitt \cite{DeJong2018}. Det skulle behöva begränsa vad användaren skulle kunna mata in med hjälp av JSON Schemat men ett sådant formulär har möjlighet att hantera JSON Data som följer all möjlig sorts struktur. Det vore en stor fördel att kunna erbjuda ett formulär som kan hantera alla möjliga sorters scheman. En nackdel med att använda ett sådant grafiskt användargränssnitt är att det inte är särskilt anpassat för ändamålet, och gränssnittet blir inte särskilt frikopplat mot datan som ska manipuleras. Det blir dessutom svårt att presentera information till användaren som kan hjälpa användaren förstå hur datan kommer användas.
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{./images/screenshot-json-editor.png}
-	\vspace{-1.7em}
-	\caption{JSON Editor Online \cite{DeJong2018}}
-	\label{fig:json-editor}
-\end{figure}
 
 Ett annat alternativ är att göra som React JSON Schema Form (se figur \ref{fig:react-jsonschema-form}). React JSON Schema Form genererar ett webbformulär utifrån ett JSON Schema och ett extra JSON-dokument som kallas UISchema \cite{MozillaServices}. Varje datanod som kan manipuleras representeras med ett inmatningsfält och objekt och vektorer representeras med visuella grupperingar. Användargränssnittet blir mycket mer anpassat till syftet, och lättare att använda. Dessutom utnyttjas annoteringsnyckelorden \textit{title} och \textit{description} från JSON Schemat, för att förklara för användaren vad datan betyder. Det som kan bli svårt med en design som är anpassad efter syftet som ett formulär är hur komplexa JSON-strukturer ska hanteras. Hur skulle exempelvis en vektor innehållande objekt med två \textit{properties}, varav ena \textit{propertyn} är ett objekt med två olika vektorer, presenteras på ett användarvänligt sätt? Att även presentera annoteringar som \textit{title} och \textit{description} till alla datanoder i det formuläret vore ännu en till utmaning. En vanlig JSON-Editor klarar av att presentera djupt komplexa datatyper, medan det kan vara väldigt svårt att göra samma sak på ett generellt sätt med formulär. Många lösningar som React JSON Schema Form erbjuder generella formulär som klarar av alla JSON Scheman, med alternativet att specificera mer hur formuläret ska se ut, med hjälp av ett extra JSON-dokument \cite{MozillaServices}. Det är en riktigt bra kompromiss om lösningen måste kunna klara av att presentera djupt komplexa datatyper, som inte följer en förutbestämd struktur, men det begränsas om bara korrekta JSON Scheman ska användas.
-
-\begin{figure}
-	\includegraphics[width=\textwidth]{./images/screenshot-react-jsonschema-form.png}
-	\vspace{-1.7em}
-	\caption{React JSON Schema Form \cite{MozillaServices}}
-	\label{fig:react-jsonschema-form}
-\end{figure}
 
 Datan som skulle presenteras på det grafiska användargränssnittet i arbetet var varken komplex eller totalt generell. Datan bestod av ett objekt med flera objekt som properties, där de objekten i sin tur var antingen en textsträng, ett heltal eller ett booleskt värde. Datan var som mest tre lager djup. Det gick dessutom att dela in datanoderna i inställningsgrupper och inställningsnoder. Därför kunde både en JSON-editor användas, eller ett formulär. Datan som skulle presenteras ansågs av LSE vara för komplex för många användare att förstå utan en ordentlig förklaring av varje inställningsnod. Däremot ansågs inte ett enda formulär ge tillräcklig överblick över alla inställningar och skulle inte utnyttja grupperingen av inställningar. JSON-typerna \textit{string}, \textit{number}, \textit{integer} och \textit{boolean} ansågs tjäna på att representeras i ett platt formulär medan typerna \textit{object} och \textit{array} tjänade på att representeras i en trädstruktur. Det bästa alternativet ansågs därför vara att kombinera de två ovanstående representationerna. Användargränssnittet presenteras i figur \ref{fig:gui:helhet}.
 
