@@ -24,18 +24,28 @@
 \cleardoublepage
 \cleardoublepage
 
+\setlength{\parindent}{0pt}
+
+\setlength{\parskip}{\baselineskip}
+
 \section*{Sammanfattning}
 Det saknas en bra lösning för att automatiskt generera inmatningsformulär för datamanipulation. Därför måste grafiska användargränssnitt skapas utifrån förutbestämda kända faktorer om datan som det grafiska användargränssnittet ska baseras på. Det här arbetet använder JSON Schema för att beskriva data som kan manipuleras och använder det för att automatiskt generera grafiska användargränssnitt. Genom att använda samma modell kan grafiska användargränssnitt genereras generellt utan att i förväg ha information om datan som det grafiska användargränssnittet ska baseras på.
+
+Arbetet är en fallstudie som ämnar att lösa ett specifikt problem, samtidigt som JSON Schema som verktyg utvärderades ur ett generellt perspektiv. Dessutom utvärderar arbetet en stor mängd befintliga verktyg som använder JSON Schema för att generera inmatningsformulär. En generell lösning för att generera inmatningsformulär utifrån JSON Scheman presenteras i arbetet och förbättringsförslag för JSON Scheman föreslås. Slutsatsen som drogs var att JSON Scheman är ett bra verktyg för ändamålet men har brister, vilket kan förväntas då JSON Schema inte var en färdig teknik, vid tidpunkten då arbetet genomfördes.
+
 \clearpage
 
 \section*{Abstract}
 There does not exist a good solution to automatically generate input forms for data manipulation. Therefore user interfaces has to be created considering predetermined known factors about the data that the user interface will be based upon. This project uses JSON Schema to describe data that can be manipulated and uses that to automatically generate user interfaces. By using the same model unspecific user interfaces can be generated without prior information about the data that the user interface will be based upon.
+
 \clearpage
+
+\setlength{\parskip}{0pt}
 
 \tableofcontents
 
 \setlength{\parskip}{\baselineskip}
-\setlength{\parindent}{0pt}
+
 
 % Mainmatter is where the actual contents of the thesis goes
 \mainmatter
