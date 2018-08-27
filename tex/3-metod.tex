@@ -3,9 +3,9 @@
 
 Det här kapitlet diskuterar metod både utifrån ett övergripande forskningsperspektiv samt ett mer praktiskt perspektiv över hur arbetet faktiskt genomfördes. I grova drag genomfördes arbetet i två faser. Den första fasen var en förstudie där 29 olika verktyg utvärderades som löste liknande problem som systemet skulle lösa. I den andra fasen implementerades ett system.
 
-De första två kapitlena (\ref{sec:metod:forskningsmetod} och \ref{sec:metod:forskningsstrategi}) diskuterar hur arbetet genomfördes och varför. Det handlar om de övergripande forskningsmetoderna. Kapitel \ref{sec:metod:förhålla}, \ref{sec:metod:utvärdering-verktyg} samt \ref{sec:metod:praktiska-frågor} diskuterar de krav som ställdes på potentiella lösningar och den faktiska implementationen. De handlar dessutom om hur arbetet praktiskt genomfördes. Det sista kapitlet (\ref{sec:metod:utvärdering-arbetet}) beskriver hur arbetet utvärderades och hur slutsatser om arbetet drogs.
+De första två kapitlen (\ref{sec:metod:forskningsmetod} och \ref{sec:metod:forskningsstrategi}) diskuterar hur arbetet genomfördes och varför. Det handlar om de övergripande forskningsmetoderna. Kapitel \ref{sec:metod:förhålla}, \ref{sec:metod:utvärdering-verktyg} samt \ref{sec:metod:praktiska-frågor} diskuterar de krav som ställdes på potentiella lösningar och den faktiska implementationen. De handlar dessutom om hur arbetet praktiskt genomfördes. Det sista kapitlet (\ref{sec:metod:utvärdering-arbetet}) beskriver hur arbetet utvärderades och hur slutsatser om arbetet drogs.
 
-Det här kapitlet använder termerna \textit{``Forskningsmetod''} och \textit{``Forskningsstrategi''} på samma sätt som \citeauthor{Hakansson} använder \textit{``Research Method''} och \textit{``Research Strategy''} i \textit{\citetitle{Hakansson}} \cite{Hakansson}. Tillsammans kan de ofta kallas forskningsmetod men de särskilljs här vilket läsaren ska vara extra uppmärksam på.
+Det här kapitlet använder termerna \textit{``Forskningsmetod''} och \textit{``Forskningsstrategi''} på samma sätt som \citeauthor{Hakansson} använder \textit{``Research Method''} och \textit{``Research Strategy''} i \textit{\citetitle{Hakansson}} \cite{Hakansson}. Tillsammans kan de ofta kallas forskningsmetod men de särskiljs här vilket läsaren ska vara extra uppmärksam på.
 
 \section{Forskningsmetod}
 \label{sec:metod:forskningsmetod}
@@ -37,24 +37,24 @@ Kraven för verktygen som erbjöd funktionalitet för att generera eller parsa J
 \begin{itemize}
 	\item Verktyget måste vara enkelt att integrera med resten av systemet.
 	\item Verktyget måste vara enkelt att använda för det verkliga användningsområdet.
-	\item Verkyget måste använda sig av den senaste versionen av JSON Schema (version 7)
+	\item Verktyget  måste använda sig av den senaste versionen av JSON Schema (version 7)
 \end{itemize}
 
-De två första kraven kan anses vara subjektiva och måste baseras på författarens försåelse av verktygen. Det är problematiskt då reliabiliteten är svag. För att förstärka reliabiliteten diskuteras kraven utförligt i kapitel \ref{sec:forarbete}. Ett sätt att förbättra reliabiliteten av frågeställningarna skulle kunna vara att byta ut ordet \textit{enkelt} mot \textit{möjligt} i de första två kraven då det skulle kunna vara enklare att svara på frågorna då \textit{möjligt} är ett mindre subjektivt ord än \textit{enkelt}. Problemet med ordet \textit{möjligt} är att det öppnar upp frågan till den grad att en orimligt komplex lösning skulle kunna användas i utvecklandet av systemet trots att det vore mycket enklare att skapa ett nytt verktyg. Därför ansågs kraven vara rimliga, men det kan vara bra om läsaren har reliabilitet i åtanke när utvärderingarna presenteras i kapitel \ref{sec:forarbete} och implementationen beskrivs i kapitel \ref{sec:arbetet}.
+De två första kraven kan anses vara subjektiva och måste baseras på författarens förståelse av verktygen. Det är problematiskt då reliabiliteten är svag. För att förstärka reliabiliteten diskuteras kraven utförligt i kapitel \ref{sec:forarbete}. Ett sätt att förbättra reliabiliteten av frågeställningarna skulle kunna vara att byta ut ordet \textit{enkelt} mot \textit{möjligt} i de första två kraven då det skulle kunna vara enklare att svara på frågorna då \textit{möjligt} är ett mindre subjektivt ord än \textit{enkelt}. Problemet med ordet \textit{möjligt} är att det öppnar upp frågan till den grad att en orimligt komplex lösning skulle kunna användas i utvecklandet av systemet trots att det vore mycket enklare att skapa ett nytt verktyg. Därför ansågs kraven vara rimliga, men det kan vara bra om läsaren har reliabilitet i åtanke när utvärderingarna presenteras i kapitel \ref{sec:forarbete} och implementationen beskrivs i kapitel \ref{sec:arbetet}.
 
 Det första kravet utformades för att avgöra om verktyget går att använda med resten av systemet. Om verktyget är gjort för att fungera med ett specifikt programmeringsspråk som inte är Delphi kan det vara svårt eller omöjligt att implementera verktyget i systemet. Det andra kravet handlar om att verktyget måste gå att använda för syftet. Det kan handla om att ett verktyg genererar JSON Scheman utifrån information som inte finns tillgänglig eller att verktyget bara parsar vissa sorters JSON Scheman.
 
 Det sista kravet utformades för att LSE vill att deras system ska vara kompatibelt med den mest relevanta standarden. JSON Schema är fortfarande inte en helt färdig standard men det går att spekulera att en senare standard är mer lik den färdiga standarden. Det skulle också öka kompatibiliteten med andra system som använder den senaste standarden vilket skulle kunna vara relevant om systemet skulle integreras med något annat.
 
-\subsection{Krav för verktyg som genererar ett grafiskt användargränssnit utifrån ett JSON Schema}
-Kraven för verktygen som genererar ett grafiskt användargränssnit utifrån ett JSON Schema är samma som kraven i förra kapitlet och:
+\subsection{Krav för verktyg som genererar ett grafiskt användargränssnitt utifrån ett JSON Schema}
+Kraven för verktygen som genererar ett grafiskt användargränssnitt utifrån ett JSON Schema är samma som kraven i förra kapitlet och:
 
 \begin{itemize}
 	\item Verktyget får inte använda ett extra \textit{``ui-schema''} eller liknande för att presentera komplexa datastrukturer på ett bra sätt.
 	\item Verktyget får inte lägga till extra \textit{properties} till JSON Schemat som gör det inkompatibelt med JSON Schema-standarden för att presentera datakomplexa strukturer på ett bra sätt.
 \end{itemize}
 
-Dessa krav kan också anses vara subjektiva då både komplexa datastrukturer och bra presentation är odefinerade. Författaren ansågs dra tillräckligt tillförlitliga slutsatser utifrån kompetensen om systemet som skulle byggas, och hur verktygen passade systemet. Anledningen till att verktyget inte skulle använda extra \textit{``ui-scheman''} eller liknande är att JSON Schema ansågs tillförse tillräcklig information för att generera grafiska användargränssnitt, trots om komplex datastrukt skulle representeras. Anledningen till att verktyget skulle vara JSON Schema kompatibelt var för att säkerställa kompatibilitet med andra system eller verktyg som använder JSON Scheman. Dessa två krav var också viktiga för att svara på frågorna som ställdes i problemformuleringen.
+Dessa krav kan också anses vara subjektiva då både komplexa datastrukturer och bra presentation är odefinierade. Författaren ansågs dra tillräckligt tillförlitliga slutsatser utifrån kompetensen om systemet som skulle byggas, och hur verktygen passade systemet. Anledningen till att verktyget inte skulle använda extra \textit{``ui-scheman''} eller liknande är att JSON Schema ansågs tillförse tillräcklig information för att generera grafiska användargränssnitt, trots om komplexa datastrukturer skulle representeras. Anledningen till att verktyget skulle vara JSON Schema kompatibelt var för att säkerställa kompatibilitet med andra system eller verktyg som använder JSON Scheman. Dessa två krav var också viktiga för att svara på frågorna som ställdes i problemformuleringen.
 
 \section{Skapande av systemet}
 \label{sec:metod:praktiska-frågor}
@@ -69,4 +69,4 @@ Efter utvärderingen av befintliga verktyg implementerades systemet. Om något a
 
 \section{Utvärdering av arbetet}
 \label{sec:metod:utvärdering-arbetet}
-Efter att arbetet blev genomfört och färdigt utvärderades det. Utvärderingen är dock väldigt subjektiv då den inte bygger på någon kvantitativ data, eller objektiv datainsamling. Utvärderingen bygger på subjektiv förståellse av det färdiga systemet. Det utvärderades bland annat hur generellt systemet blev. Förbättringar på systemet diskuteras och fortsatt arbete föreslås, inte bara för systemet i arbetet utan primärt fortsatta utvecklingsområden hos JSON Schema.
+Efter att arbetet blev genomfört och färdigt utvärderades det. Utvärderingen är dock väldigt subjektiv då den inte bygger på någon kvantitativ data, eller objektiv datainsamling. Utvärderingen bygger på subjektiv förståelse av det färdiga systemet. Det utvärderades bland annat hur generellt systemet blev. Förbättringar på systemet diskuteras och fortsatt arbete föreslås, inte bara för systemet i arbetet utan primärt fortsatta utvecklingsområden hos JSON Schema.
