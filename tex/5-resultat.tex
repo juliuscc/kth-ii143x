@@ -67,6 +67,8 @@ För att både generering och parsning hanterades av samma tjänst ansågs nycke
 
 Det fanns fler nyckelord som inte implementerades då bara en delmängd av JSON Schema implementerades. För att flersvarsalternativ skulle kunna erbjudas i det grafiska användargränssnittet implementerades stöd för nyckelordet \textit{enum}, dock med vissa tillägg vilket diskuteras mer i kapitel \ref{sec:arbetet:gui}.
 
+\FloatBarrier
+
 Figur \ref{fig:system:ner} beskriver systemet i helhet och där är parsningen en viktig del av dataflödet. Först parsas schemat för att skapa en representation av schemat i Delphi, med de tidigare nämnda objekten. Objekten innehåller också värdet av datan de beskriver men i det första steget är alla värden tomma. Nästa steg är att traversera JSON-filen som innehåller den riktiga datan, och sedan populera objekten med korrekta värden. Först då kan det grafiska användargränssnittet genereras.
 
 \section{Representation av data i användargänssnittet}
@@ -109,6 +111,8 @@ För att förenkla för användaren erbjuds en omstarts-knapp som raderar alla o
 \subsection{Hur formuläret förhindrar fel}
 
 Syftet med JSON-scheman är till stor del att förhindra att inkompatibel data sparas och används i applikationer. Det kan handla om att ett grafiskt användargränssnitt inte är byggt för att presentera viss sorts data, eller att ett helt system upphör att fungera för att systemet inte kunde hantera den sparade datan. Användningen av JSON Scheman i det här arbetet handlar också om att säkerställa att enbart kompatibel data skickas mellan klient och server. En kritisk frågeställning vid utvecklandet av ett användbart grafiskt användargränssnitt är hur felaktiga användarinteraktioner ska hanteras i det grafiska användargränssnittet.
+
+\newpage
 
 Den enklaste hanteringen av inkompatibel data är att när en användare har givit inkompatibel data, kan ett generiskt felmeddelande presenteras, samt att användaren förhindras från att spara datan före användaren givit kompatibel data. Det förlitar sig på att varje inställning har en tillräckligt utförlig förklaring för hur datan ska formateras, så att användaren kar rätta sina fel utifrån förklaringen. Ett annat alternativ är att förhindra att användaren kan mata in felaktig data. Det kan exempelvis handla om att användaren bara kan mata in siffror till formuläret, om datan ska formateras som en siffra. Om användaren försöker mata in en bokstav så ignoreras den användarinteraktionen. Det kan kompletteras med förklaringar av korrekt formatering i inställningsbeskrivningen, men att användaren inte ens kan mata in inkompatibel data är väldigt tydligt för användaren. Det perfekta målet vore att när en användare matar in inkompatibel data, ändrar formuläret datan till den närmsta kompatibla datan. Om en användare matar in siffran 300 i ett formulär som bara tillåter siffror upp till siffran 255 så kan formuläret automatiskt ändra värdet till 255. Det kan dock vara svårt att lösa för mer komplexa situationer.
 
@@ -162,7 +166,7 @@ Nyckelordet \textit{format} kan användas för andra typer än textsträngar och
 \end{figure}
 
 
-\FloatBarrier
+%\FloatBarrier
 \subsection{Booleska värden och heltal i det grafiska användargränssnittet}
 
 Booleska värden kan bara vara ett av två värden. Inmatningsfältet som valdes för att presentera booleska värden blev en kryssruta, som visas i figur \ref{fig:bool}. Det finns ingen möjlighet för användaren att mata in ett annat värde än de två tillåtna värdena. Om det grafiska användargränssnittet ska presentera något annat värde än \textit{true} eller \textit{false} kan nyckelordet \textit{enum} användas, vilket diskuteras mer senare.

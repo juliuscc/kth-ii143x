@@ -1,7 +1,7 @@
 \chapter{Diskussion, slutsats och fortsatt arbete}
 \label{sec:slutsats}
 
-Det här kapitlet svarar på frågeställningarna som presenterades i kapitel \ref{sec:intro:problem} vilket var:
+Det här kapitlet besvarar frågeställningarna som presenterades i kapitel \ref{sec:intro:problem} vilket var:
 
 \begin{itemize}
 	\item Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt
@@ -11,7 +11,9 @@ Det här kapitlet svarar på frågeställningarna som presenterades i kapitel \r
 \end{itemize}
 
 Den första frågeställningen diskuteras och besvaras i kapitel \ref{sec:slutsats:json-schema}. De andra två frågorna diskuteras och besvaras i kapitel \ref{sec:slutsats:generera}. Utöver det så diskuteras fortsatt arbete i kapitel \ref{sec:slutsats:fortsatt-arbete}, och avslutningsvis utvärderas arbetet i kapitel \ref{sec:slutsats:slutsats}.
-  
+
+\newpage
+
 \section{Vilka svårigheter finns det med att använda JSON Schema för att automatisk generera ett grafiskt användargränssnitt?}
 \label{sec:slutsats:json-schema}
 JSON Schema är huvudsakligen ämnat för att validera data, trots att det erbjuder annoteringsfunktionalitet. Att generera ett grafiskt användargränssnitt från ett JSON Schema är därför inte trivialt. Att validera data kräver bara en uppsättning regler och en kontroll för att utvärdera om datan följer alla regler. Att generera ett interaktivt grafiskt användargränssnitt kräver att det finns ett tydligt sammanhang kring reglerna. Det grafiska användargränssnittet måste förstå hur data skapas för att passa in i reglerna, och ibland räcker inte regler för att förklara hur data ska skapas. Ett exempel på det är nyckelordet \textit{pattern} som används för att testa en textsträng mot ett ibland komplext mönster. Mönstret ger ingen enkel förklaring till hur en korrekt textsträng ser ut, utan ger bara en komplex uppsättning regler.
@@ -34,6 +36,7 @@ Arbetet föreslår en generell lösning som kan tillräckligt presentera ett gra
 
 JSON Schema har däremot problem med att beskriva alla sorters önskade presentationsmöjligheter. Det är nästan perfekt men utan att nyckelorden \textit{enum} samt \textit{format} förbättras, är inte JSON Schema ett perfekt verktyg för att beskriva hur ett grafiskt användargränssnitt ska presentera manipulerbar data.
 
+\newpage
 
 \section{Fortsatt arbete}
 \label{sec:slutsats:fortsatt-arbete}

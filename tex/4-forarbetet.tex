@@ -88,6 +88,8 @@ Samtliga implementationer som genererar grafiska användargränssnitt utifrån J
 
 Att använda JSON Schema för att generera grafiska användargränssnitt kan ske på olika sätt, och många implementationer bygger på att ytterligare information tillförs för att kunna specificera hur modellerna ska representeras i det grafiska användargränssnittet. Vissa lösningar är generella för användning på vilken hemsida som helst, medan andra är kopplade till att användas med ett visst ramverk, som React, JQuery eller Angular.
 
+\newpage
+
 Alpaca Forms är en unik lösning då den är den enda implementationen som inte använder ett JSON Schema som är formaterat med JSON, utan schemat är en instans av ett JavaScript-objekt, vilket möjliggör att schemat inkluderar funktionslogik; En funktionalitet som saknas hos JSON. Utöver funktionslogik, inkluderar schemat en \textit{property} som kallas \textit{options}, som används för att beskriva hur det grafiska användargränssnittet ska se ut. De delarna av schemat som är korrekt JSON Schema används till stor del enbart för att koppla ihop det grafiska användargränssnittet med datan. \cite{GitanaSoftwareInc.}
 
 Andra lösningar som utökade det officiella JSON Schemat är:
