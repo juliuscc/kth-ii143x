@@ -4,7 +4,7 @@ Det här kapitlet beskriver vad JSON och JSON Scheman är, samt hur de används.
 
 \section{JSON}
 \label{sec:teori:json}
-Detta kapitel är en sammanfattning av European Computer Manufacturers Associations \textit{(ECMA)} specifikationsdokument för JSON syntaxen  \cite{ECMA2013}. JSON är ett dataformat som erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON. \cite{ECMA2013}
+Detta kapitel är en sammanfattning av European Computer Manufacturers Associations \textit{(ECMA)} specifikationsdokument för JSON syntaxen. JSON är ett dataformat som erbjuder stöd för några enkla datatyper: textsträngar, siffror, tomt värde samt booleska värden, som presenteras i tabell \ref{tab:json-primitives}. JSON erbjuder dessutom stöd för två komplexa datatyper vilket är vektorer \textit{(array)}, en ordnad lista av JSON-värden, samt objekt \textit{(object)}, vilket är en oordnad mängd av namn-värde-par \textit{(properties)}. Exempel på de två komplexa datatyperna visas i figur \ref{fig:json-komplex-example}. Resten av rapporten kommer utbytbart använda JSON-värde, JSON-data, JSON-fil och JSON-dokument för att förklara en av de sex datatyperna som kan representeras med JSON. \cite{ECMA2013}
 
 \begin{table}
 	\centering
@@ -68,7 +68,7 @@ På grund av att JSON är kompakt, enkelt läsbart och har brett stöd hos mång
 
 \section{JSON Schema}
 \label{sec:teori:schema}
-JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite{A.Wright}. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} \cite{TheJSONSchemaorganisationa} av ramverket bygger på tre dokument: \textit{Core} \cite{A.Wright}, \textit{Validation} \cite{Andrews2018} samt \textit{Hyper-Schema} \cite{Andrews2018a}.
+JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite[s.~1]{A.Wright}. JSON Schema specificerar regler som kan användas för att antingen bestämma om befintliga JSON värden är giltiga, eller för att i förväg beskriva hur giltiga värden får se ut. Objektet i figur \ref{fig:json-object-example} skulle kunna valideras enligt JSON Schemat i figur \ref{fig:json-schema-example}. Den senaste fastslagna versionen \textit{(Draft 7)} \cite{TheJSONSchemaorganisationa} av ramverket bygger på tre dokument: \textit{Core} \cite{A.Wright}, \textit{Validation} \cite{Andrews2018} samt \textit{Hyper-Schema} \cite{Andrews2018a}.
 
 \begin{figure}
 	\inputminted[tabsize=2, frame=single, fontsize=\small, framesep=2mm]{json}{code/simple/schema.json}
@@ -78,7 +78,7 @@ JSON Schema är ett ramverk för att förklara hur JSON-värden kan se ut \cite{
 \end{figure}
 
 \subsection{JSON Schema Core}
-JSON Schema Core täcker grunderna för JSON Schema. Dokumentet fastställer exempelvis mediatypen som borde användas för att skicka JSON Scheman över HTTP, förhållandet mellan flera JSON Scheman, samt hur heltal borde behandlas. Att JSON Scheman själva är JSON-dokument bestäms också. Dokumentet fastställer också att validering och annotering av JSON-värden ska ske enligt dokumentet draft-handrews-json-schema-validation-01 \textit{(Validation)}, samt att draft-handrews-json-schema-hyperschema-01 \textit{(Hyper-Schema)} behandlar reglerna kring att beskriva hypertextstrukturen hos JSON-dokument. \cite{A.Wright}
+JSON Schema Core täcker grunderna för JSON Schema. Dokumentet fastställer exempelvis mediatypen som borde användas för att skicka JSON Scheman över HTTP, förhållandet mellan flera JSON Scheman, samt hur heltal borde behandlas. Att JSON Scheman själva är JSON-dokument bestäms också. Dokumentet fastställer också att validering och annotering av JSON-värden ska ske enligt dokumentet draft-handrews-json-schema-validation-01 \textit{(Validation)}, samt att draft-handrews-json-schema-hyperschema-01 \textit{(Hyper-Schema)} behandlar reglerna kring att beskriva hypertextstrukturen hos JSON-dokument. \cite[s.~1,~3-4,~10-11]{A.Wright}
 
 \subsection{JSON Schema Validation}
 JSON Schema Validation beskriver tre saker: hur man beskriver ett JSON-dokument, hur man ger tips åt användargränssnitt för att jobba med JSON-dokument samt hur man kan beskriva påståenden om ett dokuments validitet. Förenklat beskriver det här dokumentet strukturen hos ett JSON Schema, med beskrivningar av nästan alla nyckelord. Utöver att beskriva hur JSON-dokument ska valideras, presenteras annoteringsnyckelord som \textit{title} och \textit{description}, där \textit{title} är en kort förklaring för JSON värdet den validerar, och \textit{description} är en längre förklaring. \cite{Andrews2018}
@@ -118,7 +118,7 @@ Schemagenerering som kategori består av tolv implementationer där det går att
 \begin{itemize}
 	\item Schema Guru \textit{(Scala)} \cite{Snowplow}
 	\item JSON Schema Generator \textit{(Visual Studio)} \cite{MadsKristensen}
-	\item json-schema-generator \textit{(JavaScript / JSON)} \cite{Romanovich}
+	\item json-schema-generator \textit{(JavaScript / JSON)} \cite{Gordon}
 \end{itemize}
 
 \subsubsection{Implementationerna som genererar JSON Scheman från statiska datatyper inbyggda i språket:}
